@@ -1,8 +1,8 @@
 import React from "react";
-import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Image from 'next/image'
 export default function About() {
   return (
     <section id="about">
@@ -11,8 +11,9 @@ export default function About() {
           <Row>
         <Col>
           <Image
-            src="https://www.rd.com/wp-content/uploads/2020/05/GettyImages-109433950-scaled.jpg"
+            src="/images/ducks.jpg"
             width="300"
+            height="300"
             alt='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

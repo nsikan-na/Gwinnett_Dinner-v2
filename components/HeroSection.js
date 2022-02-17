@@ -9,8 +9,10 @@ export default function HeroSection() {
         <Carousel.Item interval={5000}>
           <Image
             className="d-block w-100"
-            src="https://121clicks.com/wp-content/uploads/2021/10/tiger_cub_lion_cub_best_friends_01.jpg"
+            src="/images/tiger.jpg"
             alt="First slide"
+            height="900"
+            width="1200"
           />
           <Carousel.Caption>
             <h3>First slide label</h3>
@@ -20,8 +22,10 @@ export default function HeroSection() {
         <Carousel.Item interval={5000}>
           <Image
             className="d-block w-100"
-            src="http://ihoneida.com/wp-content/uploads/2017/05/bear-cub.jpg"
+            src="/images/bear.jpg"
             alt="Second slide"
+            height="900"
+            width="1200"
           />
           <Carousel.Caption>
             <h3>Second slide label</h3>
@@ -31,8 +35,10 @@ export default function HeroSection() {
         <Carousel.Item interval={5000}>
           <Image
             className="d-block w-100"
-            src="https://www.lollypop.org/wp-content/uploads/2018/01/Blg_Photo-2.jpg"
+            src="/images/goat.jpg"
             alt="Third slide"
+            height="900"
+            width="1200"
           />
           <Carousel.Caption>
             <h3>Third slide label</h3>
