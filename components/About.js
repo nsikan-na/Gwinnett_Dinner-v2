@@ -13,6 +13,10 @@ export default function About() {
           <Image
             src="https://www.rd.com/wp-content/uploads/2020/05/GettyImages-109433950-scaled.jpg"
             width="300"
+            alt='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in'
           />
         </Col>
         <Col>

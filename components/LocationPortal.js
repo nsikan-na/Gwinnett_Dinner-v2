@@ -3,8 +3,8 @@ import React from "react";
 export default function LocationPortal() {
   return (
     <div>
-      <form className="locationForm">
-        <label htmlFor="location">Select a location</label>
+      <form >
+        <label >Select a location</label>
         <select name="location" id="location">
           <option default hidden></option>
           <option>Snellville</option>
