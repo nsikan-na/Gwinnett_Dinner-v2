@@ -1,21 +1,29 @@
-import React, { useState } from "react";
-import LocationPortal from "./LocationPortal";
+import React, { useState, useContext} from "react";
+import LocationPortal from "./LocationModule";
 import LandingPage from "./LandingPage";
+import SignUpModule from "./SignUpModule";
+import SignInModule from "./SignInModule";
 import { LocationContext } from "../context/LocationContext";
 
 export default function Main() {
   const [location, setLocation] = useState("");
+  const [signInModule, setSignInModule] = useState(false);
+  const [signUpModule, setSignUpModule] = useState(false);
   return (
-    <>
       <LocationContext.Provider
         value={{
           location,
           setLocation,
+          signInModule,
+          setSignInModule,
+          signUpModule,
+          setSignUpModule,
         }}
       >
         {!location ? <LocationPortal /> : ""}
         <LandingPage />
+        {(signInModule===true)?<SignInModule/>:''}
+        {(signUpModule===true)?<SignUpModule/>:''}
       </LocationContext.Provider>
-    </>
   );
 }

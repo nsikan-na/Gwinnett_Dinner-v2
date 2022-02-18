@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { LocationContext } from "../context/LocationContext";
 
-export default function LocationPortal() {
+export default function LocationModule() {
   const { setLocation } = useContext(LocationContext);
   const [show, setShow] = useState(true);
 
@@ -15,7 +15,7 @@ export default function LocationPortal() {
         show={show}
         onHide={() => setShow(false)}
         backdrop="static"
-        style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         centered
       >
         <Modal.Header className="">
