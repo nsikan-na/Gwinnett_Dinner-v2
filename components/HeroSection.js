@@ -1,14 +1,15 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "next/image";
+import Container from "react-bootstrap/Container";
 
 export default function HeroSection() {
   return (
-    <section style={{ width: "30%", margin: "0 auto", paddingTop: "3%" }}>
-      <Carousel id="home">
-        <Carousel.Item interval={5000}>
+    <Container className="">
+      <Carousel id="home" className="w-11/12 mx-auto" >
+        <Carousel.Item interval={5000} className="">
           <Image
-            className="d-block w-100"
+            className=""
             src="/images/tiger.jpg"
             alt="First slide"
             height="900"
@@ -21,7 +22,7 @@ export default function HeroSection() {
         </Carousel.Item>
         <Carousel.Item interval={5000}>
           <Image
-            className="d-block w-100"
+            className=""
             src="/images/bear.jpg"
             alt="Second slide"
             height="900"
@@ -34,7 +35,7 @@ export default function HeroSection() {
         </Carousel.Item>
         <Carousel.Item interval={5000}>
           <Image
-            className="d-block w-100"
+            className=""
             src="/images/goat.jpg"
             alt="Third slide"
             height="900"
@@ -48,6 +49,6 @@ export default function HeroSection() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-    </section>
+    </Container>
   );
 }
