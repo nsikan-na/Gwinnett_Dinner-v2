@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import MenuCards from "./MenuCards";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { LocationContext } from "../context/LocationContext";
 
 const locations = [
   { title: "Snellville", postalCode: [30017, 30039, 30078] },
@@ -177,16 +178,33 @@ const loadExtraItems = (location) => {
 };
 
 export default function Menu() {
+  const { location } = useContext(LocationContext);
   return (
     <Container id="menu">
       <h2 className="text-center my-3">Menu</h2>
       <Row>{menuCards(menuItems.general)}</Row>
       <h3 className="text-center my-2">Sides Items</h3>
       <Row>{menuCards(menuItems.sides)}</Row>
-      {/* <h3 className="text-center my-2">Popular Items</h3> */}
-      {/* <Row>{loadExtraItems("Snellville")}</Row> */}
-      {/* <Row>{loadExtraItems("Peachtree Corners")}</Row> */}
-      {/* <Row>{loadExtraItems("Lawrenceville")}</Row> */}
+      {location !== "Mountain Park" ? (
+        <h3 className="text-center my-2">Popular Items</h3>
+      ) : (
+        ""
+      )}
+      {location === "Snellville" ? (
+        <Row>{loadExtraItems("Snellville")}</Row>
+      ) : (
+        ""
+      )}
+      {location === "Peachtree Corners" ? (
+        <Row>{loadExtraItems("Peachtree Corners")}</Row>
+      ) : (
+        ""
+      )}
+      {location === "Lawrenceville" ? (
+        <Row>{loadExtraItems("Lawrenceville")}</Row>
+      ) : (
+        ""
+      )}
     </Container>
   );
 }

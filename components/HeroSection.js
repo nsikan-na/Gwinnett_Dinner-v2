@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 export default function HeroSection() {
   return (
     <Container className="">
-      <Carousel id="home" className="w-11/12 mx-auto" >
+      <Carousel id="home" className="w-11/12 mx-auto">
         <Carousel.Item interval={5000} className="">
           <Image
             className=""
