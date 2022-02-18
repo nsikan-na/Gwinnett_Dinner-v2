@@ -49,7 +49,7 @@ export default function SignInModule() {
                   setSignUpModule(true);
                 }}
               >
-                Register here
+                Register here!
               </a>
             </p>
             <Button type="submit" variant="primary" className="mt-2">
