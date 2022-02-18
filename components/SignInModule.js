@@ -40,7 +40,7 @@ export default function SignInModule() {
               <Form.Control type="text" required name="password" />
             </Form.Group>
             <p>
-              Don't have an account!
+              Don't have an account!{" "}
               <a
                 href="#"
                 onClick={(e) => {

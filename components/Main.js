@@ -26,7 +26,7 @@ export default function Main() {
         setCart,
       }}
     >
-      {/* {!location ? <LocationPortal /> : ""} */}
+      {!location ? <LocationPortal /> : ""}
       <LandingPage />
       {signInModule === true ? <SignInModule /> : ""}
       {signUpModule === true ? <SignUpModule /> : ""}

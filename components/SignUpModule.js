@@ -51,7 +51,7 @@ export default function SignUpModule() {
               <Form.Control type="password" required name="confirmPassword" />
             </Form.Group>
             <p>
-              Already have an account!
+              Already have an account!{" "}
               <a
                 href="#"
                 onClick={(e) => {
