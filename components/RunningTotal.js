@@ -14,7 +14,7 @@ export default function RunningTotal() {
       total += +item.price;
     });
     setRunningTotal(total);
-  }, [cart]);
+  }, [cart,setRunningTotal]);
   return (
     <Container className="">
       <h3 className="text-center my-4">Total: ${+runningTotal}</h3>
