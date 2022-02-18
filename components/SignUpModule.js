@@ -58,6 +58,7 @@ export default function SignUpModule() {
                   e.preventDefault();
                   setSignInModule(true);
                   setSignUpModule(false);
+                  
                 }}
               >
                 Sign In!
