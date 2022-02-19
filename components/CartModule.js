@@ -6,6 +6,8 @@ import { LocationContext } from "../context/LocationContext";
 import Image from "next/image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import CloseIcon from "@mui/icons-material/Close";
+
 export default function SignInModule() {
   const { cart, runningTotal, setCartModule } = useContext(LocationContext);
   const [show, setShow] = useState(true);
@@ -45,7 +47,7 @@ export default function SignInModule() {
                 {cart.map((item, index) => {
                   return (
                     <Row key={index}>
-                      <Col>
+                      <Col className="hidden md:block">
                         <Image
                           src={`/images/${item.img}`}
                           width="200%"
@@ -68,7 +70,7 @@ export default function SignInModule() {
                       </Col>
                       <Col>${item.price * item.quantity}</Col>
                       <Col>
-                        <Image src="/images/x.png" width="30%" height="25%" />
+                        <CloseIcon />
                       </Col>
                     </Row>
                   );

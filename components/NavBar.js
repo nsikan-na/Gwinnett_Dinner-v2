@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { LocationContext } from "../context/LocationContext";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function NavBar() {
   const { setSignInModule, setSignUpModule, setCartModule } =
@@ -49,7 +50,7 @@ export default function NavBar() {
                 setCartModule(true);
               }}
             >
-              View Cart
+              <ShoppingCartIcon className="" />
             </Breadcrumb.Item>
           </Breadcrumb>
         </Container>
