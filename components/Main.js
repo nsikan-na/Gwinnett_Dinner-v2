@@ -58,7 +58,7 @@ export default function Main() {
           setStripeModule,
         }}
       >
-        {/* {!location ? <LocationPortal /> : ""} */}
+        {!location ? <LocationPortal /> : ""}
         {signInModule === true ? <SignInModule /> : ""}
         {signUpModule === true ? <SignUpModule /> : ""}
         {comboModule === true ? <ComboModule /> : ""}
