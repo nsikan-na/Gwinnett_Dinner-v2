@@ -21,17 +21,6 @@ export default function RunningTotal() {
     console.log(cart, runningTotal);
   }, [runningTotal]);
   return (
-    <Container className="">
-      <Row>
-        <Col>
-      <h3 className="">Total: ${+runningTotal}</h3>
-      </Col>
-      <Col>
-        <Button variant="primary" className="">
-          View Cart
-        </Button>
-        </Col>
-        </Row>
-    </Container>
+    <>Gwinnett Dinner</>
   );
 }
