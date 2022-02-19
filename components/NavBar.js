@@ -17,7 +17,7 @@ export default function NavBar() {
             <Nav className="">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#menu">Menu</Nav.Link>
-              <Nav.Link href="#about">About</Nav.Link>
+              <Nav.Link href="#">Location</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         <a

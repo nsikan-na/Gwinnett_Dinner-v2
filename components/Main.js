@@ -4,6 +4,8 @@ import LandingPage from "./LandingPage";
 import SignUpModule from "./SignUpModule";
 import SignInModule from "./SignInModule";
 import { LocationContext } from "../context/LocationContext";
+import SideModule from "./SideModule";
+import ComboModule from "./ComboModule";
 
 export default function Main() {
   const [location, setLocation] = useState("");
@@ -11,6 +13,11 @@ export default function Main() {
   const [signUpModule, setSignUpModule] = useState(false);
   const [runningTotal, setRunningTotal] = useState(0);
   const [cart, setCart] = useState([]);
+  const [activeCombo, setActiveCombo] = useState("");
+  const [activeItem, setActiveItem] = useState({});
+  const [comboModule, setComboModule] = useState(false);
+  const [sideModule, setSideModule] = useState(false);
+
   return (
     <LocationContext.Provider
       value={{
@@ -24,12 +31,22 @@ export default function Main() {
         setRunningTotal,
         cart,
         setCart,
+        sideModule,
+        setSideModule,
+        activeCombo,
+        setActiveCombo,
+        activeItem,
+        setActiveItem,
+        comboModule,
+        setComboModule,
       }}
     >
-      {!location ? <LocationPortal /> : ""}
-      <LandingPage />
+      {/* {!location ? <LocationPortal /> : ""} */}
       {signInModule === true ? <SignInModule /> : ""}
       {signUpModule === true ? <SignUpModule /> : ""}
+      {comboModule === true ? <ComboModule /> : ""}
+      {sideModule === true ? <SideModule /> : ""}
+      <LandingPage />
     </LocationContext.Provider>
   );
 }

@@ -4,67 +4,44 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { LocationContext } from "../context/LocationContext";
-import { menuItems } from "../data";
+import { menuItems } from "../data/menuItems";
 
-const menuCards = (x) => {
-  return x.map((item, index) => (
-    <Col key={index} className="flex justify-center items-center">
+const menuCards = (filteredItems) => {
+  return filteredItems.map((item) => (
+    <Col key={item.title} className="flex justify-center items-center">
       <MenuCards
         title={item.title}
         price={item.price}
         desc={item.desc}
         img={item.img}
-        index={index}
+        location={item.location}
+        type={item.type}
+        sides={item.sides}
       />
     </Col>
   ));
 };
-const loadExtraItems = (location) => {
-  console.log(location);
-  switch (location) {
-    case "Snellville": {
-      return menuCards(menuItems.snellville);
-    }
-    case "Peachtree Corners": {
-      return menuCards(menuItems.peachtreeCorners);
-    }
-    case "Lawrenceville": {
-      return menuCards(menuItems.lawrenceville);
-    }
-    default: {
-    }
-  }
-  // setTotal()
+const loadMenu = (location, type) => {
+  const items = menuItems.filter((item) => {
+    return (
+      item.type === type &&
+      (item.location === "all" || item.location === location)
+    );
+  });
+  return menuCards(items);
 };
 
 export default function Menu() {
   const { location } = useContext(LocationContext);
   return (
     <Container id="menu">
-      <h2 className="text-center my-3">Menu</h2>
-      <Row>{menuCards(menuItems.general)}</Row>
-      <h3 className="text-center my-2">Sides Items</h3>
-      <Row>{menuCards(menuItems.sides)}</Row>
-      {location !== "Mountain Park" ? (
-        <h3 className="text-center my-2">Popular Items</h3>
-      ) : (
-        ""
-      )}
-      {location === "Snellville" ? (
-        <Row>{loadExtraItems("Snellville")}</Row>
-      ) : (
-        ""
-      )}
-      {location === "Peachtree Corners" ? (
-        <Row>{loadExtraItems("Peachtree Corners")}</Row>
-      ) : (
-        ""
-      )}
-      {location === "Lawrenceville" ? (
-        <Row>{loadExtraItems("Lawrenceville")}</Row>
-      ) : (
-        ""
-      )}
+      <h1 className="text-center my-3">Menu</h1>
+      <h2 className="text-center my-3">Combos</h2>
+      <Row>{loadMenu(location, "combo")}</Row>
+      <h2 className="text-center my-3">Sides</h2>
+      <Row>{loadMenu(location, "side")}</Row>
+      <h2 className="text-center my-2">Desserts</h2>
+      <Row>{loadMenu(location, "dessert")}</Row>
     </Container>
   );
 }

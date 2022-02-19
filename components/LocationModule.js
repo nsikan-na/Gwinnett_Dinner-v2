@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -7,8 +7,11 @@ import { LocationContext } from "../context/LocationContext";
 
 export default function LocationModule() {
   const { setLocation } = useContext(LocationContext);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
+  useEffect(() =>{
+    setShow(true)
+  },[])
   return (
     <Container>
       <Modal

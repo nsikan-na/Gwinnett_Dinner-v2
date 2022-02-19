@@ -3,8 +3,17 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { LocationContext } from "../context/LocationContext";
 
-export default function MenuCards({ title, price, desc, img, index }) {
-  const { setCart } = useContext(LocationContext);
+export default function MenuCards({
+  title,
+  price,
+  desc,
+  img,
+  type,
+  location,
+  sides,
+}) {
+  const { setActiveItem, setComboModule, setSideModule } =
+    useContext(LocationContext);
   return (
     <Card className="w-72 my-2">
       <Card.Img variant="top" src={`/images/${img}`} />
@@ -12,20 +21,39 @@ export default function MenuCards({ title, price, desc, img, index }) {
         <Card.Title>{title}</Card.Title>
         <Card.Text>${price}</Card.Text>
         <Card.Text>{desc}</Card.Text>
-        <Button
-          variant="primary"
-          value={price}
-          title={title}
-          onClick={(e) => {
+        <form
+          method="Post"
+          action="#"
+          onSubmit={(e) => {
             e.preventDefault();
-            setCart((prevCart) => [
-              ...prevCart,
-              { title: e.target.title, price: e.target.value },
-            ]);
+            if (e.target.type.value === "combo") {
+              setComboModule(true);
+            } else {
+              setSideModule(true);
+            }
+            setActiveItem({
+              title: e.target.title.value,
+              price: e.target.price.value,
+              desc: e.target.desc.value,
+              img: e.target.img.value,
+              location: e.target.location.value,
+              type: e.target.type.value,
+              sides: e.target.sides.value,
+            });
           }}
         >
-          Add To Card
-        </Button>
+          <input hidden value={title} name="title" readOnly/>
+          <input hidden value={price} name="price" readOnly/>
+          <input hidden value={desc} name="desc" readOnly/>
+          <input hidden value={img} name="img" readOnly/>
+          <input hidden value={location} name="location" readOnly />
+          <input hidden value={type} name="type" readOnly/>
+          <input hidden value={sides}  name="sides" readOnly/>
+
+          <Button type="submit" variant="primary">
+            Add To Cart
+          </Button>
+        </form>
       </Card.Body>
     </Card>
   );
