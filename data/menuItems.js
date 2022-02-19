@@ -5,7 +5,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "all",
     sides: 2,
   },
@@ -15,7 +15,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "all",
     sides: 2,
   },
@@ -25,7 +25,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "all",
     sides: 1,
   },
@@ -35,7 +35,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "dessert",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "all",
   },
 
@@ -45,7 +45,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "side",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "all",
   },
   {
@@ -54,7 +54,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "side",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "all",
   },
   {
@@ -63,7 +63,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "side",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "all",
   },
 
@@ -73,7 +73,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "Snellville",
     sides: 0,
   },
@@ -92,7 +92,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "PeachtreeCorners",
     sides: 0,
   },
@@ -103,7 +103,7 @@ export const menuItems = [
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
 
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "PeachtreeCorners",
     sides: 2,
   },
@@ -113,7 +113,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "dessert",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "PeachtreeCorners",
   },
   {
@@ -123,7 +123,7 @@ export const menuItems = [
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
 
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "Lawrenceville",
     sides: 2,
   },
@@ -133,7 +133,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "side",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "Lawrenceville",
   },
   {
@@ -142,7 +142,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "dessert",
-    img: "mock.jpg",
+    img: "food.jpg",
     location: "Lawrenceville",
   },
 ];
