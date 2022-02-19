@@ -24,7 +24,7 @@ export default function Main() {
   const [cartModule, setCartModule] = useState(false);
   const [guestModule, setGuestModule] = useState(false);
   const [deliveryModule, setDeliveryModule] = useState(false);
-  const [stripeModule, setStripeModule] = useState(true);
+  const [stripeModule, setStripeModule] = useState(false);
 
   return (
     <SSRProvider>
