@@ -3,10 +3,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import { LocationContext } from "../context/LocationContext";
+import { Context } from "../../context";
 
 export default function SignUpModule() {
-  const { setSignInModule, setSignUpModule } = useContext(LocationContext);
+  const { setSignInModule, setSignUpModule } = useContext(Context);
   const [show, setShow] = useState(true);
 
   return (

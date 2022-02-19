@@ -4,10 +4,10 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Form from "react-bootstrap/Form";
-import { LocationContext } from "../context/LocationContext";
+import { Context } from "../../context";
 
 export default function ComboModule() {
-  const { activeItem, setComboModule, setCart } = useContext(LocationContext);
+  const { activeItem, setComboModule, setCart } = useContext(Context);
   const [show, setShow] = useState(true);
   const { title, desc, img, price, location, type, sides } = activeItem;
   const [quantity, setQuantity] = useState(1);

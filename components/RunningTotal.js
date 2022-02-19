@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import { LocationContext } from "../context/LocationContext";
+import { Context } from "../context";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 export default function RunningTotal() {
-  const { runningTotal, setRunningTotal, cart } = useContext(LocationContext);
+  const { runningTotal, setRunningTotal, cart } = useContext(Context);
 
   useEffect(() => {
     if (cart.length === 0) return;

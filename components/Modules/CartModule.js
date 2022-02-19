@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
-import { LocationContext } from "../context/LocationContext";
+import { Context } from "../../context";
 import Image from "next/image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,8 +11,8 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function SignInModule() {
-  const { cart, runningTotal, setCartModule, setCart } =
-    useContext(LocationContext);
+  const { cart, runningTotal, setCartModule, setCart, setGuestModule } =
+    useContext(Context);
   const [show, setShow] = useState(true);
 
   return (
@@ -46,7 +46,7 @@ export default function SignInModule() {
             <h5>Cart is empty!</h5>
           ) : (
             <Container>
-              <Container>
+              <Container className="">
                 {cart.map((item, index) => {
                   return (
                     <Row key={index}>
@@ -171,7 +171,14 @@ export default function SignInModule() {
                 })}
               </Container>
               <h4>${runningTotal}</h4>
-              <Button className="" variant="primary">
+              <Button
+                className=""
+                variant="primary"
+                onClick={() => {
+                  setCartModule(false);
+                  setGuestModule(true);
+                }}
+              >
                 Proceed to Checkout
               </Button>
             </Container>

@@ -3,10 +3,10 @@ import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import { LocationContext } from "../context/LocationContext";
+import { Context } from "../../context";
 
 export default function SideModule() {
-  const { activeItem, setSideModule, setCart } = useContext(LocationContext);
+  const { activeItem, setSideModule, setCart } = useContext(Context);
   const [show, setShow] = useState(true);
   const { title, desc, img, price, location, type } = activeItem;
   const [quantity, setQuantity] = useState(1);

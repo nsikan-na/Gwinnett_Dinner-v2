@@ -5,12 +5,12 @@ import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { LocationContext } from "../context/LocationContext";
+import { Context } from "../context";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function NavBar() {
   const { setSignInModule, setSignUpModule, setCartModule } =
-    useContext(LocationContext);
+    useContext(Context);
   return (
     <Container className="sticky top-0 z-50 mx-auto bg-white">
       <Navbar expand="lg" className=" w-full ">

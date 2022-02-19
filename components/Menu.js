@@ -3,7 +3,7 @@ import MenuCards from "./MenuCards";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { LocationContext } from "../context/LocationContext";
+import { Context } from "../context";
 import { menuItems } from "../data/menuItems";
 
 const menuCards = (filteredItems) => {
@@ -32,7 +32,7 @@ const loadMenu = (location, type) => {
 };
 
 export default function Menu() {
-  const { location } = useContext(LocationContext);
+  const { location } = useContext(Context);
   return (
     <Container id="menu">
       <h1 className="text-center my-3">Menu</h1>

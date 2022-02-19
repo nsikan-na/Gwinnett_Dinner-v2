@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import LocationPortal from "./LocationModule";
+import LocationPortal from "./Modules/LocationModule";
 import LandingPage from "./LandingPage";
-import SignUpModule from "./SignUpModule";
-import SignInModule from "./SignInModule";
-import { LocationContext } from "../context/LocationContext";
-import SideModule from "./SideModule";
-import ComboModule from "./ComboModule";
-import CartModule from "./CartModule";
+import SignUpModule from "./Modules/SignUpModule";
+import SignInModule from "./Modules/SignInModule";
+import { Context } from "../context";
+import SideModule from "./Modules/SideModule";
+import ComboModule from "./Modules/ComboModule";
+import CartModule from "./Modules/CartModule";
 import SSRProvider from "react-bootstrap/SSRProvider";
-
+import GuestModule from "./Modules/GuestModule";
+import DeliveryModule from "./Modules/DeliveryModule";
+import StripeModule from './Modules/StripeModule'
 export default function Main() {
   const [location, setLocation] = useState("");
   const [signInModule, setSignInModule] = useState(false);
@@ -20,10 +22,13 @@ export default function Main() {
   const [comboModule, setComboModule] = useState(false);
   const [sideModule, setSideModule] = useState(false);
   const [cartModule, setCartModule] = useState(false);
+  const [guestModule, setGuestModule] = useState(false);
+  const [deliveryModule, setDeliveryModule] = useState(false);
+  const [stripeModule, setStripeModule] = useState(true);
 
   return (
     <SSRProvider>
-      <LocationContext.Provider
+      <Context.Provider
         value={{
           location,
           setLocation,
@@ -45,6 +50,12 @@ export default function Main() {
           setComboModule,
           cartModule,
           setCartModule,
+          guestModule,
+          setGuestModule,
+          deliveryModule,
+          setDeliveryModule,
+          stripeModule,
+          setStripeModule,
         }}
       >
         {/* {!location ? <LocationPortal /> : ""} */}
@@ -53,8 +64,11 @@ export default function Main() {
         {comboModule === true ? <ComboModule /> : ""}
         {sideModule === true ? <SideModule /> : ""}
         {cartModule === true ? <CartModule /> : ""}
+        {guestModule === true ? <GuestModule /> : ""}
+        {deliveryModule === true ? <DeliveryModule /> : ""}
+        {stripeModule === true ? <StripeModule /> : ""}
         <LandingPage />
-      </LocationContext.Provider>
+      </Context.Provider>
     </SSRProvider>
   );
 }

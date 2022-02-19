@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { LocationContext } from "../context/LocationContext";
+import { Context } from "../context";
 
 export default function MenuCards({
   title,
@@ -13,7 +13,7 @@ export default function MenuCards({
   sides,
 }) {
   const { setActiveItem, setComboModule, setSideModule } =
-    useContext(LocationContext);
+    useContext(Context);
   return (
     <Card className="w-72 my-2">
       <Card.Img variant="top" src={`/images/${img}`} />
