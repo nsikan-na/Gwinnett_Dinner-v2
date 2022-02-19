@@ -21,9 +21,39 @@ export default function NavBar() {
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#menu">Menu</Nav.Link>
               <Nav.Link href="#">Location</Nav.Link>
+              <Nav.Link
+                className="block lg:invisible"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSignUpModule(true);
+                }}
+              >
+                Sign Up
+              </Nav.Link>
+              <Nav.Link
+               className="block lg:invisible"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSignInModule(true);
+                }}
+              >
+                Sign In
+              </Nav.Link>
+              <Nav.Link
+                className="block lg:invisible"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCartModule(true);
+                }}
+              >
+                <ShoppingCartIcon className="" />
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <Breadcrumb>
+          <Breadcrumb className="hidden lg:block">
             <Breadcrumb.Item
               href="#"
               onClick={(e) => {

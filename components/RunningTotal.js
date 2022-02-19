@@ -9,18 +9,16 @@ export default function RunningTotal() {
 
   useEffect(() => {
     if (cart.length === 0) return;
-    const total = 0;
-    cart.forEach((item) => {
-      total += +item.price*item.quantity;
-    });
-    setRunningTotal(total);
+    setRunningTotal(
+      cart.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0)
+    );
   }, [cart, setRunningTotal]);
 
   useEffect(() => {
     if (cart.length === 0) return;
     console.log(cart, runningTotal);
   }, [runningTotal]);
-  return (
-    <>Gwinnett Dinner</>
-  );
+  return <>Gwinnett Dinner</>;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
@@ -7,9 +7,12 @@ import Image from "next/image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CloseIcon from "@mui/icons-material/Close";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function SignInModule() {
-  const { cart, runningTotal, setCartModule } = useContext(LocationContext);
+  const { cart, runningTotal, setCartModule, setCart } =
+    useContext(LocationContext);
   const [show, setShow] = useState(true);
 
   return (
@@ -65,12 +68,103 @@ export default function SignInModule() {
                             : ``}
                         </div>
                       </Col>
-                      <Col>
-                        <div>{item.quantity}</div>
+                      <Col className="flex justify-around ">
+                        <form
+                          action="#"
+                          method="POST"
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            setCart(
+                              cart.filter((item) => {
+                                return item === cart[e.target.index.value]
+                                  ? cart[e.target.index.value].quantity++
+                                  : item;
+                              })
+                            );
+                          }}
+                        >
+                          <input
+                            type="hidden"
+                            name="index"
+                            value={index}
+                            readOnly
+                          />
+                          <button>
+                            <AddIcon
+                              className="cursor-pointer"
+                              onClick={() => {}}
+                              type="submit"
+                            />
+                          </button>
+                        </form>
+                        {item.quantity}
+                        <form
+                          action="#"
+                          method="POST"
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            console.log(cart[e.target.index.value].quantity);
+                            if (cart[e.target.index.value].quantity == 1) {
+                              setCart(
+                                cart.filter((item) => {
+                                  return item !== cart[e.target.index.value];
+                                })
+                              );
+                              return;
+                            }
+                            setCart(
+                              cart.filter((item) => {
+                                return item === cart[e.target.index.value]
+                                  ? cart[e.target.index.value].quantity--
+                                  : item;
+                              })
+                            );
+                          }}
+                        >
+                          <input
+                            type="hidden"
+                            name="index"
+                            value={index}
+                            readOnly
+                          />
+                          <button>
+                            <RemoveIcon
+                              className="cursor-pointer"
+                              onClick={() => {}}
+                              type="submit"
+                            />
+                          </button>
+                        </form>
                       </Col>
-                      <Col>${item.price * item.quantity}</Col>
-                      <Col>
-                        <CloseIcon />
+                      <Col className="text-center">
+                        ${item.price * item.quantity}
+                      </Col>
+                      <Col className="text-center">
+                        <form
+                          action="#"
+                          method="POST"
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            setCart(
+                              cart.filter((item) => {
+                                return item !== cart[e.target.index.value];
+                              })
+                            );
+                          }}
+                        >
+                          <input
+                            type="hidden"
+                            name="index"
+                            value={index}
+                            readOnly
+                          />
+                          <button>
+                            <CloseIcon
+                              type="submit"
+                              className="cursor-pointer"
+                            />
+                          </button>
+                        </form>
                       </Col>
                     </Row>
                   );
