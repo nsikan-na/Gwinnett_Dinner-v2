@@ -41,7 +41,7 @@ export default function Main() {
         setComboModule,
       }}
     >
-      {/* {!location ? <LocationPortal /> : ""} */}
+      {!location ? <LocationPortal /> : ""}
       {signInModule === true ? <SignInModule /> : ""}
       {signUpModule === true ? <SignUpModule /> : ""}
       {comboModule === true ? <ComboModule /> : ""}
