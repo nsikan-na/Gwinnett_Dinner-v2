@@ -74,35 +74,6 @@ export default function SignInModule() {
                           method="POST"
                           onSubmit={(e) => {
                             e.preventDefault();
-                            setCart(
-                              cart.filter((item) => {
-                                return item === cart[e.target.index.value]
-                                  ? cart[e.target.index.value].quantity++
-                                  : item;
-                              })
-                            );
-                          }}
-                        >
-                          <input
-                            type="hidden"
-                            name="index"
-                            value={index}
-                            readOnly
-                          />
-                          <button>
-                            <AddIcon
-                              className="cursor-pointer"
-                              onClick={() => {}}
-                              type="submit"
-                            />
-                          </button>
-                        </form>
-                        {item.quantity}
-                        <form
-                          action="#"
-                          method="POST"
-                          onSubmit={(e) => {
-                            e.preventDefault();
                             console.log(cart[e.target.index.value].quantity);
                             if (cart[e.target.index.value].quantity == 1) {
                               setCart(
@@ -135,11 +106,41 @@ export default function SignInModule() {
                             />
                           </button>
                         </form>
+
+                        {item.quantity}
+                        <form
+                          action="#"
+                          method="POST"
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            setCart(
+                              cart.filter((item) => {
+                                return item === cart[e.target.index.value]
+                                  ? cart[e.target.index.value].quantity++
+                                  : item;
+                              })
+                            );
+                          }}
+                        >
+                          <input
+                            type="hidden"
+                            name="index"
+                            value={index}
+                            readOnly
+                          />
+                          <button>
+                            <AddIcon
+                              className="cursor-pointer"
+                              onClick={() => {}}
+                              type="submit"
+                            />
+                          </button>
+                        </form>
                       </Col>
                       <Col className="text-center">
                         ${item.price * item.quantity}
                       </Col>
-                      <Col className="text-center">
+                      <Col className="text-center hidden md:block">
                         <form
                           action="#"
                           method="POST"
