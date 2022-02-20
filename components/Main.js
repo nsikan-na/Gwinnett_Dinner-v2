@@ -10,7 +10,9 @@ import CartModule from "./Modules/CartModule";
 import SSRProvider from "react-bootstrap/SSRProvider";
 import GuestModule from "./Modules/GuestModule";
 import DeliveryModule from "./Modules/DeliveryModule";
-import StripeModule from './Modules/StripeModule'
+import StripeModule from "./Modules/StripeModule";
+import ReviewModule from "./Modules/ReviewModule";
+
 export default function Main() {
   const [location, setLocation] = useState("");
   const [signInModule, setSignInModule] = useState(false);
@@ -25,6 +27,7 @@ export default function Main() {
   const [guestModule, setGuestModule] = useState(false);
   const [deliveryModule, setDeliveryModule] = useState(false);
   const [stripeModule, setStripeModule] = useState(false);
+  const [reviewModule, setReviewModule] = useState(false);
 
   return (
     <SSRProvider>
@@ -56,6 +59,8 @@ export default function Main() {
           setDeliveryModule,
           stripeModule,
           setStripeModule,
+          reviewModule,
+          setReviewModule,
         }}
       >
         {!location ? <LocationPortal /> : ""}
@@ -67,6 +72,7 @@ export default function Main() {
         {guestModule === true ? <GuestModule /> : ""}
         {deliveryModule === true ? <DeliveryModule /> : ""}
         {stripeModule === true ? <StripeModule /> : ""}
+        {reviewModule === true ? <ReviewModule /> : ""}
         <LandingPage />
       </Context.Provider>
     </SSRProvider>

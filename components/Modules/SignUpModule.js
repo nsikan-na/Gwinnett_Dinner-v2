@@ -28,27 +28,27 @@ export default function SignUpModule() {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
-              setLocation(e.target.location.value);
+              setSignUpModule(false);
             }}
           >
             <Form.Group className="mb-3">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" required name="email" />
+              <Form.Control type="email" name="email" />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="text" required name="username" />
+              <Form.Control type="text" name="username" />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" required name="password" />
+              <Form.Control type="password" name="password" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type="password" required name="confirmPassword" />
+              <Form.Control type="password" name="confirmPassword" />
             </Form.Group>
             <p>
               Already have an account!{" "}

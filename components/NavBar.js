@@ -32,7 +32,7 @@ export default function NavBar() {
                 Sign Up
               </Nav.Link>
               <Nav.Link
-               className="block lg:invisible"
+                className="block lg:invisible"
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();

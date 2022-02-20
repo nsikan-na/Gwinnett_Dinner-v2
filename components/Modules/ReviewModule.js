@@ -3,36 +3,28 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Context } from "../../context";
 
-export default function StripeModule() {
-  const { stripeModule, setStripeModule, setReviewModule } =
-    useContext(Context);
+export default function ReviewModule() {
+  const { setReviewModule, setCart } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
     setShow(true);
+    setCart([]);
   }, []);
   return (
     <>
       <Modal
         show={show}
-        fullscreen={true}
+        onHide={() => setShow(false)}
+        centered
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
-        onHide={() => {
-          setStripeModule(false);
+        onExit={() => {
+          setReviewModule(false);
         }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Stripe Payment</Modal.Title>
+          <Modal.Title>Review Order</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Button
-            onClick={() => {
-              setReviewModule(true);
-              setStripeModule(false);
-            }}
-          >
-            Success
-          </Button>
-        </Modal.Body>
+        <Modal.Body>Thank you for your Order</Modal.Body>
       </Modal>
     </>
   );

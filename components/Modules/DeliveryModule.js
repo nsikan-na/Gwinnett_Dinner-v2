@@ -8,7 +8,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export default function SignInModule() {
-  const { setDeliveryModule, setStripeModule } = useContext(Context);
+  const { setDeliveryModule, setStripeModule, setReviewModule } =
+    useContext(Context);
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
@@ -69,9 +70,8 @@ export default function SignInModule() {
             onSubmit={(e) => {
               e.preventDefault();
 
-                setStripeModule(true);
-                setDeliveryModule(false);
-              
+              setStripeModule(true);
+              setDeliveryModule(false);
             }}
           >
             <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -108,7 +108,6 @@ export default function SignInModule() {
               !showForm && showForm != null ? "block" : "hidden"
             } text-center`}
             onChange={(e) => {
-              console.log(e.target.value);
               e.target.value === "Cash"
                 ? setPaymentForm(false)
                 : setPaymentForm(true);
@@ -116,6 +115,8 @@ export default function SignInModule() {
             onSubmit={(e) => {
               e.preventDefault();
               if (!paymentForm) {
+                setDeliveryModule(false);
+                setReviewModule(true);
               } else {
                 setStripeModule(true);
                 setDeliveryModule(false);
