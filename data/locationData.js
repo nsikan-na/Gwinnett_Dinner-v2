@@ -1,4 +1,4 @@
-export const locations = [
+export const locationData = [
   { title: "Snellville", postalCode: [30017, 30039, 30078] },
   {
     title: "Peachtree Corner",

@@ -11,7 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function ReviewModule() {
-  const { setReviewModule, setCart, cart, runningTotal, payment, setPayment } =
+  const { setReviewModule, setCart, cart, runningTotal, payment, setPayment,location } =
     useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -28,15 +28,19 @@ export default function ReviewModule() {
           setCart([]);
           setPayment({});
           setReviewModule(false);
+          
         }}
+        size="lg"
       >
         <Modal.Header closeButton>
           <Modal.Title>Order Completed! Thank you!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4 className='inline'>{payment.method} </h4>
-          <h5 className='inline'>{`${payment.type === "Card" ? `(Card)` : "(Cash)"}`}</h5>
-          <h3>${runningTotal}</h3>
+          <h6>Estimated Wait Time: 15 minutes</h6>
+          <h5>{location}</h5>
+          <h5 className='inline'>{payment.method} </h5>
+          <h6 className='inline'>{`${payment.type === "Card" ? `(Card)` : "(Cash)"}`}</h6>
+          <h4>${runningTotal}</h4>
           <Container className="">
             {cart.map((item, index) => {
               return (

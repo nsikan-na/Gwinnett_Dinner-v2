@@ -21,5 +21,5 @@ if (payment.length===0)return
 if (cart.length === 0) return;
 // console.log(payment);
   }, [runningTotal,payment,cart]);
-  return <>Gwinnett Dinner</>;
+  return <></>;
 }

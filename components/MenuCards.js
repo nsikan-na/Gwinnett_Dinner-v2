@@ -19,7 +19,7 @@ export default function MenuCards({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>${price}</Card.Text>
-        <Card.Text>{desc}</Card.Text>
+        {/* <Card.Text>{desc}</Card.Text> */}
         <form
           method="Post"
           action="#"

@@ -19,7 +19,6 @@ export default function SignInModule() {
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
   useEffect(() => {
-    console.log(location);
     setShow(true);
   }, []);
 

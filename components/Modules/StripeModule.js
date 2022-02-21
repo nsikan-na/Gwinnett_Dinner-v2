@@ -14,7 +14,8 @@ export default function StripeModule() {
     <>
       <Modal
         show={show}
-        fullscreen={true}
+        centered
+        backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         onHide={() => {
           setStripeModule(false);

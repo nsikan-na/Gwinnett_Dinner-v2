@@ -4,11 +4,14 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { Context } from "../../context";
+import { locationData } from "../../data/locationData";
 
 export default function LocationModule() {
   const { setLocation } = useContext(Context);
   const [show, setShow] = useState(false);
-
+  const getPostalCodes = (num) => {
+    return locationData[num].postalCode.map((code) => `${code}`).toString();
+  };
   useEffect(() => {
     setShow(true);
   }, []);
@@ -38,7 +41,9 @@ export default function LocationModule() {
               id="Snellville"
               value="Snellville"
             />
-            <Form.Label htmlFor="Snellville">Snellville</Form.Label>
+            <Form.Label htmlFor="Snellville">
+              Snellville ({getPostalCodes(0)})
+            </Form.Label>
             <br />
             <Form.Check
               inline
@@ -48,7 +53,7 @@ export default function LocationModule() {
               value="Peachtree Corners"
             />
             <Form.Label htmlFor="Peachtree Corners">
-              Peachtree Corners
+              Peachtree Corners ({getPostalCodes(1)})
             </Form.Label>
             <br />
             <Form.Check
@@ -58,7 +63,7 @@ export default function LocationModule() {
               id="Lawrenceville"
               value="Lawrenceville"
             />
-            <Form.Label htmlFor="Lawrenceville">Lawrenceville</Form.Label>
+            <Form.Label htmlFor="Lawrenceville">Lawrenceville ({getPostalCodes(2)})</Form.Label>
             <br />
             <Form.Check
               inline
@@ -67,7 +72,7 @@ export default function LocationModule() {
               id="Mountain Park"
               value="Mountain Park"
             />
-            <Form.Label htmlFor="Mountain Park">Mountain Park</Form.Label>
+            <Form.Label htmlFor="Mountain Park">Mountain Park ({getPostalCodes(3)})</Form.Label>
             <br />
             <Button type="submit" variant="primary" className="mt-2">
               I live here
