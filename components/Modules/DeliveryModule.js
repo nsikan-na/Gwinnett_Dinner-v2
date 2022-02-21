@@ -19,8 +19,6 @@ export default function SignInModule() {
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
   useEffect(() => {
-    console.log(location);
-    console.log(location== "Mountain Park");
     setShow(true);
   }, []);
 
@@ -49,7 +47,7 @@ export default function SignInModule() {
         <Modal.Body>
           <p
             className={`text-center text-red-600  ${
-              location == "Mountain Park?" ? "block" : "none"
+              location == "Mountain Park" ? "block" : "hidden"
             }`}
           >
             Mountain Park delivery option coming soon!
@@ -76,7 +74,7 @@ export default function SignInModule() {
                 className="mx-2"
               />
             </span>
-            {location == "Mountain Park" ? (
+            {location !== "Mountain Park" ? (
               <span>
                 <Form.Label htmlFor="Delivery">Delivery</Form.Label>
                 <Form.Check
