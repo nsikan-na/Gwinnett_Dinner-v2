@@ -38,7 +38,6 @@ export default function SideModule() {
               variant="primary"
               style={{ border: "0px" }}
               className='bg-transparent'
-              style={{ border: "0px" }}
               onClick={() => {
                 if (quantity === 1) return;
                 setQuantity(--quantity);
