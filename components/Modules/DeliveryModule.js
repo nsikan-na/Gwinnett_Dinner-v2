@@ -13,18 +13,19 @@ export default function SignInModule() {
     setStripeModule,
     setReviewModule,
     setPayment,
-    payment,
+    location,
   } = useContext(Context);
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
   useEffect(() => {
+    console.log(location);
     setShow(true);
   }, []);
 
   useEffect(() => {
     if (showForm == null) return;
-    if (showForm) return setPayment({ method: "Delivery", });
+    if (showForm) return setPayment({ method: "Delivery" });
     if (paymentForm == null) return;
     if (paymentForm) return setPayment({ method: "Pick-Up", type: "Card" });
     else return setPayment({ method: "Pick-Up", type: "Cash" });
@@ -45,6 +46,14 @@ export default function SignInModule() {
           <Modal.Title>Delivery Method</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <p
+            className={`text-center text-red-600  ${
+              location == "Mountain Park?" ? "block" : "none"
+            }`}
+          >
+            Mountain Park delivery option coming soon!
+          </p>
+
           <Form
             className="justify-evenly flex"
             onChange={(e) => {
@@ -66,17 +75,21 @@ export default function SignInModule() {
                 className="mx-2"
               />
             </span>
-            <span>
-              <Form.Label htmlFor="Delivery">Delivery</Form.Label>
-              <Form.Check
-                inline
-                name="deliveryMethod"
-                type="radio"
-                id="Delivery"
-                value="Delivery"
-                className="mx-2"
-              />
-            </span>
+            {location == "Mountain Park?" ? (
+              <span>
+                <Form.Label htmlFor="Delivery">Delivery</Form.Label>
+                <Form.Check
+                  inline
+                  name="deliveryMethod"
+                  type="radio"
+                  id="Delivery"
+                  value="Delivery"
+                  className="mx-2"
+                />
+              </span>
+            ) : (
+              ""
+            )}
           </Form>
           <Form
             className={`${showForm ? "block" : "hidden"}`}
