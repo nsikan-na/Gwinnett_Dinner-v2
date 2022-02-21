@@ -8,14 +8,27 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export default function SignInModule() {
-  const { setDeliveryModule, setStripeModule, setReviewModule } =
-    useContext(Context);
+  const {
+    setDeliveryModule,
+    setStripeModule,
+    setReviewModule,
+    setPayment,
+    payment,
+  } = useContext(Context);
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
   useEffect(() => {
     setShow(true);
   }, []);
+
+  useEffect(() => {
+    if (showForm == null) return;
+    if (showForm) return setPayment({ method: "Delivery", });
+    if (paymentForm == null) return;
+    if (paymentForm) return setPayment({ method: "Pick-Up", type: "Card" });
+    else return setPayment({ method: "Pick-Up", type: "Cash" });
+  }, [showForm, paymentForm, setPayment]);
   return (
     <Container>
       <Modal
@@ -69,7 +82,6 @@ export default function SignInModule() {
             className={`${showForm ? "block" : "hidden"}`}
             onSubmit={(e) => {
               e.preventDefault();
-
               setStripeModule(true);
               setDeliveryModule(false);
             }}

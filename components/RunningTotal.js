@@ -5,7 +5,7 @@ import { Context } from "../context";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 export default function RunningTotal() {
-  const { runningTotal, setRunningTotal, cart } = useContext(Context);
+  const { runningTotal, setRunningTotal, cart,payment } = useContext(Context);
 
   useEffect(() => {
     if (cart.length === 0) return;
@@ -17,8 +17,9 @@ export default function RunningTotal() {
   }, [cart, setRunningTotal]);
 
   useEffect(() => {
-    if (cart.length === 0) return;
-    console.log(cart, runningTotal);
-  }, [runningTotal]);
+if (payment.length===0)return
+if (cart.length === 0) return;
+// console.log(payment);
+  }, [runningTotal,payment,cart]);
   return <>Gwinnett Dinner</>;
 }

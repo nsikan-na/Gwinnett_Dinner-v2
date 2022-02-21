@@ -4,6 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import { Context } from "../../context";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function SideModule() {
   const { activeItem, setSideModule, setCart } = useContext(Context);
@@ -34,29 +36,31 @@ export default function SideModule() {
           <Container className="flex justify-center items-center space-x-5">
             <Button
               variant="primary"
-              style={{ backgroundColor: "red", border: "0px" }}
+              style={{ border: "0px" }}
+              className='bg-transparent'
+              style={{ border: "0px" }}
               onClick={() => {
                 if (quantity === 1) return;
                 setQuantity(--quantity);
               }}
             >
-              -
+              <RemoveIcon className="text-black"/>
             </Button>
             <h5>{quantity}</h5>
             <Button
               variant="primary"
-              style={{ backgroundColor: "blue", border: "0px" }}
+              className='bg-transparent'
+              style={{ border: "0px" }}
               onClick={() => {
                 setQuantity(++quantity);
               }}
             >
-              +
+              <AddIcon className="text-black"/>
             </Button>
           </Container>
           <br />
           <Button
             className=" "
-            style={{ backgroundColor: "green" }}
             onClick={() => {
               setCart((prevCart) => [
                 ...prevCart,

@@ -28,6 +28,7 @@ export default function Main() {
   const [deliveryModule, setDeliveryModule] = useState(false);
   const [stripeModule, setStripeModule] = useState(false);
   const [reviewModule, setReviewModule] = useState(false);
+  const [payment, setPayment] = useState([]);
 
   return (
     <SSRProvider>
@@ -61,18 +62,20 @@ export default function Main() {
           setStripeModule,
           reviewModule,
           setReviewModule,
+          payment,
+          setPayment,
         }}
       >
         {!location ? <LocationPortal /> : ""}
-        {signInModule === true ? <SignInModule /> : ""}
-        {signUpModule === true ? <SignUpModule /> : ""}
-        {comboModule === true ? <ComboModule /> : ""}
-        {sideModule === true ? <SideModule /> : ""}
-        {cartModule === true ? <CartModule /> : ""}
-        {guestModule === true ? <GuestModule /> : ""}
-        {deliveryModule === true ? <DeliveryModule /> : ""}
-        {stripeModule === true ? <StripeModule /> : ""}
-        {reviewModule === true ? <ReviewModule /> : ""}
+        {signInModule ? <SignInModule /> : ""}
+        {signUpModule ? <SignUpModule /> : ""}
+        {comboModule ? <ComboModule /> : ""}
+        {sideModule ? <SideModule /> : ""}
+        {cartModule ? <CartModule /> : ""}
+        {guestModule ? <GuestModule /> : ""}
+        {deliveryModule ? <DeliveryModule /> : ""}
+        {stripeModule ? <StripeModule /> : ""}
+        {reviewModule ? <ReviewModule /> : ""}
         <LandingPage />
       </Context.Provider>
     </SSRProvider>

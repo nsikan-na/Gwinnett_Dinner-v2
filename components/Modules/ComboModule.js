@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Form from "react-bootstrap/Form";
 import { Context } from "../../context";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function ComboModule() {
   const { activeItem, setComboModule, setCart } = useContext(Context);
@@ -37,23 +39,25 @@ export default function ComboModule() {
           <Container className="flex justify-center items-center space-x-5">
             <Button
               variant="primary"
-              style={{ backgroundColor: "red", border: "0px" }}
+              className="bg-transparent"
+              style={{ border: "0px" }}
               onClick={() => {
                 if (quantity === 1) return;
                 setQuantity(--quantity);
               }}
             >
-              -
+              <RemoveIcon className="text-black" />
             </Button>
             <h5>{quantity}</h5>
             <Button
               variant="primary"
-              style={{ backgroundColor: "blue", border: "0px" }}
+              className="bg-transparent"
+              style={{ border: "0px" }}
               onClick={() => {
                 setQuantity(++quantity);
               }}
             >
-              +
+              <AddIcon className="text-black" />
             </Button>
           </Container>
           {sides != 0 ? (
@@ -118,18 +122,13 @@ export default function ComboModule() {
               <h6 className={`text-red-500 ${error ? "visible" : "invisible"}`}>
                 You must enter {sides} sides!
               </h6>
-              <Button
-                className=""
-                type="submit"
-                style={{ backgroundColor: "green" }}
-              >
+              <Button className="" type="submit">
                 Add to Cart
               </Button>
             </Form>
           ) : (
             <Button
               className=" mt-4"
-              style={{ backgroundColor: "purple" }}
               onClick={() => {
                 setCart((prevCart) => [
                   ...prevCart,
