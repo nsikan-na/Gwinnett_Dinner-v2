@@ -137,7 +137,7 @@ export default function SignInModule() {
                           </button>
                         </form>
                       </Col>
-                      <Col className="text-center">
+                      <Col className="text-center hidden md:block">
                         ${item.price * item.quantity}
                       </Col>
                       <Col className="text-center hidden md:block">
