@@ -5,7 +5,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "food.jpg",
+    img: "chicken.jpg",
     location: "all",
     sides: 2,
   },
@@ -15,7 +15,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "food.jpg",
+    img: "fish.jpg",
     location: "all",
     sides: 2,
   },
@@ -25,7 +25,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "food.jpg",
+    img: "burger.jpg",
     location: "all",
     sides: 1,
   },
@@ -35,7 +35,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "dessert",
-    img: "food.jpg",
+    img: "ice_cream.jpg",
     location: "all",
   },
 
@@ -45,7 +45,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "side",
-    img: "food.jpg",
+    img: "fries.jpg",
     location: "all",
   },
   {
@@ -54,7 +54,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "side",
-    img: "food.jpg",
+    img: "broccoli.jpg",
     location: "all",
   },
   {
@@ -63,7 +63,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "side",
-    img: "food.jpg",
+    img: "garlic_pasta_&_bread.jpg",
     location: "all",
   },
 
@@ -73,7 +73,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "food.jpg",
+    img: "hot_dog_&_chips.jpg",
     location: "Snellville",
     sides: 0,
   },
@@ -92,7 +92,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
-    img: "food.jpg",
+    img: "fried_shrimp_&_fries.jpg",
     location: "Peachtree Corners",
     sides: 0,
   },
@@ -103,7 +103,7 @@ export const menuItems = [
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
 
-    img: "food.jpg",
+    img: "grilled_shrimp.jpg", 
     location: "Peachtree Corners",
     sides: 2,
   },
@@ -113,7 +113,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "dessert",
-    img: "food.jpg",
+    img: "cobblor.jpg",
     location: "Peachtree Corners",
   },
   {
@@ -123,7 +123,7 @@ export const menuItems = [
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
 
-    img: "food.jpg",
+    img: "steak.jpg",
     location: "Lawrenceville",
     sides: 2,
   },
@@ -133,7 +133,7 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "side",
-    img: "food.jpg",
+    img: "mashed_potatoes.jpg",
     location: "Lawrenceville",
   },
   {
@@ -142,7 +142,8 @@ export const menuItems = [
     desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "dessert",
-    img: "food.jpg",
+    img: "pie.jpg",
     location: "Lawrenceville",
   },
 ];
+
