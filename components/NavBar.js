@@ -18,9 +18,24 @@ export default function NavBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#menu">Menu</Nav.Link>
-              <Nav.Link href="#">Location</Nav.Link>
+              <Nav.Link href="#">Home</Nav.Link>
+              <Nav.Link href="#">Menu</Nav.Link>
+              <Nav.Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  // setLocation("");
+                }}
+              >
+                Location
+              </Nav.Link>
+              <Nav.Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                About
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
           <Breadcrumb className="">
