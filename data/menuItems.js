@@ -93,7 +93,7 @@ export const menuItems = [
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
     img: "food.jpg",
-    location: "PeachtreeCorners",
+    location: "Peachtree Corners",
     sides: 0,
   },
   {
@@ -104,7 +104,7 @@ export const menuItems = [
     type: "combo",
 
     img: "food.jpg",
-    location: "PeachtreeCorners",
+    location: "Peachtree Corners",
     sides: 2,
   },
   {
@@ -114,7 +114,7 @@ export const menuItems = [
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "dessert",
     img: "food.jpg",
-    location: "PeachtreeCorners",
+    location: "Peachtree Corners",
   },
   {
     title: "Steak & 2 Sides",
