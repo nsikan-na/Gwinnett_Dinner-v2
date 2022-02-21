@@ -11,7 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function ReviewModule() {
-  const { setReviewModule, setCart, cart, runningTotal, payment, setPayment,location } =
+  const { setReviewModule, setCart, cart,setRunningTotal, runningTotal, payment, setPayment,location } =
     useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -27,6 +27,7 @@ export default function ReviewModule() {
         onExit={() => {
           setCart([]);
           setPayment({});
+          setRunningTotal(0)
           setReviewModule(false);
           
         }}
@@ -44,7 +45,7 @@ export default function ReviewModule() {
           <Container className="">
             {cart.map((item, index) => {
               return (
-                <Row key={index}>
+                <Row key={index} className="cartRow">
                   <Col className="hidden md:block">
                     <Image
                       src={`/images/${item.img}`}
@@ -53,16 +54,18 @@ export default function ReviewModule() {
                     />
                   </Col>
                   <Col>
-                    <div className="text-center">{item.title}</div>
-                    <br />
-                    <div className="text-center">
-                      {item.sideItems
-                        ? item.sideItems.map((side, index) => (
-                            <p key={index}>{side}</p>
-                          ))
-                        : ``}
-                    </div>
-                  </Col>
+                        <div className="text-center">
+                          {item.sideItems ? (
+                            <p key={index}>
+                              {item.title.split("&")[0] +
+                                "w/ " +
+                                item.sideItems.toString().replace(",", " & ")}
+                            </p>
+                          ) : (
+                            ``
+                          )}
+                        </div>
+                      </Col>
                   <Col className="flex justify-around ">{item.quantity}</Col>
                 </Row>
               );

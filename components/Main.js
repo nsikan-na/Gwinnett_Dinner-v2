@@ -67,7 +67,7 @@ export default function Main() {
           setPayment,
         }}
       >
-        {!location ? <LocationPortal /> : ""}
+        {/* {!location ? <LocationPortal /> : ""} */}
         {signInModule ? <SignInModule /> : ""}
         {signUpModule ? <SignUpModule /> : ""}
         {comboModule ? <ComboModule /> : ""}
