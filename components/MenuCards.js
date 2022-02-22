@@ -35,8 +35,8 @@ export default function MenuCards({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>${price}</Card.Text>
-        {/* <p className="lg:hidden">{desc}</p>
-        {viewDesc ? <p className="hidden lg:block">{desc}</p> : ""} */}
+        <p className="lg:hidden">{desc}</p>
+        {/* {viewDesc ? <p className="hidden lg:block">{desc}</p> : ""} */}
         <form
           method="Post"
           action="#"
@@ -71,7 +71,6 @@ export default function MenuCards({
           <Button
             type="submit"
             variant="primary"
-            // className={`${viewDesc ? "mt-2" : ""}`}
           >
             Add To Cart
           </Button>
