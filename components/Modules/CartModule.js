@@ -18,7 +18,7 @@ export default function SignInModule() {
   return (
     <Container>
       <Modal
-        onExit={(e) => {
+        onExit={() => {
           setCartModule(false);
         }}
         show={show}
@@ -42,15 +42,16 @@ export default function SignInModule() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h4>${runningTotal}</h4>
           {cart.length === 0 ? (
             <h5>Cart is empty!</h5>
           ) : (
             <Container>
-              <Container className="">
+              <Container className="cart">
                 {cart.map((item, index) => {
                   return (
-                    <Row key={index}>
-                      <Col className="hidden md:block">
+                    <Row key={index} className="cartRow">
+                      <Col className="hidden md:block ">
                         <Image
                           src={`/images/${item.img}`}
                           width="200%"
@@ -58,14 +59,16 @@ export default function SignInModule() {
                         />
                       </Col>
                       <Col>
-                        <div className="text-center">{item.title}</div>
-                        <br />
                         <div className="text-center">
-                          {item.sideItems
-                            ? item.sideItems.map((side, index) => (
-                                <p key={index}>{side}</p>
-                              ))
-                            : ``}
+                          {item.sideItems ? (
+                            <p key={index}>
+                              {item.title.split("&")[0] +
+                                "w/ " +
+                                item.sideItems.toString().replace(",", " & ")}
+                            </p>
+                          ) : (
+                            <p>{item.title}</p>
+                          )}
                         </div>
                       </Col>
                       <Col className="flex justify-around ">
@@ -74,7 +77,6 @@ export default function SignInModule() {
                           method="POST"
                           onSubmit={(e) => {
                             e.preventDefault();
-                            console.log(cart[e.target.index.value].quantity);
                             if (cart[e.target.index.value].quantity == 1) {
                               setCart(
                                 cart.filter((item) => {
@@ -171,7 +173,7 @@ export default function SignInModule() {
                   );
                 })}
               </Container>
-              <h4>${runningTotal}</h4>
+
               <Button
                 className=""
                 variant="primary"

@@ -6,6 +6,7 @@ import { Context } from "../../context";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { locationData } from "../../data/locationData";
 
 export default function SignInModule() {
   const {
@@ -18,10 +19,29 @@ export default function SignInModule() {
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
+  const [postalCode, setPostalCode] = useState(null);
+  const [validPostal, setValidPostal] = useState(false);
+  const [validForm, setValidForm] = useState(null);
+
   useEffect(() => {
     setShow(true);
   }, []);
-
+  useEffect(() => {
+    if (!postalCode) return setValidPostal(false);
+    if (postalCode.length < 5) return setValidPostal(false);
+    const valid = locationData
+      .filter((loc) => {
+        return loc.title === location ? loc.postalCodes : "";
+      })[0]
+      .postalCodes.some((code) => {
+        return code == postalCode;
+      });
+    if (valid) {
+      setValidPostal(false);
+    } else {
+      setValidPostal(true);
+    }
+  }, [postalCode]);
   useEffect(() => {
     if (showForm == null) return;
     if (showForm) return setPayment({ method: "Delivery" });
@@ -47,7 +67,7 @@ export default function SignInModule() {
         <Modal.Body>
           <p
             className={`text-center text-red-600  ${
-              location == "Mountain Park?" ? "block" : "none"
+              location == "Mountain Park" ? "block" : "hidden"
             }`}
           >
             Mountain Park delivery option coming soon!
@@ -74,7 +94,7 @@ export default function SignInModule() {
                 className="mx-2"
               />
             </span>
-            {location == "Mountain Park?" ? (
+            {location !== "Mountain Park" ? (
               <span>
                 <Form.Label htmlFor="Delivery">Delivery</Form.Label>
                 <Form.Check
@@ -94,8 +114,12 @@ export default function SignInModule() {
             className={`${showForm ? "block" : "hidden"}`}
             onSubmit={(e) => {
               e.preventDefault();
-              setStripeModule(true);
-              setDeliveryModule(false);
+              if (validPostal) {
+                return setValidForm(true);
+              } else {
+                setStripeModule(true);
+                setDeliveryModule(false);
+              }
             }}
           >
             <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -118,11 +142,25 @@ export default function SignInModule() {
                 <Form.Control />
               </Form.Group>
 
-              <Form.Group as={Col} controlId="formGridZip">
+              <Form.Group
+                as={Col}
+                controlId="formGridZip"
+                onChange={(e) => {
+                  setPostalCode(e.target.value);
+                  setValidForm(false)
+                }}
+                value={postalCode}
+              >
                 <Form.Label>Zip</Form.Label>
                 <Form.Control />
               </Form.Group>
             </Row>
+            <p className={`text-red-600 ${!validPostal ? "hidden" : "block"}`}>
+              The {location} branch does deliver to this location.
+            </p>
+            <p className={`text-red-600 ${!validForm ? "hidden" : "block"}`}>
+              Please enter valid zip code!
+            </p>
             <Button variant="primary" type="submit">
               Continue to Payment
             </Button>
@@ -172,7 +210,6 @@ export default function SignInModule() {
                 />
               </span>
             </Container>
-
             <div className={`${paymentForm == null ? "hidden" : "block"}`}>
               <Button variant="primary" type="submit">
                 {`${!paymentForm ? "Submit Order" : "Continue to Payment"}`}

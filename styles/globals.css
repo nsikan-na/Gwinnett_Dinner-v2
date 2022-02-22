@@ -11,3 +11,8 @@ html {
   scroll-behavior: smooth;
 }
 
+.cartRow:nth-child(even){
+background-color:rgb(240, 238, 238);
+}
+
+
