@@ -65,7 +65,7 @@ export default function SignInModule() {
                         <div className="text-center">
                           {item.sideItems ? (
                             <p key={index}>
-                              {`${item.variant?item.variant:''} ${
+                              {`${item.variant ? item.variant : ""} ${
                                 item.title.split("&")[0]
                               }  w/ ${item.sideItems
                                 .toString()

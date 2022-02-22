@@ -63,7 +63,7 @@ export default function ComboModule() {
           </Container>
           {sides != 0 ? (
             <Form
-            method='post'
+              method="post"
               ref={form}
               onChange={(e) => {
                 if (e.target.name == "variants") {
@@ -84,9 +84,11 @@ export default function ComboModule() {
                 if (e.target.variants && !e.target.variants.value) {
                   return setDoneError(true);
                 } else {
-                  let variant = e.target.variants?e.target.variants.value:'';
+                  let variant = e.target.variants
+                    ? e.target.variants.value
+                    : "";
                 }
-                
+
                 if (checkboxes.length != sides) return setError(true);
                 let sideItems = [];
                 e.target.side.forEach((item) => {

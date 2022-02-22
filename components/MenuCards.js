@@ -55,7 +55,7 @@ export default function MenuCards({
               location: e.target.location.value,
               type: e.target.type.value,
               sides: e.target.sides.value,
-              variants:e.target.variants.value,
+              variants: e.target.variants.value,
             });
           }}
         >
@@ -68,10 +68,7 @@ export default function MenuCards({
           <input hidden value={sides} name="sides" readOnly />
           <input hidden value={variants} name="variants" readOnly />
 
-          <Button
-            type="submit"
-            variant="primary"
-          >
+          <Button type="submit" variant="primary">
             Add To Cart
           </Button>
         </form>

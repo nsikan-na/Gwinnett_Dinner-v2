@@ -37,24 +37,24 @@ export default function SideModule() {
             <Button
               variant="primary"
               style={{ border: "0px" }}
-              className='bg-transparent'
+              className="bg-transparent"
               onClick={() => {
                 if (quantity === 1) return;
                 setQuantity(--quantity);
               }}
             >
-              <RemoveIcon className="text-black"/>
+              <RemoveIcon className="text-black" />
             </Button>
             <h5>{quantity}</h5>
             <Button
               variant="primary"
-              className='bg-transparent'
+              className="bg-transparent"
               style={{ border: "0px" }}
               onClick={() => {
                 setQuantity(++quantity);
               }}
             >
-              <AddIcon className="text-black"/>
+              <AddIcon className="text-black" />
             </Button>
           </Container>
           <br />
