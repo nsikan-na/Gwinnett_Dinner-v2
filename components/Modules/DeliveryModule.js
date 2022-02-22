@@ -84,6 +84,13 @@ export default function SignInModule() {
         </Modal.Header>
         <Modal.Body>
           <p
+            className={`text-center ${
+              location != "Mountain Park" ? "block" : "hidden"
+            }`}
+          >
+            ($6 delivery fee)
+          </p>
+          <p
             className={`text-center text-red-600  ${
               location == "Mountain Park" ? "block" : "hidden"
             }`}
