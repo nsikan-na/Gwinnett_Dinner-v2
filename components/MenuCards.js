@@ -27,7 +27,11 @@ export default function MenuCards({
         setViewDesc(false);
       }}
     >
-      <Card.Img variant="top" src={`/images/${img}`} />
+      <Card.Img
+        variant="top"
+        src={`/images/${img}`}
+        style={{ maxHeight: "300%" }}
+      />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>${price}</Card.Text>

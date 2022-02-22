@@ -20,7 +20,7 @@ export default function NavBar() {
             <Nav className="">
               <Nav.Link href="#">Home</Nav.Link>
               <Nav.Link href="#">Menu</Nav.Link>
-              <Nav.Link
+              {/* <Nav.Link
                 onClick={(e) => {
                   e.preventDefault();
                   // setLocation("");
@@ -35,7 +35,7 @@ export default function NavBar() {
                 }}
               >
                 About
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
           <Breadcrumb className="">
