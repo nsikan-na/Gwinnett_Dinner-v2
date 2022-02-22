@@ -11,8 +11,16 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function ReviewModule() {
-  const { setReviewModule, setCart, cart,setRunningTotal, runningTotal, payment, setPayment,location } =
-    useContext(Context);
+  const {
+    setReviewModule,
+    setCart,
+    cart,
+    setRunningTotal,
+    runningTotal,
+    payment,
+    setPayment,
+    location,
+  } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
     setShow(true);
@@ -23,29 +31,34 @@ export default function ReviewModule() {
         show={show}
         onHide={() => setShow(false)}
         centered
+        backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         onExit={() => {
           setCart([]);
           setPayment({});
-          setRunningTotal(0)
+          setRunningTotal(0);
           setReviewModule(false);
-          
         }}
         size="lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Order Completed! Thank you!</Modal.Title>
+          <Modal.Title>Review Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h6>Estimated Wait Time: 15 minutes</h6>
           <h5>{location}</h5>
-          <h5 className='inline'>{payment.method} </h5>
-          <h6 className='inline'>{`${payment.type === "Card" ? `(Card)` : "(Cash)"}`}</h6>
+          <h5 className="inline">{payment.method} </h5>
+          <h6 className="inline">{`${
+            payment.type === "Card" ? `(Card)` : "(Cash)"
+          }`}</h6>
           <h4>${runningTotal}</h4>
           <Container className="">
             {cart.map((item, index) => {
               return (
-                <Row key={index} className="cartRow flex justify-center items-center">
+                <Row
+                  key={index}
+                  className="cartRow flex justify-center items-center"
+                >
                   <Col className="md:flex justify-center">
                     <Image
                       src={`/images/${item.img}`}
@@ -54,22 +67,34 @@ export default function ReviewModule() {
                     />
                   </Col>
                   <Col>
-                        <div className="text-center">
-                          {item.sideItems ? (
-                            <p key={index}>
-                              {item.title.split("&")[0] +
-                                "w/ " +
-                                item.sideItems.toString().replace(",", " & ")}
-                            </p>
-                          ) : (
-                            <p>{item.title}</p>
-                          )}
-                        </div>
-                      </Col>
+                    <div className="text-center">
+                      {item.sideItems ? (
+                        <p key={index}>
+                          {item.title.split("&")[0] +
+                            "w/ " +
+                            item.sideItems.toString().replace(",", " & ")}
+                        </p>
+                      ) : (
+                        <p>{item.title}</p>
+                      )}
+                    </div>
+                  </Col>
                   <Col className="flex justify-around ">{item.quantity}</Col>
                 </Row>
               );
             })}
+            <Button
+              variant="primary"
+              className="mt-3"
+              onClick={() => {
+                setCart([]);
+                setPayment({});
+                setRunningTotal(0);
+                setReviewModule(false);
+              }}
+            >
+              Submit Order
+            </Button>
           </Container>
         </Modal.Body>
       </Modal>
