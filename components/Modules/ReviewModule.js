@@ -34,9 +34,6 @@ export default function ReviewModule() {
         backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         onExit={() => {
-          setCart([]);
-          setPayment({});
-          setRunningTotal(0);
           setReviewModule(false);
         }}
         size="lg"

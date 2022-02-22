@@ -29,7 +29,11 @@ export default function Footer() {
     );
   }, [cart, setRunningTotal, payment]);
   return (
-    <Container className="text-center sticky bottom-0 bg-white p-2">
+    <Container
+      className={`text-center fixed bottom-0 bg-white ${
+        cart.length !== 0 ? "p-2" : ""
+      }`}
+    >
       {cart.length !== 0 ? (
         <Container className="flex justify-center space-x-16">
           <h4>Total: ${runningTotal}</h4>
