@@ -12,7 +12,6 @@ import GuestModule from "./Modules/GuestModule";
 import DeliveryModule from "./Modules/DeliveryModule";
 import StripeModule from "./Modules/StripeModule";
 import ReviewModule from "./Modules/ReviewModule";
-import RunningTotal from "./RunningTotal";
 
 export default function Main() {
   const [location, setLocation] = useState("");
@@ -67,7 +66,7 @@ export default function Main() {
           setPayment,
         }}
       >
-        {/* {!location ? <LocationPortal /> : ""} */}
+        {!location ? <LocationPortal /> : ""}
         {signInModule ? <SignInModule /> : ""}
         {signUpModule ? <SignUpModule /> : ""}
         {comboModule ? <ComboModule /> : ""}
@@ -78,7 +77,6 @@ export default function Main() {
         {stripeModule ? <StripeModule /> : ""}
         {reviewModule ? <ReviewModule /> : ""}
         <LandingPage />
-        <RunningTotal />
       </Context.Provider>
     </SSRProvider>
   );

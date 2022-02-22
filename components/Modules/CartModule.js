@@ -67,7 +67,7 @@ export default function SignInModule() {
                                 item.sideItems.toString().replace(",", " & ")}
                             </p>
                           ) : (
-                            ``
+                            <p>{item.title}</p>
                           )}
                         </div>
                       </Col>

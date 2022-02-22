@@ -103,7 +103,7 @@ export const menuItems = [
             eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     type: "combo",
 
-    img: "grilled_shrimp.jpg", 
+    img: "grilled_shrimp.jpg",
     location: "Peachtree Corners",
     sides: 2,
   },

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Context } from "../context";
@@ -13,13 +13,26 @@ export default function MenuCards({
   sides,
 }) {
   const { setActiveItem, setComboModule, setSideModule } = useContext(Context);
+  const [viewDesc, setViewDesc] = useState(false);
+
   return (
-    <Card className="w-72 my-2">
+    <Card
+      className="w-72 my-2"
+      onMouseEnter={(e) => {
+        e.preventDefault();
+        setViewDesc(true);
+      }}
+      onMouseLeave={(e) => {
+        e.preventDefault();
+        setViewDesc(false);
+      }}
+    >
       <Card.Img variant="top" src={`/images/${img}`} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>${price}</Card.Text>
-        {/* <Card.Text>{desc}</Card.Text> */}
+        {/* <p className="lg:hidden">{desc}</p>
+        {viewDesc ? <p className="hidden lg:block">{desc}</p> : ""} */}
         <form
           method="Post"
           action="#"
@@ -49,7 +62,11 @@ export default function MenuCards({
           <input hidden value={type} name="type" readOnly />
           <input hidden value={sides} name="sides" readOnly />
 
-          <Button type="submit" variant="primary">
+          <Button
+            type="submit"
+            variant="primary"
+            // className={`${viewDesc ? "mt-2" : ""}`}
+          >
             Add To Cart
           </Button>
         </form>

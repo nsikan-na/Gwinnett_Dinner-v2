@@ -62,7 +62,7 @@ export default function ReviewModule() {
                                 item.sideItems.toString().replace(",", " & ")}
                             </p>
                           ) : (
-                            ``
+                            <p>{item.title}</p>
                           )}
                         </div>
                       </Col>
