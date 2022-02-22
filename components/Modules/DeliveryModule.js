@@ -15,6 +15,7 @@ export default function SignInModule() {
     setStripeModule,
     setReviewModule,
     setPayment,
+    runningTotal,
     location,
   } = useContext(Context);
   const [show, setShow] = useState(false);
@@ -57,7 +58,11 @@ export default function SignInModule() {
 
   useEffect(() => {
     if (showForm == null) return;
-    if (showForm) return setPayment({ method: "Delivery" });
+    if (showForm) {
+      return setPayment({ method: "Delivery" });
+    } else {
+      setPayment({ method: "Pick-Up" });
+    }
     if (paymentForm == null) return;
     if (paymentForm) return setPayment({ method: "Pick-Up", type: "Card" });
     else return setPayment({ method: "Pick-Up", type: "Cash" });
@@ -75,7 +80,7 @@ export default function SignInModule() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Delivery Method</Modal.Title>
+          <Modal.Title>Delivery Method-${runningTotal}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p

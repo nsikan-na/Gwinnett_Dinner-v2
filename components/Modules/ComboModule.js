@@ -63,6 +63,7 @@ export default function ComboModule() {
           </Container>
           {sides != 0 ? (
             <Form
+            method='post'
               ref={form}
               onChange={(e) => {
                 if (e.target.name == "variants") {
