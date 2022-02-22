@@ -30,7 +30,7 @@ export default function Footer() {
   }, [cart, setRunningTotal, payment]);
   return (
     <Container
-      className={`text-center fixed bottom-0 bg-white ${
+      className={`text-center sticky bottom-0 bg-white ${
         cart.length !== 0 ? "p-2" : ""
       }`}
     >

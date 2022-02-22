@@ -11,7 +11,9 @@ export default function LandingPage() {
     <Container>
       <NavBar />
       {/* <HeroSection /> */}
-      <Menu />
+      <Container className="bg-gray-50 ">
+        <Menu />
+      </Container>
       <Footer />
       {/* <About/> */}
     </Container>
