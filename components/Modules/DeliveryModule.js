@@ -21,14 +21,20 @@ export default function SignInModule() {
   const [paymentForm, setPaymentForm] = useState(null);
   const [postalCode, setPostalCode] = useState(null);
   const [validPostal, setValidPostal] = useState(false);
-  const [validForm, setValidForm] = useState(null);
-
+  const [formSubmit, setFormSubmit] = useState(false);
   useEffect(() => {
     setShow(true);
   }, []);
+
   useEffect(() => {
-    if (!postalCode) return setValidPostal(false);
-    if (postalCode.length < 5) return setValidPostal(false);
+    if (!postalCode) {
+      return setValidPostal(false);
+    }
+    setFormSubmit(false);
+    setValidPostal(false);
+    if (postalCode.length < 5) {
+      return setValidPostal(false);
+    }
     const valid = locationData
       .filter((loc) => {
         return loc.title === location ? loc.postalCodes : "";
@@ -42,6 +48,7 @@ export default function SignInModule() {
       setValidPostal(true);
     }
   }, [postalCode]);
+
   useEffect(() => {
     if (showForm == null) return;
     if (showForm) return setPayment({ method: "Delivery" });
@@ -114,12 +121,11 @@ export default function SignInModule() {
             className={`${showForm ? "block" : "hidden"}`}
             onSubmit={(e) => {
               e.preventDefault();
-              if (validPostal) {
-                return setValidForm(true);
-              } else {
-                setStripeModule(true);
-                setDeliveryModule(false);
-              }
+              setFormSubmit(true);
+              if (validPostal) return;
+              if (postalCode.length != 5) return;
+              setStripeModule(true);
+              setDeliveryModule(false);
             }}
           >
             <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -147,7 +153,6 @@ export default function SignInModule() {
                 controlId="formGridZip"
                 onChange={(e) => {
                   setPostalCode(e.target.value);
-                  setValidForm(false)
                 }}
                 value={postalCode}
               >
@@ -158,7 +163,11 @@ export default function SignInModule() {
             <p className={`text-red-600 ${!validPostal ? "hidden" : "block"}`}>
               The {location} branch does deliver to this location.
             </p>
-            <p className={`text-red-600 ${!validForm ? "hidden" : "block"}`}>
+            <p
+              className={`text-red-600 ${
+                !validPostal && formSubmit ? "block" : "hidden"
+              }`}
+            >
               Please enter valid zip code!
             </p>
             <Button variant="primary" type="submit">
