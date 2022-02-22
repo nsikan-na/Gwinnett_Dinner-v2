@@ -17,7 +17,7 @@ export default function Footer() {
     if (cart.length === 0) return setRunningTotal(0);
 
     const deliveryFee =
-      payment.method === "Delivery" ? (deliveryFee = 3) : (deliveryFee = 0);
+      payment.method === "Delivery" ? (deliveryFee = 6) : (deliveryFee = 0);
     setRunningTotal(
       Intl.NumberFormat().format(
         cart.reduce((total, item) => {
@@ -43,10 +43,8 @@ export default function Footer() {
           </Button>
         </Container>
       ) : (
-        ""
+        <p> Gwinnett Dinner @ {location}</p>
       )}
-
-      {/* <p> Gwinnett Dinner @ {location}</p> */}
     </Container>
   );
 }
