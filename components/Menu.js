@@ -10,6 +10,7 @@ const menuCards = (filteredItems) => {
   return filteredItems.map((item) => (
     <Col key={item.title} className="flex justify-center items-center">
       <MenuCards
+        variants={item.variants?item.variants:false}
         title={item.title}
         price={item.price}
         desc={item.desc}

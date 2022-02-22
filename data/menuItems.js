@@ -126,6 +126,7 @@ export const menuItems = [
     img: "steak.jpg",
     location: "Lawrenceville",
     sides: 2,
+    variants: ["Rare", "Medium Rare", "Medium", "Medium Well", "Well"],
   },
   {
     title: "Mashed Potatoes",

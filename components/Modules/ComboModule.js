@@ -7,14 +7,15 @@ import Form from "react-bootstrap/Form";
 import { Context } from "../../context";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-
 export default function ComboModule() {
   const { activeItem, setComboModule, setCart } = useContext(Context);
   const [show, setShow] = useState(true);
   const { title, desc, img, price, location, type, sides } = activeItem;
   const [quantity, setQuantity] = useState(1);
+  const [doneError, setDoneError] = useState(false);
   const form = useRef();
   const [error, setError] = useState(false);
+  const variants = activeItem.variants.split(",");
   return (
     <Container>
       <Modal
@@ -64,6 +65,9 @@ export default function ComboModule() {
             <Form
               ref={form}
               onChange={(e) => {
+                if (e.target.name == "variants") {
+                  setDoneError(false);
+                }
                 const checkboxes = [];
                 form.current.side.forEach((item) => {
                   if (item.checked) checkboxes.push(item.checked);
@@ -76,6 +80,12 @@ export default function ComboModule() {
                 form.current.side.forEach((item) => {
                   if (item.checked) checkboxes.push(item.checked);
                 });
+                if (e.target.variants && !e.target.variants.value) {
+                  return setDoneError(true);
+                } else {
+                  let variant = e.target.variants?e.target.variants.value:'';
+                }
+                
                 if (checkboxes.length != sides) return setError(true);
                 let sideItems = [];
                 e.target.side.forEach((item) => {
@@ -94,12 +104,40 @@ export default function ComboModule() {
                     type,
                     sideItems,
                     quantity,
+                    variant,
                   },
                 ]);
                 setComboModule(false);
               }}
             >
-              <br />
+              {variants != "false" ? (
+                <Container>
+                  <h5>Select Degree</h5>
+                  {variants.map((variant) => {
+                    return (
+                      <Container key={variant} className="">
+                        <Form.Check
+                          inline
+                          name="variants"
+                          type="radio"
+                          id={`${variant}`}
+                          value={`${variant}`}
+                        />
+                        <Form.Label htmlFor={`${variant}`}>
+                          {variant}
+                        </Form.Label>
+                      </Container>
+                    );
+                  })}
+                  <h6
+                    className={`text-red-500 ${doneError ? "block" : "hidden"}`}
+                  >
+                    You must enter a degree!
+                  </h6>
+                </Container>
+              ) : (
+                ""
+              )}
               <h5>
                 Pick {`${sides} ${sides > 1 ? "side items" : "side item"}`}
               </h5>

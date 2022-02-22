@@ -11,10 +11,10 @@ export default function MenuCards({
   type,
   location,
   sides,
+  variants,
 }) {
   const { setActiveItem, setComboModule, setSideModule } = useContext(Context);
   const [viewDesc, setViewDesc] = useState(false);
-
   return (
     <Card
       className="w-72 my-2"
@@ -55,6 +55,7 @@ export default function MenuCards({
               location: e.target.location.value,
               type: e.target.type.value,
               sides: e.target.sides.value,
+              variants:e.target.variants.value,
             });
           }}
         >
@@ -65,6 +66,7 @@ export default function MenuCards({
           <input hidden value={location} name="location" readOnly />
           <input hidden value={type} name="type" readOnly />
           <input hidden value={sides} name="sides" readOnly />
+          <input hidden value={variants} name="variants" readOnly />
 
           <Button
             type="submit"

@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { locationData } from "../../data/locationData";
+import { menuItems } from "../../data/menuItems";
 
 export default function SignInModule() {
   const {
@@ -22,10 +23,15 @@ export default function SignInModule() {
   const [postalCode, setPostalCode] = useState(null);
   const [validPostal, setValidPostal] = useState(false);
   const [formSubmit, setFormSubmit] = useState(false);
+  let locationZipCodes;
+  locationData.forEach((item) => {
+    if (item.title === location) {
+      locationZipCodes = item.postalCodes.toString();
+    }
+  });
   useEffect(() => {
     setShow(true);
   }, []);
-
   useEffect(() => {
     if (!postalCode) {
       return setValidPostal(false);
@@ -123,7 +129,7 @@ export default function SignInModule() {
               e.preventDefault();
               setFormSubmit(true);
               if (validPostal) return;
-              if (postalCode.length != 5) return;
+              if (!postalCode || postalCode.length != 5) return;
               setStripeModule(true);
               setDeliveryModule(false);
             }}
@@ -161,7 +167,9 @@ export default function SignInModule() {
               </Form.Group>
             </Row>
             <p className={`text-red-600 ${!validPostal ? "hidden" : "block"}`}>
-              The {location} branch does deliver to this location.
+              {`The ${location} branch only delivers to 
+                ${locationZipCodes}
+              .`}
             </p>
             <p
               className={`text-red-600 ${

@@ -14,7 +14,6 @@ export default function SignInModule() {
   const { cart, runningTotal, setCartModule, setCart, setGuestModule } =
     useContext(Context);
   const [show, setShow] = useState(true);
-
   return (
     <Container>
       <Modal
@@ -50,21 +49,27 @@ export default function SignInModule() {
               <Container className="cart">
                 {cart.map((item, index) => {
                   return (
-                    <Row key={index} className="cartRow">
-                      <Col className="hidden md:block ">
+                    <Row
+                      key={index}
+                      className="cartRow flex justify-center items-center"
+                    >
+                      <Col className="hidden md:flex justify-center">
                         <Image
                           src={`/images/${item.img}`}
-                          width="200%"
-                          height="130%"
+                          width="100%"
+                          height="100%"
+                          className=""
                         />
                       </Col>
                       <Col>
                         <div className="text-center">
                           {item.sideItems ? (
                             <p key={index}>
-                              {item.title.split("&")[0] +
-                                "w/ " +
-                                item.sideItems.toString().replace(",", " & ")}
+                              {`${item.variant?item.variant:''} ${
+                                item.title.split("&")[0]
+                              }  w/ ${item.sideItems
+                                .toString()
+                                .replace(",", " & ")}`}
                             </p>
                           ) : (
                             <p>{item.title}</p>
@@ -175,7 +180,7 @@ export default function SignInModule() {
               </Container>
 
               <Button
-                className=""
+                className="mt-3"
                 variant="primary"
                 onClick={() => {
                   setCartModule(false);

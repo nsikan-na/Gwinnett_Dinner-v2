@@ -45,8 +45,8 @@ export default function ReviewModule() {
           <Container className="">
             {cart.map((item, index) => {
               return (
-                <Row key={index} className="cartRow">
-                  <Col className="hidden md:block">
+                <Row key={index} className="cartRow flex justify-center items-center">
+                  <Col className="md:flex justify-center">
                     <Image
                       src={`/images/${item.img}`}
                       width="200%"
