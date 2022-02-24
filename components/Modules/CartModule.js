@@ -10,7 +10,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-export default function SignInModule() {
+export default function CartModule() {
   const { cart, runningTotal, setCartModule, setCart, setGuestModule } =
     useContext(Context);
   const [show, setShow] = useState(true);
