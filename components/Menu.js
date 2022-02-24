@@ -34,7 +34,6 @@ const loadMenu = (location, type) => {
 
 export default function Menu() {
   const { location } = useContext(Context);
-  console.log(location);
   return (
     <Container id="menu">
       <h1 className="text-center my-3">Menu</h1>
