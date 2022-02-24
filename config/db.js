@@ -4,8 +4,8 @@ const pool = createPool({
   user: MYSQL_USERNAME,
   password: MYSQL_PASSWORD,
   database: MYSQL_DATABASE,
+  port: MYSQL_PORT,
 });
-
 
 pool.getConnection((err) => {
   if (err) {
