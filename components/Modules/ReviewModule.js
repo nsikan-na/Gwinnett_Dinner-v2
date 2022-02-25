@@ -9,7 +9,7 @@ import Image from "next/image";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import Link from 'next/link'
+import Link from "next/link";
 export default function ReviewModule() {
   const {
     setReviewModule,
@@ -20,7 +20,6 @@ export default function ReviewModule() {
     payment,
     setPayment,
     location,
-    setDeliveryModule
   } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -49,9 +48,9 @@ export default function ReviewModule() {
           <h6 className="inline">{`${
             payment.type === "Card" ? `(Card)` : "(Cash)"
           }`}</h6>
-          {/* <h4>${runningTotal}</h4> */}
+          <h4>${runningTotal}</h4>
           <Container className="">
-            {/* {cart.map((item, index) => {
+            {cart.map((item, index) => {
               return (
                 <Row
                   key={index}
@@ -80,22 +79,23 @@ export default function ReviewModule() {
                   <Col className="flex justify-around ">{item.quantity}</Col>
                 </Row>
               );
-            })} */}
-            <Link href='/' >
+            })}
+            {/* <Link href='/' > */}
             <Button
               variant="primary"
               className="mt-3"
-              href=''
+              href=""
               onClick={() => {
                 setCart([]);
                 setPayment({});
                 setRunningTotal(0);
                 setReviewModule(false);
-                setDeliveryModule(false)
+                setDeliveryModule(false);
               }}
             >
               Submit Order
-            </Button></Link>
+            </Button>
+            {/* </Link> */}
           </Container>
         </Modal.Body>
       </Modal>
