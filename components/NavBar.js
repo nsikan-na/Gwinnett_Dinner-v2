@@ -18,8 +18,8 @@ export default function NavBar() {
     showAlert,
   } = useContext(Context);
   return (
-    <Container className="sticky top-0 z-50 mx-auto">
-      <Container className="">
+    <Container className="sticky top-0 z-50 mx-auto ">
+      <Container className="bg-white">
         <Navbar expand="lg" className=" w-full ">
           <Container>
             <Navbar.Toggle aria-controls="basic-navbar-nav" className="" />
