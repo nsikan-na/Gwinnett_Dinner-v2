@@ -192,22 +192,30 @@ export default function ComboModule() {
               {variants != "false" ? (
                 <Container>
                   <h5>Select Degree</h5>
-                  {variants.map((variant) => {
-                    return (
-                      <Container key={variant} className="">
-                        <Form.Check
-                          inline
-                          name="variants"
-                          type="radio"
-                          id={`${variant}`}
-                          value={`${variant}`}
-                        />
-                        <Form.Label htmlFor={`${variant}`}>
-                          {variant}
-                        </Form.Label>
-                      </Container>
-                    );
-                  })}
+                  <table className="mx-auto">
+                    {variants.map((variant) => {
+                      return (
+                        <Container key={variant} className="">
+                          <tr>
+                            <td>
+                              <Form.Check
+                                inline
+                                name="variants"
+                                type="radio"
+                                id={`${variant}`}
+                                value={`${variant}`}
+                              />
+                            </td>
+                            <td>
+                              <Form.Label htmlFor={`${variant}`}>
+                                {variant}
+                              </Form.Label>
+                            </td>
+                          </tr>
+                        </Container>
+                      );
+                    })}
+                  </table>
                   <h6
                     className={`text-red-500 ${doneError ? "block" : "hidden"}`}
                   >
@@ -220,22 +228,57 @@ export default function ComboModule() {
               <h5>
                 Pick {`${sides} ${sides > 1 ? "side items" : "side item"}`}
               </h5>
-              <Form.Check inline name="side" type="checkbox" id="Fries" />
-              <Form.Label htmlFor="Fries">Fries</Form.Label>
-              <br />
-              <Form.Check inline name="side" type="checkbox" id="Broccoli" />
-              <Form.Label htmlFor="Broccoli">Broccoli</Form.Label>
-              <br />
-              <Form.Check
-                inline
-                name="side"
-                type="checkbox"
-                id="Garlic Pasta & Bread"
-              />
-              <Form.Label htmlFor="Garlic Pasta & Bread">
-                Garlic Pasta & Bread
-              </Form.Label>
-              <br />
+              <table className="mx-auto ">
+                <tr>
+                  <Form.Group className="">
+                    <td>
+                      <Form.Check
+                        inline
+                        name="side"
+                        type="checkbox"
+                        id="Fries"
+                      />
+                    </td>
+                    <td>
+                      <Form.Label htmlFor="Fries">Fries</Form.Label>
+                    </td>
+                  </Form.Group>
+                </tr>
+                <tr>
+                  <Form.Group className=" ">
+                    <td>
+                      <Form.Check
+                        inline
+                        name="side"
+                        type="checkbox"
+                        id="Broccoli"
+                      />
+                    </td>
+                    <td>
+                      <Form.Label htmlFor="Broccoli">Broccoli</Form.Label>
+                    </td>
+                  </Form.Group>
+                </tr>
+
+                <tr>
+                  <Form.Group className=" ">
+                    <td>
+                      <Form.Check
+                        className=""
+                        inline
+                        name="side"
+                        type="checkbox"
+                        id="Garlic Pasta & Bread"
+                      />
+                    </td>
+                    <td>
+                      <Form.Label htmlFor="Garlic Pasta & Bread">
+                        Pasta & Bread
+                      </Form.Label>
+                    </td>
+                  </Form.Group>
+                </tr>
+              </table>
               <h6 className={`text-red-500 ${error ? "visible" : "invisible"}`}>
                 You must enter {sides} sides!
               </h6>
