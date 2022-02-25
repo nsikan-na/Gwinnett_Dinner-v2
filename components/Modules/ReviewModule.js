@@ -49,9 +49,9 @@ export default function ReviewModule() {
           <h6 className="inline">{`${
             payment.type === "Card" ? `(Card)` : "(Cash)"
           }`}</h6>
-          <h4>${runningTotal}</h4>
+          {/* <h4>${runningTotal}</h4> */}
           <Container className="">
-            {cart.map((item, index) => {
+            {/* {cart.map((item, index) => {
               return (
                 <Row
                   key={index}
@@ -80,7 +80,7 @@ export default function ReviewModule() {
                   <Col className="flex justify-around ">{item.quantity}</Col>
                 </Row>
               );
-            })}
+            })} */}
             <Link href='/' >
             <Button
               variant="primary"

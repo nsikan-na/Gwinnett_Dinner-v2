@@ -244,17 +244,18 @@ export default function SignInModule() {
             </Container>
             <div className={`${paymentForm == null ? "hidden" : "block"}`}>
               {!paymentForm ? (
-                  <Link href="/review">
-                    <Button variant="primary" type="submit">
-                      Submit Order
-                    </Button>
-                  </Link>
-                ) : (
-                  <Link href="https://buy.stripe.com/test_dR629Q5PtaHI2s0cMM">
-                    <Button variant="primary" type="submit">Continue to Payment</Button>
-                  </Link>
-                )
-              }
+                <Link href="/review">
+                  <Button variant="primary" type="submit">
+                    Submit Order
+                  </Button>
+                </Link>
+              ) : (
+                <Link href="https://buy.stripe.com/test_dR629Q5PtaHI2s0cMM">
+                  <Button variant="primary" type="submit">
+                    Continue to Payment
+                  </Button>
+                </Link>
+              )}
             </div>
           </Form>
         </Modal.Body>
