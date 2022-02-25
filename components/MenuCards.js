@@ -35,7 +35,7 @@ export default function MenuCards({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>${price}</Card.Text>
-        <p className="lg:hidden">{desc}</p>
+        {/* <p className="lg:hidden">{desc}</p> */}
         {/* {viewDesc ? <p className="hidden lg:block">{desc}</p> : ""} */}
         <form
           method="Post"

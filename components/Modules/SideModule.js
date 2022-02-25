@@ -8,7 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function SideModule() {
-  const { activeItem, setSideModule, setCart } = useContext(Context);
+  const { activeItem, setSideModule, setCart, cart } = useContext(Context);
   const [show, setShow] = useState(true);
   const { title, desc, img, price, location, type } = activeItem;
   const [quantity, setQuantity] = useState(1);
@@ -61,18 +61,46 @@ export default function SideModule() {
           <Button
             className=" "
             onClick={() => {
-              setCart((prevCart) => [
-                ...prevCart,
-                {
-                  title,
-                  desc,
-                  img,
-                  price,
-                  location,
-                  type,
-                  quantity,
-                },
-              ]);
+              if (cart.length === 0) {
+                setCart((prevCart) => [
+                  ...prevCart,
+                  {
+                    title,
+                    desc,
+                    img,
+                    price,
+                    location,
+                    type,
+                    quantity,
+                  },
+                ]);
+              }
+              if (cart.length != 0) {
+                if (
+                  cart.some((item) => {
+                    return item.title == title;
+                  })
+                ) {
+                  const index = cart.findIndex((item) => {
+                    return item.title == title;
+                  });
+                  cart[index].quantity += quantity;
+                  setCart((prevCart) => [...prevCart]);
+                } else {
+                  setCart((prevCart) => [
+                    ...prevCart,
+                    {
+                      title,
+                      desc,
+                      img,
+                      price,
+                      location,
+                      type,
+                      quantity,
+                    },
+                  ]);
+                }
+              }
               setSideModule(false);
             }}
           >

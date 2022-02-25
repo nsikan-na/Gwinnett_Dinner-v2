@@ -8,7 +8,7 @@ import { Context } from "../../context";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 export default function ComboModule() {
-  const { activeItem, setComboModule, setCart } = useContext(Context);
+  const { activeItem, setComboModule, setCart, cart } = useContext(Context);
   const [show, setShow] = useState(true);
   const { title, desc, img, price, location, type, sides } = activeItem;
   const [quantity, setQuantity] = useState(1);
@@ -77,6 +77,7 @@ export default function ComboModule() {
               }}
               onSubmit={(e) => {
                 e.preventDefault();
+                let variant;
                 const checkboxes = [];
                 form.current.side.forEach((item) => {
                   if (item.checked) checkboxes.push(item.checked);
@@ -84,9 +85,7 @@ export default function ComboModule() {
                 if (e.target.variants && !e.target.variants.value) {
                   return setDoneError(true);
                 } else {
-                  let variant = e.target.variants
-                    ? e.target.variants.value
-                    : "";
+                  variant = e.target.variants ? e.target.variants.value : "";
                 }
 
                 if (checkboxes.length != sides) return setError(true);
@@ -96,20 +95,97 @@ export default function ComboModule() {
                     sideItems.push(item.id);
                   }
                 });
-                setCart((prevCart) => [
-                  ...prevCart,
-                  {
-                    title,
-                    desc,
-                    img,
-                    price,
-                    location,
-                    type,
-                    sideItems,
-                    quantity,
-                    variant,
-                  },
-                ]);
+                //
+                if (cart.length === 0) {
+                  setCart((prevCart) => [
+                    ...prevCart,
+                    {
+                      title,
+                      desc,
+                      img,
+                      price,
+                      location,
+                      type,
+                      sideItems,
+                      quantity,
+                      variant,
+                    },
+                  ]);
+                } else {
+                  if (cart.length != 0) {
+                    if (title && sideItems && variant) {
+                      if (
+                        cart.some((item) => {
+                          return (
+                            item.title == title &&
+                            item.sideItems.toString() == sideItems.toString() &&
+                            item.variant == variant
+                          );
+                        })
+                      ) {
+                        const index = cart.findIndex((item) => {
+                          return (
+                            item.title == title &&
+                            item.sideItems.toString() == sideItems.toString() &&
+                            item.variant == variant
+                          );
+                        });
+                        cart[index].quantity += quantity;
+                        setCart((prevCart) => [...prevCart]);
+                      } else {
+                        setCart((prevCart) => [
+                          ...prevCart,
+                          {
+                            title,
+                            desc,
+                            img,
+                            price,
+                            location,
+                            type,
+                            sideItems,
+                            quantity,
+                            variant,
+                          },
+                        ]);
+                      }
+                    }
+                    if (title && sideItems && !variant) {
+                      if (
+                        cart.some((item) => {
+                          return (
+                            item.title == title &&
+                            item.sideItems.toString() == sideItems.toString()
+                          );
+                        })
+                      ) {
+                        const index = cart.findIndex((item) => {
+                          return (
+                            item.title == title &&
+                            item.sideItems.toString() == sideItems.toString()
+                          );
+                        });
+                        cart[index].quantity += quantity;
+                        setCart((prevCart) => [...prevCart]);
+                      } else {
+                        setCart((prevCart) => [
+                          ...prevCart,
+                          {
+                            title,
+                            desc,
+                            img,
+                            price,
+                            location,
+                            type,
+                            sideItems,
+                            quantity,
+                            variant,
+                          },
+                        ]);
+                      }
+                    }
+                  }
+                }
+                //
                 setComboModule(false);
               }}
             >
@@ -170,19 +246,48 @@ export default function ComboModule() {
           ) : (
             <Button
               className=" mt-4"
+              type="submit"
               onClick={() => {
-                setCart((prevCart) => [
-                  ...prevCart,
-                  {
-                    title,
-                    desc,
-                    img,
-                    price,
-                    location,
-                    type,
-                    quantity,
-                  },
-                ]);
+                if (cart.length === 0) {
+                  setCart((prevCart) => [
+                    ...prevCart,
+                    {
+                      title,
+                      desc,
+                      img,
+                      price,
+                      location,
+                      type,
+                      quantity,
+                    },
+                  ]);
+                }
+                if (cart.length != 0) {
+                  if (
+                    cart.some((item) => {
+                      return item.title == title;
+                    })
+                  ) {
+                    const index = cart.findIndex((item) => {
+                      return item.title == title;
+                    });
+                    cart[index].quantity += quantity;
+                    setCart((prevCart) => [...prevCart]);
+                  } else {
+                    setCart((prevCart) => [
+                      ...prevCart,
+                      {
+                        title,
+                        desc,
+                        img,
+                        price,
+                        location,
+                        type,
+                        quantity,
+                      },
+                    ]);
+                  }
+                }
                 setComboModule(false);
               }}
             >

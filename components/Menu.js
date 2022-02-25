@@ -8,7 +8,7 @@ import { menuItems } from "../data/menuItems";
 
 const menuCards = (filteredItems) => {
   return filteredItems.map((item) => (
-    <Col key={item.title} className="flex justify-center items-center">
+    <Col key={item.title} className="flex justify-center items-center ">
       <MenuCards
         variants={item.variants ? item.variants : false}
         title={item.title}
@@ -34,15 +34,14 @@ const loadMenu = (location, type) => {
 
 export default function Menu() {
   const { location } = useContext(Context);
-  console.log(location);
   return (
     <Container id="menu">
       <h1 className="text-center my-3">Menu</h1>
-      <h2 className="text-center my-3">Combos</h2>
+      <h2 className="text-center pt-16" id='combos'>Combos</h2>
       <Row>{loadMenu(location, "combo")}</Row>
-      <h2 className="text-center my-3">Sides</h2>
+      <h2 className="text-center pt-16" id='sides'>Sides</h2>
       <Row>{loadMenu(location, "side")}</Row>
-      <h2 className="text-center my-2">Desserts</h2>
+      <h2 className="text-center pt-16" id='desserts'>Desserts</h2>
       <Row>{loadMenu(location, "dessert")}</Row>
     </Container>
   );

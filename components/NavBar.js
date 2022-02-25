@@ -9,8 +9,13 @@ import { Context } from "../context";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function NavBar() {
-  const { setSignInModule, setSignUpModule, setCartModule } =
-    useContext(Context);
+  const {
+    setSignInModule,
+    setSignUpModule,
+    setCart,
+    setCartModule,
+    setLocation,
+  } = useContext(Context);
   return (
     <Container className="sticky top-0 z-50 mx-auto bg-white">
       <Navbar expand="lg" className=" w-full ">
@@ -18,24 +23,18 @@ export default function NavBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="">
-              <Nav.Link href="#">Home</Nav.Link>
-              <Nav.Link href="#">Menu</Nav.Link>
-              {/* <Nav.Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  // setLocation("");
-                }}
-              >
-                Location
-              </Nav.Link>
+              <Nav.Link href="#combos">Combos</Nav.Link>
+              <Nav.Link href="#sides">Sides</Nav.Link>
+              <Nav.Link href="#desserts">Desserts</Nav.Link>
               <Nav.Link
                 href="#"
-                onClick={(e) => {
-                  e.preventDefault();
+                onClick={() => {
+                  setLocation("");
+                  setCart([]);
                 }}
               >
-                About
-              </Nav.Link> */}
+                Change Location
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
           <Breadcrumb className="">

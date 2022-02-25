@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { locationData } from "../../data/locationData";
 import { menuItems } from "../../data/menuItems";
+import Link from "next/link";
 
 export default function SignInModule() {
   const {
@@ -190,9 +191,11 @@ export default function SignInModule() {
             >
               Please enter valid zip code!
             </p>
-            <Button variant="primary" type="submit">
-              Continue to Payment
-            </Button>
+            <Link href="/review">
+              <Button variant="primary" type="submit">
+                Continue to Payment
+              </Button>
+            </Link>
           </Form>
           <Form
             className={`${
@@ -240,9 +243,19 @@ export default function SignInModule() {
               </span>
             </Container>
             <div className={`${paymentForm == null ? "hidden" : "block"}`}>
-              <Button variant="primary" type="submit">
-                {`${!paymentForm ? "Submit Order" : "Continue to Payment"}`}
-              </Button>
+              {!paymentForm ? (
+                // <Link href="/review">
+                  <Button variant="primary" type="submit">
+                    Submit Order
+                  </Button>
+                // </Link>
+              ) : (
+                // <Link href="https://buy.stripe.com/test_dR629Q5PtaHI2s0cMM">
+                  <Button variant="primary" type="submit">
+                    Continue to Payment
+                  </Button>
+                // </Link>
+              )}
             </div>
           </Form>
         </Modal.Body>
