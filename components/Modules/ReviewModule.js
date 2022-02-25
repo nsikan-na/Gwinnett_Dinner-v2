@@ -42,7 +42,7 @@ export default function ReviewModule() {
           <Modal.Title>Review Order-${runningTotal}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h5>Estimated Wait Time: 15 minutes</h5>
+          <h5>Estimated Wait Time: 7 minutes</h5>
           <h5>{location}</h5>
           <h5 className="inline">{payment.method} </h5>
           <h5 className="inline">{`${
@@ -90,7 +90,7 @@ export default function ReviewModule() {
                 setRunningTotal(0);
                 setReviewModule(false);
                 setDeliveryModule(false);
-                setAlertText(`Thank You For Your Order! It'll be ready in 15 minutes`)
+                setAlertText(`Thank You For Your Order! It'll be ready in 7 minutes`)
                 setShowAlert(true)
               }}
             >
