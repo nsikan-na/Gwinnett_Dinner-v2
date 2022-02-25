@@ -7,10 +7,8 @@ export default function Footer() {
   const {
     location,
     runningTotal,
-    setRunningTotal,
     cart,
     setCartModule,
-    payment,
   } = useContext(Context);
 
   return (

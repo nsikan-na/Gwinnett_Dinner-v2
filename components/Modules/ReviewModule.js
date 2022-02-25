@@ -9,7 +9,7 @@ import Image from "next/image";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-
+import Link from 'next/link'
 export default function ReviewModule() {
   const {
     setReviewModule,
@@ -20,6 +20,7 @@ export default function ReviewModule() {
     payment,
     setPayment,
     location,
+    setDeliveryModule
   } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -80,18 +81,21 @@ export default function ReviewModule() {
                 </Row>
               );
             })}
+            <Link href='/' >
             <Button
               variant="primary"
               className="mt-3"
+              href=''
               onClick={() => {
                 setCart([]);
                 setPayment({});
                 setRunningTotal(0);
                 setReviewModule(false);
+                setDeliveryModule(false)
               }}
             >
               Submit Order
-            </Button>
+            </Button></Link>
           </Container>
         </Modal.Body>
       </Modal>
