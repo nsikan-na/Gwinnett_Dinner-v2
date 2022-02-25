@@ -58,10 +58,6 @@ export default function StripeModule() {
               <Form.Label>Name on card</Form.Label>
               <Form.Control type="text" name="name" />
             </Form.Group>
-            <Form.Group>
-              <Form.Label>Zip</Form.Label>
-              <Form.Control type="text" name="zipCode" className='' />
-            </Form.Group>
             <Button
               className="mt-3"
               onClick={() => {
