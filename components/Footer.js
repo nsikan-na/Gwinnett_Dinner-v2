@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <Container className="text-center sticky bottom-0 bg-white  py-2">
       {cart.length!==0?<div className="flex justify-center items-center space-x-10">
-        <h5>${runningTotal}</h5>
+        <h5>Total-${runningTotal}</h5>
         <Button
           href="#"
           onClick={(e) => {
