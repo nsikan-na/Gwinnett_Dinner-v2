@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LocationPortal from "./Modules/LocationModule";
 import LandingPage from "./LandingPage";
 import SignUpModule from "./Modules/SignUpModule";
@@ -14,6 +14,8 @@ import StripeModule from "./Modules/StripeModule";
 import ReviewModule from "./Modules/ReviewModule";
 
 export default function Main() {
+  // const [location, setLocation] = useState("Lawrenceville");
+  // const [location, setLocation] = useState("Snellville");
   const [location, setLocation] = useState("");
   const [signInModule, setSignInModule] = useState(false);
   const [signUpModule, setSignUpModule] = useState(false);
@@ -29,6 +31,21 @@ export default function Main() {
   const [stripeModule, setStripeModule] = useState(false);
   const [reviewModule, setReviewModule] = useState(false);
   const [payment, setPayment] = useState([]);
+
+  useEffect(() => {
+    if (cart.length === 0) return setRunningTotal(0);
+    const deliveryFee = payment.method === "Delivery" ? 6 : 0;
+    setRunningTotal(
+      Intl.NumberFormat().format(
+        cart.reduce((total, item) => {
+          return total + item.price * item.quantity;
+        }, 0) *
+          1.06 +
+          deliveryFee
+      )
+    );
+  }, [cart, setRunningTotal, payment]);
+
 
   return (
     <SSRProvider>
