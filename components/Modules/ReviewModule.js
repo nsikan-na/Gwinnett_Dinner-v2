@@ -37,17 +37,16 @@ export default function ReviewModule() {
         size="lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Review Order</Modal.Title>
+          <Modal.Title>Review Order-${runningTotal}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h6>Estimated Wait Time: 15 minutes</h6>
+          <h5>Estimated Wait Time: 15 minutes</h5>
           <h5>{location}</h5>
           <h5 className="inline">{payment.method} </h5>
-          <h6 className="inline">{`${
+          <h5 className="inline">{`${
             payment.type === "Card" ? `(Card)` : "(Cash)"
-          }`}</h6>
-          <h4>${runningTotal}</h4>
-          <Container className="">
+          }`}</h5>
+          <Container className="mt-3">
             {cart.map((item, index) => {
               return (
                 <Row

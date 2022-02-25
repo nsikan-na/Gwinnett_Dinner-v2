@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import SignInForm from "../Forms/SignInForm";
 
 export default function SignInModule() {
-  const { setGuestModule, setSignInModule, setDeliveryModule } =
+  const { setGuestModule,runningTotal, setDeliveryModule } =
     useContext(Context);
   const [showForm, setShowForm] = useState(null);
   const [show, setShow] = useState(true);
@@ -25,9 +25,14 @@ export default function SignInModule() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title> Sign In for 3% Discount</Modal.Title>
+          <Modal.Title>Sign In for Discounts-${runningTotal}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="">
+        <p
+            className='text-center'
+          >
+            (3% discount if you Sign In!)
+          </p>
           <Form
             className="justify-evenly flex"
             onChange={(e) => {
