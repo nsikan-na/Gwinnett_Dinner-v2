@@ -6,7 +6,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 html {
   scroll-behavior: smooth;
@@ -19,4 +18,10 @@ html {
   display: flex;
   justify-content: center;
   justify-items: center;
+}
+.alertLink {
+  color: white;
+}
+.alertLink:hover {
+  color: lightgray;
 }

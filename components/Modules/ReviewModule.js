@@ -18,6 +18,8 @@ export default function ReviewModule() {
     setPayment,
     location,
     setDeliveryModule,
+    setAlertText,
+    setShowAlert
   } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -88,6 +90,8 @@ export default function ReviewModule() {
                 setRunningTotal(0);
                 setReviewModule(false);
                 setDeliveryModule(false);
+                setAlertText(`Thank You For Your Order! It'll be ready in 15 minutes`)
+                setShowAlert(true)
               }}
             >
               Submit Order

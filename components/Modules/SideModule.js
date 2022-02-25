@@ -8,7 +8,15 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function SideModule() {
-  const { activeItem, setSideModule, setCart, cart } = useContext(Context);
+  const {
+    activeItem,
+    setSideModule,
+    setCart,
+    cart,
+    setShowAlert,
+    setAlertText,
+    setAlertLink,
+  } = useContext(Context);
   const [show, setShow] = useState(true);
   const { title, desc, img, price, location, type } = activeItem;
   const [quantity, setQuantity] = useState(1);
@@ -102,6 +110,9 @@ export default function SideModule() {
                 }
               }
               setSideModule(false);
+              setShowAlert(true);
+              setAlertText(`${title} Added to Cart!`);
+              setAlertLink(true);
             }}
           >
             Add to Cart

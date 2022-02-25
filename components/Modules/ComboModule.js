@@ -8,7 +8,15 @@ import { Context } from "../../context";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 export default function ComboModule() {
-  const { activeItem, setComboModule, setCart, cart } = useContext(Context);
+  const {
+    activeItem,
+    setComboModule,
+    setCart,
+    cart,
+    setShowAlert,
+    setAlertText,
+    setAlertLink,
+  } = useContext(Context);
   const [show, setShow] = useState(true);
   const { title, desc, img, price, location, type, sides } = activeItem;
   const [quantity, setQuantity] = useState(1);
@@ -187,6 +195,15 @@ export default function ComboModule() {
                 }
                 //
                 setComboModule(false);
+                setShowAlert(true);
+                setAlertText(
+                  `${variant ? variant : ""} ${
+                    title.split("&")[0]
+                  }  w/ ${sideItems
+                    .toString()
+                    .replace(",", " & ")} Added to Cart!`
+                );
+                setAlertLink(true);
               }}
             >
               {variants != "false" ? (
@@ -332,6 +349,9 @@ export default function ComboModule() {
                   }
                 }
                 setComboModule(false);
+                setShowAlert(true);
+                setAlertText(`${title} Added to Cart!`);
+                setAlertLink(true);
               }}
             >
               Add to Cart

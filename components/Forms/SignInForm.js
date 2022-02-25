@@ -9,6 +9,7 @@ export default function SignInForm({ from }) {
     setSignInModule,
     setGuestModule,
     setSignUpModule,
+    setShowAlert,setAlertText 
   } = useContext(Context);
   return (
     <Form
@@ -18,6 +19,10 @@ export default function SignInForm({ from }) {
         if (from === "GuestModule") {
           setGuestModule(false);
           setDeliveryModule(true);
+        }
+        if(from !=='GuestModule'){
+          setShowAlert(true)
+          setAlertText(`Welcome Juice Wrld!`) 
         }
       }}
     >

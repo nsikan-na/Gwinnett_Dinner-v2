@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import { Context } from "../../context";
 
 export default function SignUpModule() {
-  const { setSignInModule, setSignUpModule } = useContext(Context);
+  const { setSignInModule, setSignUpModule,setShowAlert,setAlertText } = useContext(Context);
   const [show, setShow] = useState(true);
 
   return (
@@ -29,6 +29,8 @@ export default function SignUpModule() {
             onSubmit={(e) => {
               e.preventDefault();
               setSignUpModule(false);
+              setShowAlert(true)
+              setAlertText(`Account Created!`) 
             }}
           >
             <Form.Group className="mb-3">

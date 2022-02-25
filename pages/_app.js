@@ -17,7 +17,9 @@ function MyApp({ Component, pageProps }) {
   const [stripeModule, setStripeModule] = useState(false);
   const [reviewModule, setReviewModule] = useState(false);
   const [payment, setPayment] = useState([]);
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertText, setAlertText] = useState("");
+  const [alertLink, setAlertLink] = useState(false);
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);
     const deliveryFee = payment.method === "Delivery" ? 6 : 0;
@@ -64,6 +66,12 @@ function MyApp({ Component, pageProps }) {
         setReviewModule,
         payment,
         setPayment,
+        showAlert,
+        setShowAlert,
+        alertText,
+        setAlertText,
+        alertLink,
+        setAlertLink,
       }}
     >
       <Component {...pageProps} />
