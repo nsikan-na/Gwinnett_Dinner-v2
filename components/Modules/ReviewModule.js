@@ -90,7 +90,7 @@ export default function ReviewModule() {
                 setRunningTotal(0);
                 setReviewModule(false);
                 setDeliveryModule(false);
-                setAlertText(`Thank You For Your Order! Ready in 7 minutes`)
+                setAlertText(`Thank You For Your Order! (7 minute wait time)`)
                 setShowAlert(true)
               }}
             >

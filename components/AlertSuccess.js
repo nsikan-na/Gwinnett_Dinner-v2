@@ -20,7 +20,7 @@ export default function AlertSuccess() {
   }, [showAlert]);
   return (
     <Alert
-      className=" w-11/12 mx-auto text-white text-center"
+      className=" w-11/12 md:w-max mx-auto text-white text-center"
       style={{ backgroundColor: "green", border: "0px" }}
     >
       {`${alertText} `}
