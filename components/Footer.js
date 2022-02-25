@@ -29,22 +29,8 @@ export default function Footer() {
     );
   }, [cart, setRunningTotal, payment]);
   return (
-    <Container className="text-center sticky bottom-0 bg-white p-2">
-      {cart.length !== 0 ? (
-        <Container className="flex justify-center space-x-16">
-          <h4>Total: ${runningTotal}</h4>
-          <Button
-            variant="primary"
-            onClick={() => {
-              setCartModule(true);
-            }}
-          >
-            Proceed to Checkout
-          </Button>
-        </Container>
-      ) : (
-        <p> Gwinnett Dinner @ {location}</p>
-      )}
+    <Container className="text-center sticky bottom-0 bg-white">
+      <p> Gwinnett Dinner {location?`@ ${location}`:''}</p>
     </Container>
   );
 }
