@@ -6,10 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
-import CloseIcon from "@mui/icons-material/Close";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import Link from "next/link";
+
 export default function ReviewModule() {
   const {
     setReviewModule,
@@ -81,7 +78,6 @@ export default function ReviewModule() {
                 </Row>
               );
             })}
-            {/* <Link href='/' > */}
             <Button
               variant="primary"
               className="mt-3"
@@ -97,7 +93,6 @@ export default function ReviewModule() {
             >
               Submit Order
             </Button>
-            {/* </Link> */}
           </Container>
         </Modal.Body>
       </Modal>

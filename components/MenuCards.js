@@ -16,27 +16,35 @@ export default function MenuCards({
   const { setActiveItem, setComboModule, setSideModule } = useContext(Context);
   const [viewDesc, setViewDesc] = useState(false);
   return (
-    <Card
-      className="w-72 my-2"
-      onMouseEnter={(e) => {
-        e.preventDefault();
-        setViewDesc(true);
-      }}
-      onMouseLeave={(e) => {
-        e.preventDefault();
-        setViewDesc(false);
-      }}
-    >
-      <Card.Img
-        variant="top"
-        src={`/images/${img}`}
-        style={{ maxHeight: "300%" }}
-      />
+    <Card className="w-72 my-2">
+      <div
+        className="relative flex "
+        onMouseEnter={(e) => {
+          e.preventDefault();
+          setViewDesc(true);
+        }}
+        onMouseLeave={(e) => {
+          e.preventDefault();
+          setViewDesc(false);
+        }}
+      >
+        {viewDesc ? (
+          <div className="hidden lg:flex pl-5 items-center absolute bg-gray-50 bg-opacity-50  h-full text-xl ">
+            {desc}
+          </div>
+        ) : (
+          ""
+        )}
+        <Card.Img
+          variant="top"
+          src={`/images/${img}`}
+          style={{ maxHeight: "300%" }}
+        />
+      </div>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>${price}</Card.Text>
-        {/* <p className="lg:hidden">{desc}</p> */}
-        {/* {viewDesc ? <p className="hidden lg:block">{desc}</p> : ""} */}
+        <p className="lg:hidden">{desc}</p>
         <form
           method="Post"
           action="#"

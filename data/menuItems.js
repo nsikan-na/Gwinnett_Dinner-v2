@@ -2,8 +2,7 @@ export const menuItems = [
   {
     title: "Chicken & 2 Sides",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "combo",
     img: "chicken.jpg",
     location: "all",
@@ -12,8 +11,7 @@ export const menuItems = [
   {
     title: "Fish & 2 Sides",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "combo",
     img: "fish.jpg",
     location: "all",
@@ -22,8 +20,7 @@ export const menuItems = [
   {
     title: "Burger & 1 Side",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "combo",
     img: "burger.jpg",
     location: "all",
@@ -32,8 +29,7 @@ export const menuItems = [
   {
     title: "Ice Cream",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "dessert",
     img: "ice_cream.jpg",
     location: "all",
@@ -42,8 +38,7 @@ export const menuItems = [
   {
     title: "Fries",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "side",
     img: "fries.jpg",
     location: "all",
@@ -51,8 +46,7 @@ export const menuItems = [
   {
     title: "Broccoli",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "side",
     img: "broccoli.jpg",
     location: "all",
@@ -60,8 +54,7 @@ export const menuItems = [
   {
     title: "Garlic Pasta & Bread",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "side",
     img: "garlic_pasta_&_bread.jpg",
     location: "all",
@@ -70,8 +63,7 @@ export const menuItems = [
   {
     title: "Hot Dog & Chips",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "combo",
     img: "hot_dog_&_chips.jpg",
     location: "Snellville",
@@ -80,7 +72,7 @@ export const menuItems = [
   {
     title: "Cheesecake",
     price: "5",
-    desc: `new desc`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "dessert",
     img: "cheesecake.jpg",
     location: "Snellville",
@@ -89,8 +81,7 @@ export const menuItems = [
   {
     title: "Fried Shrimp & Fries",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "combo",
     img: "fried_shrimp_&_fries.jpg",
     location: "Peachtree Corners",
@@ -99,8 +90,7 @@ export const menuItems = [
   {
     title: "Grilled Shrimp & 2 Sides",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "combo",
 
     img: "grilled_shrimp.jpg",
@@ -110,8 +100,7 @@ export const menuItems = [
   {
     title: "Cobblor",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "dessert",
     img: "cobblor.jpg",
     location: "Peachtree Corners",
@@ -119,8 +108,7 @@ export const menuItems = [
   {
     title: "Steak & 2 Sides",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "combo",
 
     img: "steak.jpg",
@@ -131,8 +119,7 @@ export const menuItems = [
   {
     title: "Mashed Potatoes",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "side",
     img: "mashed_potatoes.jpg",
     location: "Lawrenceville",
@@ -140,8 +127,7 @@ export const menuItems = [
   {
     title: "Pie",
     price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
     type: "dessert",
     img: "pie.jpg",
     location: "Lawrenceville",
