@@ -24,13 +24,13 @@ function MyApp({ Component, pageProps }) {
     if (cart.length === 0) return setRunningTotal(0);
     const deliveryFee = payment.method === "Delivery" ? 6 : 0;
     setRunningTotal(
-      Intl.NumberFormat().format(
+      (
         cart.reduce((total, item) => {
           return total + item.price * item.quantity;
         }, 0) *
           1.06 +
-          deliveryFee
-      )
+        deliveryFee
+      ).toFixed(2)
     );
   }, [cart, setRunningTotal, payment]);
   return (

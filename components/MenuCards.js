@@ -29,7 +29,7 @@ export default function MenuCards({
         }}
       >
         {viewDesc ? (
-          <div className="hidden lg:flex pl-5 items-center absolute bg-gray-50 bg-opacity-50  h-full text-xl ">
+          <div className="hidden lg:flex pl-8 items-center absolute bg-gray-100 bg-opacity-50 w-full h-full text-xl ">
             {desc}
           </div>
         ) : (

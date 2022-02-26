@@ -1,8 +1,8 @@
 export const menuItems = [
   {
     title: "Chicken & 2 Sides",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "12.99",
+    desc: `Parmesan Breaded Chicken severed with greens and lemon on the side`,
     type: "combo",
     img: "chicken.jpg",
     location: "all",
@@ -10,8 +10,8 @@ export const menuItems = [
   },
   {
     title: "Fish & 2 Sides",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "14.99",
+    desc: `Pan seared salmon severed with fresh greens and lightly sauted medley tomatoes`,
     type: "combo",
     img: "fish.jpg",
     location: "all",
@@ -19,8 +19,8 @@ export const menuItems = [
   },
   {
     title: "Burger & 1 Side",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "12.99",
+    desc: `100% Beef Whiskey Burger`,
     type: "combo",
     img: "burger.jpg",
     location: "all",
@@ -28,8 +28,8 @@ export const menuItems = [
   },
   {
     title: "Ice Cream",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "2.99",
+    desc: `Choose between chocolate chip, vanilla, butter pecan, strawberry, and cookies and cream`,
     type: "dessert",
     img: "ice_cream.jpg",
     location: "all",
@@ -37,24 +37,24 @@ export const menuItems = [
 
   {
     title: "Fries",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "4.99",
+    desc: `French fries with in house ketchup`,
     type: "side",
     img: "fries.jpg",
     location: "all",
   },
   {
     title: "Broccoli",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "3.99",
+    desc: `Fresh steamed broccoli`,
     type: "side",
     img: "broccoli.jpg",
     location: "all",
   },
   {
     title: "Garlic Pasta & Bread",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "6.99",
+    desc: `Fresh breadstick with served with in-house marinated sauce and in house garlic pasta`,
     type: "side",
     img: "garlic_pasta_&_bread.jpg",
     location: "all",
@@ -62,8 +62,8 @@ export const menuItems = [
 
   {
     title: "Hot Dog & Chips",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "6.99",
+    desc: `Assorted(beef,sausage,and vegetarian) gourmet hotdogs`,
     type: "combo",
     img: "hot_dog_&_chips.jpg",
     location: "Snellville",
@@ -71,8 +71,8 @@ export const menuItems = [
   },
   {
     title: "Cheesecake",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "8.95",
+    desc: `In house Assorted Cheesecake`,
     type: "dessert",
     img: "cheesecake.jpg",
     location: "Snellville",
@@ -80,8 +80,8 @@ export const menuItems = [
 
   {
     title: "Fried Shrimp & Fries",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "9.99",
+    desc: `Beer battered fried shrimp with seasoned fries`,
     type: "combo",
     img: "fried_shrimp_&_fries.jpg",
     location: "Peachtree Corners",
@@ -89,8 +89,8 @@ export const menuItems = [
   },
   {
     title: "Grilled Shrimp & 2 Sides",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "9.99",
+    desc: `Grilled Garlic Shrimp served with fresh parsley and olive oil`,
     type: "combo",
 
     img: "grilled_shrimp.jpg",
@@ -99,16 +99,16 @@ export const menuItems = [
   },
   {
     title: "Cobblor",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "4.99",
+    desc: `Freshly baked warm peach cobbler`,
     type: "dessert",
     img: "cobblor.jpg",
     location: "Peachtree Corners",
   },
   {
     title: "Steak & 2 Sides",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "12.99",
+    desc: `New York Style Steak`,
     type: "combo",
 
     img: "steak.jpg",
@@ -118,16 +118,16 @@ export const menuItems = [
   },
   {
     title: "Mashed Potatoes",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "5.99",
+    desc: `Garlic mashed potatoes`,
     type: "side",
     img: "mashed_potatoes.jpg",
     location: "Lawrenceville",
   },
   {
     title: "Pie",
-    price: "5",
-    desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,`,
+    price: "3.99",
+    desc: `Choose between blueberry pie,pink lemonade pie, chocolate chip cookie,peanut butter pie,white chocolate silk,and brown sugar pumpkin pie`,
     type: "dessert",
     img: "pie.jpg",
     location: "Lawrenceville",
