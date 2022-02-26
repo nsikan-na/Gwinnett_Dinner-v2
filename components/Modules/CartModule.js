@@ -146,7 +146,7 @@ export default function CartModule() {
                         </form>
                       </Col>
                       <Col className="text-center hidden md:block">
-                        ${item.price * item.quantity}
+                        ${(item.price * item.quantity).toFixed(2)}
                       </Col>
                       <Col className="text-center hidden md:block">
                         <form
