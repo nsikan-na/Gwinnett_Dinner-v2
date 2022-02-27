@@ -28,18 +28,16 @@ export default function CartModule() {
       >
         <Modal.Header className="" closeButton>
           <Modal.Title className="">
-            <h1>
-              Shopping Cart-${runningTotal}{" "}
-              {cart.length !== 0 ? (
-                <h5>
-                  {cart.length > 1
-                    ? `${cart.length} items`
-                    : `${cart.length} item`}
-                </h5>
-              ) : (
-                ``
-              )}
-            </h1>
+            <h1>Shopping Cart-${runningTotal} </h1>
+            {cart.length !== 0 ? (
+              <h5>
+                {cart.length > 1
+                  ? `${cart.length} items`
+                  : `${cart.length} item`}
+              </h5>
+            ) : (
+              ``
+            )}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
