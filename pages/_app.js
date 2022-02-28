@@ -1,30 +1,30 @@
 import "../styles/globals.css";
 import React, { useState, useEffect } from "react";
+import LandingPage from "../components/LandingPage";
 import { Context } from "../context";
+import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   const [location, setLocation] = useState("");
+  const [cart, setCart] = useState([]);
+  const [runningTotal, setRunningTotal] = useState(0);
+  const [payment, setPayment] = useState([]);
+  const [username, setUsername] = useState(false);
   const [signInModule, setSignInModule] = useState(false);
   const [signUpModule, setSignUpModule] = useState(false);
-  const [runningTotal, setRunningTotal] = useState(0);
-  const [cart, setCart] = useState([]);
-  const [activeCombo, setActiveCombo] = useState("");
-  const [activeItem, setActiveItem] = useState({});
-  const [comboModule, setComboModule] = useState(false);
-  const [sideModule, setSideModule] = useState(false);
-  const [cartModule, setCartModule] = useState(false);
-  const [guestModule, setGuestModule] = useState(false);
-  const [deliveryModule, setDeliveryModule] = useState(false);
-  const [stripeModule, setStripeModule] = useState(false);
-  const [reviewModule, setReviewModule] = useState(false);
-  const [payment, setPayment] = useState([]);
-  const [showAlert, setShowAlert] = useState(false);
   const [alertText, setAlertText] = useState("");
   const [alertLink, setAlertLink] = useState(false);
-  const [username, setUsername] = useState(false);
+
+  useEffect(() => {
+    if (!location) {
+      router.push("/location");
+    }
+  }, [location]);
+
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);
     const deliveryFee = payment.method === "Delivery" ? 6 : 0;
-    const discount =username?0.97:1
+    const discount = username ? 0.97 : 1;
     setRunningTotal(
       (
         cart.reduce((total, item) => {
@@ -36,6 +36,7 @@ function MyApp({ Component, pageProps }) {
       ).toFixed(2)
     );
   }, [cart, setRunningTotal, payment, username]);
+
   return (
     <Context.Provider
       value={{
@@ -49,28 +50,8 @@ function MyApp({ Component, pageProps }) {
         setRunningTotal,
         cart,
         setCart,
-        sideModule,
-        setSideModule,
-        activeCombo,
-        setActiveCombo,
-        activeItem,
-        setActiveItem,
-        comboModule,
-        setComboModule,
-        cartModule,
-        setCartModule,
-        guestModule,
-        setGuestModule,
-        deliveryModule,
-        setDeliveryModule,
-        stripeModule,
-        setStripeModule,
-        reviewModule,
-        setReviewModule,
         payment,
         setPayment,
-        showAlert,
-        setShowAlert,
         alertText,
         setAlertText,
         alertLink,
@@ -80,6 +61,7 @@ function MyApp({ Component, pageProps }) {
       }}
     >
       <Component {...pageProps} />
+      <LandingPage />
     </Context.Provider>
   );
 }

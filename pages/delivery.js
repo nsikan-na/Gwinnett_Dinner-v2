@@ -1,22 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { locationData } from "../../data/locationData";
+import { locationData } from "./api/data";
 
 export default function SignInModule() {
-  const {
-    setDeliveryModule,
-    setStripeModule,
-    setReviewModule,
-    setPayment,
-    runningTotal,
-    location,
-  } = useContext(Context);
+  const router = useRouter();
+  const { setPayment, runningTotal, location } = useContext(Context);
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
@@ -70,7 +65,8 @@ export default function SignInModule() {
     <Container>
       <Modal
         onExit={() => {
-          setDeliveryModule(false);
+          //   setDeliveryModule(false);
+          router.push("/");
         }}
         show={show}
         backdrop="static"
@@ -142,7 +138,7 @@ export default function SignInModule() {
               if (validPostal) return;
               if (!postalCode || postalCode.length != 5) return;
               setStripeModule(true);
-              setDeliveryModule(false);
+              router.push("/card_payment");
             }}
           >
             <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -189,9 +185,9 @@ export default function SignInModule() {
             >
               Please enter valid zip code!
             </p>
-              <Button variant="primary" type="submit">
-                Continue to Payment
-              </Button>
+            <Button variant="primary" type="submit">
+              Continue to Payment
+            </Button>
           </Form>
           <Form
             className={`${
@@ -205,11 +201,9 @@ export default function SignInModule() {
             onSubmit={(e) => {
               e.preventDefault();
               if (!paymentForm) {
-                setDeliveryModule(false);
-                setReviewModule(true);
+                router.push("/review_order");
               } else {
-                setStripeModule(true);
-                setDeliveryModule(false);
+                router.push("card_payment");
               }
             }}
           >
@@ -240,14 +234,13 @@ export default function SignInModule() {
             </Container>
             <div className={`${paymentForm == null ? "hidden" : "block"}`}>
               {!paymentForm ? (
-                  <Button variant="primary" type="submit">
-                    Submit Order
-                  </Button>
+                <Button variant="primary" type="submit">
+                  Submit Order
+                </Button>
               ) : (
-                  <Button variant="primary" type="submit">
-                    Continue to Payment
-                  </Button>
-
+                <Button variant="primary" type="submit">
+                  Continue to Payment
+                </Button>
               )}
             </div>
           </Form>

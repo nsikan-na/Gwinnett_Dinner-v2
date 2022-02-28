@@ -1,15 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
 
 export default function ReviewModule() {
+  const router = useRouter();
   const {
-    setReviewModule,
     setCart,
     cart,
     setRunningTotal,
@@ -17,9 +18,7 @@ export default function ReviewModule() {
     payment,
     setPayment,
     location,
-    setDeliveryModule,
     setAlertText,
-    setShowAlert,
     username,
   } = useContext(Context);
   const [show, setShow] = useState(false);
@@ -35,7 +34,8 @@ export default function ReviewModule() {
         backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         onExit={() => {
-          setReviewModule(false);
+    
+          router.push("/");
         }}
         size="lg"
       >
@@ -66,8 +66,8 @@ export default function ReviewModule() {
                   <Col className="md:flex justify-center">
                     <Image
                       src={`/images/${item.img}`}
-                      width="200%"
-                      height="130%"
+                      width="100%"
+                      height="100%"
                     />
                   </Col>
                   <Col>
@@ -96,10 +96,8 @@ export default function ReviewModule() {
                 setCart([]);
                 setPayment({});
                 setRunningTotal(0);
-                setReviewModule(false);
-                setDeliveryModule(false);
+                router.push("/");
                 setAlertText(`Thank You For Your Order! (7 minute wait time)`);
-                setShowAlert(true);
               }}
             >
               Submit Order

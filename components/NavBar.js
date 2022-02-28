@@ -1,24 +1,22 @@
 import React, { useContext } from "react";
+import { useRouter } from "next/router";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Context } from "../context";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AlertSuccess from "./AlertSuccess";
 export default function NavBar() {
+  const router = useRouter();
   const {
     setSignInModule,
     setSignUpModule,
     setCart,
-    setCartModule,
     setLocation,
-    showAlert,
     username,
     setAlertText,
-    setShowAlert,
     setUsername,
   } = useContext(Context);
   return (
@@ -29,9 +27,9 @@ export default function NavBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" className="" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="">
-                <Nav.Link href="#combos">Combos</Nav.Link>
-                <Nav.Link href="#sides">Sides</Nav.Link>
-                <Nav.Link href="#desserts">Desserts</Nav.Link>
+                <Nav.Link href="#">Home</Nav.Link>
+                <Nav.Link href="#">Menu</Nav.Link>
+
                 <Nav.Link
                   href="#"
                   onClick={() => {
@@ -69,7 +67,8 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      setCartModule(true);
+                      // setCartModule(true);
+                      router.push("/cart");
                     }}
                   >
                     <ShoppingCartIcon className="" />
@@ -94,7 +93,6 @@ export default function NavBar() {
                     onClick={(e) => {
                       e.preventDefault();
                       setUsername("");
-                      setShowAlert(true);
                       setAlertText(`You are now Signed Out!`);
                     }}
                   >
@@ -104,7 +102,8 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      setCartModule(true);
+                      // setCartModule(true);
+                      router.push("/cart");
                     }}
                   >
                     <ShoppingCartIcon className="" />

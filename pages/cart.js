@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Image from "next/image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,21 +12,14 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function CartModule() {
-  const {
-    cart,
-    runningTotal,
-    setCartModule,
-    setCart,
-    setGuestModule,
-    username,
-    setDeliveryModule,
-  } = useContext(Context);
+  const router = useRouter();
+  const { cart, runningTotal, setCart, username } = useContext(Context);
   const [show, setShow] = useState(true);
   return (
     <Container>
       <Modal
         onExit={() => {
-          setCartModule(false);
+          router.push("/");
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -189,12 +183,11 @@ export default function CartModule() {
                 className="mt-3"
                 variant="primary"
                 onClick={() => {
-                  setCartModule(false);
                   if (!username) {
-                    setGuestModule(true);
+                    router.push("/guest");
                   }
                   if (username) {
-                    setDeliveryModule(true);
+                    router.push("/delivery");
                   }
                 }}
               >

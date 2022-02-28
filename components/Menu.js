@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Context } from "../context";
-import { menuItems } from "../data/menuItems";
+import { menuItems } from "../pages/api/data/menuItems";
 
 const menuCards = (filteredItems) => {
   return filteredItems.map((item) => (
@@ -35,13 +35,13 @@ const loadMenu = (location, type) => {
 export default function Menu() {
   const { location } = useContext(Context);
   return (
-    <Container id="menu">
+    <Container >
       <h1 className="text-center my-3">Menu</h1>
-      <h2 className="text-center pt-16" id='combos'>Combos</h2>
+      <h2 className="text-center pt-16" >Combos</h2>
       <Row>{loadMenu(location, "combo")}</Row>
-      <h2 className="text-center pt-16" id='sides'>Sides</h2>
+      <h2 className="text-center pt-16" >Sides</h2>
       <Row>{loadMenu(location, "side")}</Row>
-      <h2 className="text-center pt-16" id='desserts'>Desserts</h2>
+      <h2 className="text-center pt-16" >Desserts</h2>
       <Row>{loadMenu(location, "dessert")}</Row>
     </Container>
   );
