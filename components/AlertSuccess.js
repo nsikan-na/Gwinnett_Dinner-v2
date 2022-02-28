@@ -5,7 +5,7 @@ import { Context } from "../context";
 
 export default function AlertSuccess() {
   const router = useRouter();
-  const { alertText, alertLink, setAlertLink, setCartModule } =
+  const { alertText, alertLink, setAlertLink,setAlertText, setCartModule } =
     useContext(Context);
   useEffect(() => {
     if (!alertText) return;

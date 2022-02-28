@@ -1,20 +1,21 @@
 import React, { useState, useContext } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import { Context } from "../../context";
+import { Context } from "../context";
 
 export default function SignUpModule() {
-  const { setSignInModule, setSignUpModule,setShowAlert,setAlertText } = useContext(Context);
+  const router = useRouter();
+  const { setAlertText } = useContext(Context);
   const [show, setShow] = useState(true);
 
   return (
     <Container>
       <Modal
         onExit={() => {
-          setSignInModule(false);
-          setSignUpModule(false);
+          router.push("/");
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -28,9 +29,8 @@ export default function SignUpModule() {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
-              setSignUpModule(false);
-              setShowAlert(true)
-              setAlertText(`Account Created!`) 
+              router.push("/");
+              setAlertText(`Account Created!`);
             }}
           >
             <Form.Group className="mb-3">
@@ -51,8 +51,7 @@ export default function SignUpModule() {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  setSignInModule(true);
-                  setSignUpModule(false);
+                  router.push("/signIn");
                 }}
               >
                 Sign In!

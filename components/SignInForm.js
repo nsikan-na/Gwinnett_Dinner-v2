@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-import {useRouter}from 'next/router'
+import { useRouter } from "next/router";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Link from "next/link";
 export default function SignInForm({ from, data }) {
-  const router= useRouter();
-  const { setShowAlert, setAlertText, setUsername } = useContext(Context);
+  const router = useRouter();
+  const { setAlertText, setUsername } = useContext(Context);
   const [error, setError] = useState("");
   const [failedLogin, setFailedLogin] = useState(false);
 
@@ -33,7 +33,6 @@ export default function SignInForm({ from, data }) {
             "Username or password is incorrect! Please enter valid credentials!"
           );
         }
-        // setSignInModule(false);
         setUsername(e.target.username.value);
         if (from === "GuestModule") {
           router.push("/delivery");
@@ -41,7 +40,6 @@ export default function SignInForm({ from, data }) {
         if (from !== "GuestModule") {
           router.push("/");
 
-          setShowAlert(true);
           setAlertText(
             `Welcome ${e.target.username.value}! Enjoy your 3% discount!`
           );
@@ -64,8 +62,7 @@ export default function SignInForm({ from, data }) {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              setSignInModule(false);
-              setSignUpModule(true);
+              router.push("/signUp");
             }}
           >
             Register here!

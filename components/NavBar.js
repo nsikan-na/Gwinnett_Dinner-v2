@@ -17,6 +17,7 @@ export default function NavBar() {
     setLocation,
     username,
     setAlertText,
+    alertText,
     setUsername,
   } = useContext(Context);
   return (
@@ -48,7 +49,7 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      setSignUpModule(true);
+                     router.push('/signUp')
                     }}
                   >
                     Sign Up
@@ -58,7 +59,7 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      setSignInModule(true);
+                   router.push('/signIn')
                     }}
                   >
                     Sign In
@@ -102,7 +103,6 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      // setCartModule(true);
                       router.push("/cart");
                     }}
                   >
@@ -115,7 +115,7 @@ export default function NavBar() {
         </Navbar>
       </Container>
 
-      {showAlert ? (
+      {alertText ? (
         <div className="mt-6">
           <AlertSuccess />
         </div>
