@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-const db = require("./api/db");
 import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -7,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import { Context } from "../context";
 import Form from "react-bootstrap/Form";
 import SignInForm from "../components/SignInForm";
-export default function GuestModule({  queryUserData }) {
+export default function GuestModule() {
   const router = useRouter();
   const { runningTotal } = useContext(Context);
   const [showForm, setShowForm] = useState(null);
@@ -64,7 +63,7 @@ export default function GuestModule({  queryUserData }) {
               />
             </span>
           </Form>
-          {showForm ? <SignInForm from="GuestModule" data={ queryUserData} /> : ""}
+          {showForm ? <SignInForm from="GuestModule"/> : ""}
           {!showForm && showForm != null ? (
             <Container className="flex justify-center pt-3">
               <Button
@@ -85,10 +84,3 @@ export default function GuestModule({  queryUserData }) {
     </Container>
   );
 }
-
-export async function getServerSideProps() {
-    const query = await db.execute(`SELECT * FROM user_data`);
-    const queryUserData = query[0];
-    return { props: { queryUserData } };
-  }
-  

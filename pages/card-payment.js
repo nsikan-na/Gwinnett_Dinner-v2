@@ -63,7 +63,7 @@ export default function CardPayment() {
               className="mt-3"
               onClick={() => {
  
-                router.push('/review_order')
+                router.push('/review-order')
               }}
             >
               Pay ${runningTotal}

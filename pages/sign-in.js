@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import db from "./api/db";
 import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -8,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import { Context } from "../context";
 import SignInForm from "../components/SignInForm";
 
-export default function SignInModule({ queryUserData }) {
+export default function SignInModule() {
   const router = useRouter();
   const {} = useContext(Context);
   const [show, setShow] = useState(false);
@@ -31,14 +30,9 @@ export default function SignInModule({ queryUserData }) {
           <Modal.Title>Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SignInForm from="LandingPage" data={queryUserData} />
+          <SignInForm from="LandingPage"/>
         </Modal.Body>
       </Modal>
     </Container>
   );
-}
-export async function getServerSideProps() {
-  const query = await db.execute(`SELECT * FROM user_data`);
-  const queryUserData = query[0];
-  return { props: { queryUserData } };
 }

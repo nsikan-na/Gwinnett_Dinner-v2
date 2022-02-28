@@ -49,7 +49,7 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                     router.push('/signUp')
+                     router.push('/sign-up')
                     }}
                   >
                     Sign Up
@@ -59,7 +59,7 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                   router.push('/signIn')
+                   router.push('/sign-in')
                     }}
                   >
                     Sign In

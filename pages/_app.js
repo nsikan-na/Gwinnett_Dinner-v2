@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [location, setLocation] = useState("");
+  // const [location, setLocation] = useState("Lawrenceville");
   const [cart, setCart] = useState([]);
   const [runningTotal, setRunningTotal] = useState(0);
   const [payment, setPayment] = useState([]);

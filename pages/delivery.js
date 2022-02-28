@@ -31,7 +31,6 @@ export default function SignInModule() {
     if (!postalCode) {
       return setValidPostal(false);
     }
-    setFormSubmit(false);
     setValidPostal(false);
     if (postalCode.length < 5) {
       return setValidPostal(false);
@@ -48,7 +47,7 @@ export default function SignInModule() {
     } else {
       setValidPostal(true);
     }
-  }, [postalCode]);
+  }, [postalCode, formSubmit]);
 
   useEffect(() => {
     if (showForm == null) return;
@@ -65,7 +64,6 @@ export default function SignInModule() {
     <Container>
       <Modal
         onExit={() => {
-          //   setDeliveryModule(false);
           router.push("/");
         }}
         show={show}
@@ -132,13 +130,15 @@ export default function SignInModule() {
           </Form>
           <Form
             className={`${showForm ? "block" : "hidden"}`}
+            onChange={() => {
+              setFormSubmit(false);
+            }}
             onSubmit={(e) => {
               e.preventDefault();
               setFormSubmit(true);
               if (validPostal) return;
               if (!postalCode || postalCode.length != 5) return;
-              setStripeModule(true);
-              router.push("/card_payment");
+              router.push("/card-payment");
             }}
           >
             <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -180,7 +180,7 @@ export default function SignInModule() {
             </p>
             <p
               className={`text-red-600 ${
-                !validPostal && formSubmit ? "block" : "hidden"
+                !validPostal && formSubmit && validPostal ? "block" : "hidden"
               }`}
             >
               Please enter valid zip code!
@@ -201,9 +201,9 @@ export default function SignInModule() {
             onSubmit={(e) => {
               e.preventDefault();
               if (!paymentForm) {
-                router.push("/review_order");
+                router.push("/review-order");
               } else {
-                router.push("card_payment");
+                router.push("/card-payment");
               }
             }}
           >

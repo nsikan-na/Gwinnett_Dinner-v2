@@ -4,13 +4,41 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Context } from "../context";
 import Link from "next/link";
+
 export default function SignInForm({ from, data }) {
   const router = useRouter();
   const { setAlertText, setUsername } = useContext(Context);
   const [error, setError] = useState("");
   const [failedLogin, setFailedLogin] = useState(false);
 
-  useEffect(() => {}, [error]);
+  async function getUserData(e) {
+    const response = await fetch(`/api/sign-in`, {
+      method: "POST",
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.target.password.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    if (!data.success) {
+      setFailedLogin(true);
+      return setError(data.message);
+    }
+    setUsername(e.target.username.value);
+    if (from === "GuestModule") {
+      router.push("/delivery");
+    }
+    if (from !== "GuestModule") {
+      router.push("/");
+
+      setAlertText(
+        `Welcome ${e.target.username.value}! Enjoy your 3% discount!`
+      );
+    }
+  }
   return (
     <Form
       onChange={() => {
@@ -18,32 +46,7 @@ export default function SignInForm({ from, data }) {
       }}
       onSubmit={(e) => {
         e.preventDefault();
-        if (!e.target.username.value || !e.target.password.value) {
-          return setError("Please enter valid username and password!");
-        }
-        const validInputs = data.some((item) => {
-          return (
-            item.username == e.target.username.value &&
-            item.password == e.target.password.value
-          );
-        });
-        if (!validInputs) {
-          setFailedLogin(true);
-          return setError(
-            "Username or password is incorrect! Please enter valid credentials!"
-          );
-        }
-        setUsername(e.target.username.value);
-        if (from === "GuestModule") {
-          router.push("/delivery");
-        }
-        if (from !== "GuestModule") {
-          router.push("/");
-
-          setAlertText(
-            `Welcome ${e.target.username.value}! Enjoy your 3% discount!`
-          );
-        }
+        getUserData(e);
       }}
     >
       <Form.Group className="mb-3">
@@ -62,7 +65,7 @@ export default function SignInForm({ from, data }) {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              router.push("/signUp");
+              router.push("/sign-up");
             }}
           >
             Register here!

@@ -93,10 +93,10 @@ export default function ReviewModule() {
               href=""
               onClick={(e) => {
                 e.preventDefault();
+                router.push("/");
                 setCart([]);
                 setPayment({});
                 setRunningTotal(0);
-                router.push("/");
                 setAlertText(`Thank You For Your Order! (7 minute wait time)`);
               }}
             >
