@@ -19,7 +19,8 @@ export default function ReviewModule() {
     location,
     setDeliveryModule,
     setAlertText,
-    setShowAlert
+    setShowAlert,
+    username,
   } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -39,7 +40,14 @@ export default function ReviewModule() {
         size="lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Review Order-${runningTotal}</Modal.Title>
+          <Modal.Title>
+            Review Order-${runningTotal}{" "}
+            {username ? (
+              <span className="text-lg">(3% discount applied!)</span>
+            ) : (
+              ""
+            )}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h5>Estimated Wait Time: 7 minutes</h5>
@@ -90,8 +98,8 @@ export default function ReviewModule() {
                 setRunningTotal(0);
                 setReviewModule(false);
                 setDeliveryModule(false);
-                setAlertText(`Thank You For Your Order! (7 minute wait time)`)
-                setShowAlert(true)
+                setAlertText(`Thank You For Your Order! (7 minute wait time)`);
+                setShowAlert(true);
               }}
             >
               Submit Order

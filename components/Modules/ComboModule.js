@@ -210,28 +210,30 @@ export default function ComboModule() {
                 <Container>
                   <h5>Select Degree</h5>
                   <table className="mx-auto">
-                    {variants.map((variant) => {
-                      return (
-                        <Container key={variant} className="">
-                          <tr>
-                            <td>
-                              <Form.Check
-                                inline
-                                name="variants"
-                                type="radio"
-                                id={`${variant}`}
-                                value={`${variant}`}
-                              />
-                            </td>
-                            <td>
-                              <Form.Label htmlFor={`${variant}`}>
-                                {variant}
-                              </Form.Label>
-                            </td>
-                          </tr>
-                        </Container>
-                      );
-                    })}
+                    <tbody>
+                      {variants.map((variant) => {
+                        return (
+                          <Container key={variant} className="">
+                            <tr>
+                              <td>
+                                <Form.Check
+                                  inline
+                                  name="variants"
+                                  type="radio"
+                                  id={`${variant}`}
+                                  value={`${variant}`}
+                                />
+                              </td>
+                              <td>
+                                <Form.Label htmlFor={`${variant}`}>
+                                  {variant}
+                                </Form.Label>
+                              </td>
+                            </tr>
+                          </Container>
+                        );
+                      })}
+                    </tbody>
                   </table>
                   <h6
                     className={`text-red-500 ${doneError ? "block" : "hidden"}`}
@@ -246,8 +248,8 @@ export default function ComboModule() {
                 Pick {`${sides} ${sides > 1 ? "side items" : "side item"}`}
               </h5>
               <table className="mx-auto ">
-                <tr>
-                  <Form.Group className="">
+                <tbody>
+                  <tr>
                     <td>
                       <Form.Check
                         inline
@@ -259,10 +261,8 @@ export default function ComboModule() {
                     <td>
                       <Form.Label htmlFor="Fries">Fries</Form.Label>
                     </td>
-                  </Form.Group>
-                </tr>
-                <tr>
-                  <Form.Group className=" ">
+                  </tr>
+                  <tr>
                     <td>
                       <Form.Check
                         inline
@@ -274,11 +274,9 @@ export default function ComboModule() {
                     <td>
                       <Form.Label htmlFor="Broccoli">Broccoli</Form.Label>
                     </td>
-                  </Form.Group>
-                </tr>
+                  </tr>
 
-                <tr>
-                  <Form.Group className=" ">
+                  <tr>
                     <td>
                       <Form.Check
                         className=""
@@ -293,8 +291,8 @@ export default function ComboModule() {
                         Pasta & Bread
                       </Form.Label>
                     </td>
-                  </Form.Group>
-                </tr>
+                  </tr>
+                </tbody>
               </table>
               <h6 className={`text-red-500 ${error ? "visible" : "invisible"}`}>
                 You must enter {sides} sides!

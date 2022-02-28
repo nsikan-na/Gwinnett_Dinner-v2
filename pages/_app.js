@@ -20,19 +20,22 @@ function MyApp({ Component, pageProps }) {
   const [showAlert, setShowAlert] = useState(false);
   const [alertText, setAlertText] = useState("");
   const [alertLink, setAlertLink] = useState(false);
+  const [username, setUsername] = useState(false);
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);
     const deliveryFee = payment.method === "Delivery" ? 6 : 0;
+    const discount =username?0.97:1
     setRunningTotal(
       (
         cart.reduce((total, item) => {
           return total + item.price * item.quantity;
         }, 0) *
+          discount *
           1.06 +
         deliveryFee
       ).toFixed(2)
     );
-  }, [cart, setRunningTotal, payment]);
+  }, [cart, setRunningTotal, payment, username]);
   return (
     <Context.Provider
       value={{
@@ -72,6 +75,8 @@ function MyApp({ Component, pageProps }) {
         setAlertText,
         alertLink,
         setAlertLink,
+        username,
+        setUsername,
       }}
     >
       <Component {...pageProps} />

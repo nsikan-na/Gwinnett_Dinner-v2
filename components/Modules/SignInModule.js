@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import { Context } from "../../context";
 import SignInForm from "../Forms/SignInForm";
 
-export default function SignInModule() {
+export default function SignInModule({data}) {
   const { setSignInModule, setSignUpModule } = useContext(Context);
   const [show, setShow] = useState(false);
 
@@ -29,7 +29,7 @@ export default function SignInModule() {
           <Modal.Title>Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SignInForm from="LandingPage" />
+          <SignInForm from="LandingPage" data={data} />
         </Modal.Body>
       </Modal>
     </Container>

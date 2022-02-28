@@ -11,8 +11,15 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function CartModule() {
-  const { cart, runningTotal, setCartModule, setCart, setGuestModule } =
-    useContext(Context);
+  const {
+    cart,
+    runningTotal,
+    setCartModule,
+    setCart,
+    setGuestModule,
+    username,
+    setDeliveryModule,
+  } = useContext(Context);
   const [show, setShow] = useState(true);
   return (
     <Container>
@@ -183,7 +190,12 @@ export default function CartModule() {
                 variant="primary"
                 onClick={() => {
                   setCartModule(false);
-                  setGuestModule(true);
+                  if (!username) {
+                    setGuestModule(true);
+                  }
+                  if (username) {
+                    setDeliveryModule(true);
+                  }
                 }}
               >
                 Proceed to Checkout

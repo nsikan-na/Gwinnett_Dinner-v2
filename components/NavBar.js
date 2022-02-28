@@ -16,6 +16,10 @@ export default function NavBar() {
     setCartModule,
     setLocation,
     showAlert,
+    username,
+    setAlertText,
+    setShowAlert,
+    setUsername,
   } = useContext(Context);
   return (
     <Container className="sticky top-0 z-50 mx-auto ">
@@ -39,43 +43,82 @@ export default function NavBar() {
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
-            <Breadcrumb className="">
-              <Breadcrumb.Item
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSignUpModule(true);
-                }}
-              >
-                Sign Up
-              </Breadcrumb.Item>
-              <Breadcrumb.Item
-                className=""
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSignInModule(true);
-                }}
-              >
-                Sign In
-              </Breadcrumb.Item>
-              <Breadcrumb.Item
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCartModule(true);
-                }}
-              >
-                <ShoppingCartIcon className="" />
-              </Breadcrumb.Item>
-            </Breadcrumb>
+            {!username ? (
+              <>
+                <Breadcrumb className="">
+                  <Breadcrumb.Item
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSignUpModule(true);
+                    }}
+                  >
+                    Sign Up
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item
+                    className=""
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSignInModule(true);
+                    }}
+                  >
+                    Sign In
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCartModule(true);
+                    }}
+                  >
+                    <ShoppingCartIcon className="" />
+                  </Breadcrumb.Item>
+                </Breadcrumb>
+              </>
+            ) : (
+              <>
+                <p
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                  className="mr-4"
+                >
+                  Welcome {username}!
+                </p>
+                <Breadcrumb className="">
+                  <Breadcrumb.Item
+                    className=""
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setUsername("");
+                      setShowAlert(true);
+                      setAlertText(`You are now Signed Out!`);
+                    }}
+                  >
+                    Sign Out
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCartModule(true);
+                    }}
+                  >
+                    <ShoppingCartIcon className="" />
+                  </Breadcrumb.Item>
+                </Breadcrumb>
+              </>
+            )}
           </Container>
         </Navbar>
       </Container>
 
       {showAlert ? (
         <div className="mt-6">
-          <AlertSuccess/>
+          <AlertSuccess />
         </div>
       ) : (
         ""

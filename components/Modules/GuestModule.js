@@ -6,7 +6,7 @@ import { Context } from "../../context";
 import Form from "react-bootstrap/Form";
 import SignInForm from "../Forms/SignInForm";
 
-export default function SignInModule() {
+export default function GuestModule({data}) {
   const { setGuestModule,runningTotal, setDeliveryModule } =
     useContext(Context);
   const [showForm, setShowForm] = useState(null);
@@ -66,7 +66,7 @@ export default function SignInModule() {
               />
             </span>
           </Form>
-          {showForm ? <SignInForm from="GuestModule" /> : ""}
+          {showForm ? <SignInForm from="GuestModule" data={data}/> : ""}
           {!showForm && showForm != null ? (
             <Container className="flex justify-center pt-3">
               <Button
