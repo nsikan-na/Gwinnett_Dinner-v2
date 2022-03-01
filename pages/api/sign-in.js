@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     try {
       const { username, password } = req.body;
       if (!username || !password) {
-        return res.json({
+        return res.send({
           success: false,
           message: "Please complete all fields!",
         });
@@ -12,18 +12,17 @@ export default async function handler(req, res) {
       const query = await db.execute(
         `SELECT * FROM user_data WHERE username = "${username}"`
       );
-      console.log(JSON.parse(JSON.stringify(query)));
       const queryUserData = query[0];
       const validateUser = queryUserData.some((user) => {
         return password == user.password;
       });
       if (!validateUser) {
-        return res.json({
+        return res.send({
           success: false,
           message: "Please enter valid password and username!",
         });
       }
-      return res.json({ success: true });
+      return res.send({ success: true });
     } catch (err) {
       console.log(err.message);
     }
