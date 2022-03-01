@@ -13,7 +13,7 @@ export default function AlertSuccess() {
       setAlertText("");
       setAlertLink(false);
     }, 4500);
-  }, [alertText]);
+  }, [alertText,setAlertLink,setAlertText]);
   return (
     <Alert
       className=" w-11/12 md:w-max mx-auto text-white text-center"

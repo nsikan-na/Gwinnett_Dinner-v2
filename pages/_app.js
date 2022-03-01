@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
     if (!location) {
       router.push("/location");
     }
-  }, [location]);
+  }, [location,router]);
 
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);

@@ -55,6 +55,7 @@ export default function Cart() {
                     >
                       <Col className="hidden md:flex justify-center">
                         <Image
+                        alt={item.title}
                           src={`/images/${item.img}`}
                           width="100%"
                           height="100%"
