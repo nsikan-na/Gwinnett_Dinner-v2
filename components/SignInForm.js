@@ -22,7 +22,7 @@ export default function SignInForm({ from }) {
         "Content-Type": "application/json",
       },
     });
-    const data = await response.json();
+    const data = response;
     if (!data.success) {
       setError(data.message);
       if (data.message == "Please enter valid password and username!") {
