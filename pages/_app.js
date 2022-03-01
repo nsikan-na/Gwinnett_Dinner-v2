@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Context } from "../context";
 import { useRouter } from "next/router";
 
-
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [location, setLocation] = useState("");
@@ -15,7 +14,9 @@ function MyApp({ Component, pageProps }) {
   const [signUpModule, setSignUpModule] = useState(false);
   const [alertText, setAlertText] = useState("");
   const [alertLink, setAlertLink] = useState(false);
- 
+  useEffect(() => {
+    if (!location) return router.push("/location");
+  }, [location]);
 
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);
