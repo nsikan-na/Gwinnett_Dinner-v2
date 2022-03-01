@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { locationData } from "./api/data";
 
-export default function SignInModule() {
+export default function Delivery() {
   const router = useRouter();
   const { setPayment, runningTotal, location } = useContext(Context);
   const [show, setShow] = useState(false);

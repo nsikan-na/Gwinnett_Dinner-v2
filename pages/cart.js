@@ -11,7 +11,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-export default function CartModule() {
+export default function Cart() {
   const router = useRouter();
   const { cart, runningTotal, setCart, username } = useContext(Context);
   const [show, setShow] = useState(true);

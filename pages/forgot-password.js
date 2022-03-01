@@ -6,13 +6,13 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { Context } from "../context";
 
-export default function SignUp() {
+export default function ForgotPassword() {
   const router = useRouter();
   const { setAlertText, setUsername } = useContext(Context);
   const [show, setShow] = useState(true);
   const [error, setError] = useState("");
-  async function signUpHandler(e) {
-    const response = await fetch(`/api/sign-up`, {
+  async function resetLoginHandler(e) {
+    const response = await fetch(`/api/forgot-password`, {
       method: "POST",
       body: JSON.stringify({
         username: e.target.username.value,
@@ -27,7 +27,7 @@ export default function SignUp() {
     if (!data.success) return setError(data.message);
     setUsername(e.target.username.value);
     router.push("/");
-    setAlertText(`Account Created! Welcome ${e.target.username.value}!`);
+    setAlertText(`Password Reset! Welcome ${e.target.username.value}!`);
   }
   return (
     <Container>
@@ -41,7 +41,7 @@ export default function SignUp() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Create An Account</Modal.Title>
+          <Modal.Title>Forgot Password</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -50,7 +50,7 @@ export default function SignUp() {
             }}
             onSubmit={(e) => {
               e.preventDefault();
-              signUpHandler(e);
+              resetLoginHandler(e);
             }}
           >
             <Form.Group className="mb-3">
@@ -66,7 +66,7 @@ export default function SignUp() {
               <Form.Control type="password" name="confirmPassword" />
             </Form.Group>
             <p>
-              Already have an account!{" "}
+              Remember password and username?{" "}
               <a
                 href="#"
                 onClick={(e) => {
@@ -77,9 +77,21 @@ export default function SignUp() {
                 Sign In!
               </a>
             </p>
+            <p>
+              Create a new account? {" "}
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/sign-up");
+                }}
+              >
+                Sign Up!
+              </a>
+            </p>
             {error ? <div className="text-red-600">{error}</div> : ""}
             <Button type="submit" variant="primary" className="mt-2">
-              Sign Up!
+              Reset Login
             </Button>
           </Form>
         </Modal.Body>

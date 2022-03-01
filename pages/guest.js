@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import { Context } from "../context";
 import Form from "react-bootstrap/Form";
 import SignInForm from "../components/SignInForm";
-export default function GuestModule() {
+export default function Guest() {
   const router = useRouter();
   const { runningTotal } = useContext(Context);
   const [showForm, setShowForm] = useState(null);

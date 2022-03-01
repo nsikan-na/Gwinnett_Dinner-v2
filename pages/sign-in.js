@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import { Context } from "../context";
 import SignInForm from "../components/SignInForm";
 
-export default function SignInModule() {
+export default function SignIn() {
   const router = useRouter();
   const {} = useContext(Context);
   const [show, setShow] = useState(false);

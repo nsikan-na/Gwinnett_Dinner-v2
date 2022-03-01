@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
 
-export default function ReviewModule() {
+export default function ReviewOrder() {
   const router = useRouter();
   const {
     setCart,

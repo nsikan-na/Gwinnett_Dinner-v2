@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { Context } from "../context";
 import Link from "next/link";
 
-export default function SignInForm({ from, data }) {
+export default function SignInForm({ from }) {
   const router = useRouter();
   const { setAlertText, setUsername } = useContext(Context);
   const [error, setError] = useState("");
@@ -24,8 +24,11 @@ export default function SignInForm({ from, data }) {
     });
     const data = await response.json();
     if (!data.success) {
-      setFailedLogin(true);
-      return setError(data.message);
+      setError(data.message);
+      if (data.message == "Please enter valid password and username!") {
+        setFailedLogin(true);
+      }
+      return;
     }
     setUsername(e.target.username.value);
     if (from === "GuestModule") {
@@ -74,19 +77,26 @@ export default function SignInForm({ from, data }) {
       ) : (
         ""
       )}
-      <div className={`${error ? "block" : "hidden"} text-red-600`}>
-        {error}
-      </div>
-      {failedLogin ? (
+      {failedLogin && from !== "GuestModule" ? (
         <>
-          <Link href="#" className="">
-            Reset Password
-          </Link>
+          <a
+            href="#"
+            className=""
+            onClick={() => {
+              router.push("/forgot-password");
+            }}
+          >
+            Forgot Password
+          </a>
           <br />
         </>
       ) : (
         ""
       )}
+      <div className={`${error ? "block" : "hidden"} text-red-600`}>
+        {error}
+      </div>
+
       <Button type="submit" variant="primary" className="mt-2">
         Sign in!
       </Button>
