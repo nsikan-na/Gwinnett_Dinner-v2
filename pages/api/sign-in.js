@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       const query = await db.execute(
         `SELECT * FROM user_data WHERE username = "${username}"`
       );
-      console.log(JSON.parse(query));
+      console.log(JSON.parse(JSON.stringify(query)));
       const queryUserData = query[0];
       const validateUser = queryUserData.some((user) => {
         return password == user.password;
