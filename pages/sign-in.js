@@ -6,6 +6,9 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { Context } from "../context";
 import SignInForm from "../components/SignInForm";
+import LandingPage from "../components/LandingPage";
+
+
 
 export default function SignIn() {
   const router = useRouter();
@@ -33,6 +36,8 @@ export default function SignIn() {
           <SignInForm from="LandingPage" />
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </Container>
   );
 }

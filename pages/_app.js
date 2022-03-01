@@ -1,12 +1,12 @@
 import "../styles/globals.css";
 import React, { useState, useEffect } from "react";
-import LandingPage from "../components/LandingPage";
 import { Context } from "../context";
 import { useRouter } from "next/router";
+
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [location, setLocation] = useState("");
-  // const [location, setLocation] = useState("Lawrenceville");
   const [cart, setCart] = useState([]);
   const [runningTotal, setRunningTotal] = useState(0);
   const [payment, setPayment] = useState([]);
@@ -15,12 +15,7 @@ function MyApp({ Component, pageProps }) {
   const [signUpModule, setSignUpModule] = useState(false);
   const [alertText, setAlertText] = useState("");
   const [alertLink, setAlertLink] = useState(false);
-
-  useEffect(() => {
-    if (!location) {
-      router.push("/location");
-    }
-  }, [location,router]);
+ 
 
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);
@@ -62,7 +57,6 @@ function MyApp({ Component, pageProps }) {
       }}
     >
       <Component {...pageProps} />
-      <LandingPage />
     </Context.Provider>
   );
 }

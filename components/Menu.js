@@ -37,11 +37,11 @@ export default function Menu() {
   return (
     <Container >
       <h1 className="text-center my-3">Menu</h1>
-      <h2 className="text-center pt-16" >Combos</h2>
+      <h2 className="text-center pt-16"id="combo" >Combos</h2>
       <Row>{loadMenu(location, "combo")}</Row>
-      <h2 className="text-center pt-16" >Sides</h2>
+      <h2 className="text-center pt-16"id="side" >Sides</h2>
       <Row>{loadMenu(location, "side")}</Row>
-      <h2 className="text-center pt-16" >Desserts</h2>
+      <h2 className="text-center pt-16"id="dessert" >Desserts</h2>
       <Row>{loadMenu(location, "dessert")}</Row>
     </Container>
   );

@@ -7,6 +7,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
+import LandingPage from "../components/LandingPage";
+
 
 export default function ReviewOrder() {
   const router = useRouter();
@@ -105,6 +107,8 @@ export default function ReviewOrder() {
           </Container>
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </>
   );
 }

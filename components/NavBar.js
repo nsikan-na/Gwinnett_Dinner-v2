@@ -34,7 +34,7 @@ export default function NavBar() {
                 <Nav.Link
                   href="#"
                   onClick={() => {
-                    setLocation("");
+                    router.push('/location')
                     setCart([]);
                   }}
                 >

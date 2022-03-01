@@ -6,6 +6,8 @@ import Container from "react-bootstrap/Container";
 import { Context } from "../context";
 import Form from "react-bootstrap/Form";
 import SignInForm from "../components/SignInForm";
+import LandingPage from "../components/LandingPage";
+
 export default function Guest() {
   const router = useRouter();
   const { runningTotal } = useContext(Context);
@@ -79,6 +81,8 @@ export default function Guest() {
           )}
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </Container>
   );
 }

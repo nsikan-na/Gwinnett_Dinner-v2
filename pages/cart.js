@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import LandingPage from "../components/LandingPage";
 
 export default function Cart() {
   const router = useRouter();
@@ -198,6 +199,8 @@ export default function Cart() {
           )}
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </Container>
   );
 }

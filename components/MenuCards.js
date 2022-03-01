@@ -47,7 +47,7 @@ export default function MenuCards({
             type="submit"
             variant="primary"
             onClick={() => {
-              router.push(`/menu/${title}`);
+              router.push(`/menu/${title}#${type}`);
             }}
           >
             Add To Cart

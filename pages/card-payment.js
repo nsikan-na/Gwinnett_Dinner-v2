@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Context } from "../context";
 import Form from "react-bootstrap/Form";
+import LandingPage from "../components/LandingPage";
+
 export default function CardPayment() {
   const router = useRouter();
   const { runningTotal } = useContext(Context);
@@ -69,6 +71,8 @@ export default function CardPayment() {
           </Form>
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </>
   );
 }

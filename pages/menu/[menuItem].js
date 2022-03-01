@@ -9,6 +9,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import Form from "react-bootstrap/Form";
 import { menuItems } from "../api/data";
 import { Context } from "../../context";
+import LandingPage from "../../components/LandingPage";
+
 export default function MenuItems({ menuItems }) {
   const { cart, setCart, setAlertText, setAlertLink } = useContext(Context);
   const router = useRouter();
@@ -27,7 +29,8 @@ export default function MenuItems({ menuItems }) {
     <Container>
       <Modal
         onExit={() => {
-          router.push(`/`);
+          router.push(`/#${type}`);
+
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -200,7 +203,8 @@ export default function MenuItems({ menuItems }) {
                       }
                     }
                   }
-                  router.push("/");
+                  router.push(`/#${type}`);
+
 
                   setAlertText(
                     `${variant ? variant : ""} ${
@@ -332,7 +336,8 @@ export default function MenuItems({ menuItems }) {
                         quantity,
                       },
                     ]);
-                    router.push("/");
+                    router.push(`/#${type}`);
+
                   }
                   if (cart.length != 0) {
                     if (
@@ -360,7 +365,8 @@ export default function MenuItems({ menuItems }) {
                       ]);
                     }
                   }
-                  router.push("/");
+                  router.push(`/#${type}`);
+
                   setAlertText(`${title} Added to Cart!`);
                   setAlertLink(true);
                 }}
@@ -413,7 +419,7 @@ export default function MenuItems({ menuItems }) {
                     ]);
                   }
                 }
-                router.push("/");
+                router.push(`/#${type}`);
                 setAlertText(`${title} Added to Cart!`);
                 setAlertLink(true);
               }}
@@ -423,6 +429,8 @@ export default function MenuItems({ menuItems }) {
           )}
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </Container>
   );
 }

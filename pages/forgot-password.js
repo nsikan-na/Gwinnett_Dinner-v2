@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { Context } from "../context";
+import LandingPage from "../components/LandingPage";
 
 export default function ForgotPassword() {
   const router = useRouter();
@@ -96,6 +97,8 @@ export default function ForgotPassword() {
           </Form>
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </Container>
   );
 }

@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
+import LandingPage from "../components/LandingPage";
 
 export default function Location() {
   const { setLocation } = useContext(Context);
@@ -65,6 +66,7 @@ export default function Location() {
             </Form>
           </Modal.Body>
         </Modal>
+        <LandingPage />
       </Container>
     </>
   );

@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { locationData } from "./api/data";
+import LandingPage from "../components/LandingPage";
 
 export default function Delivery() {
   const router = useRouter();
@@ -246,6 +247,8 @@ export default function Delivery() {
           </Form>
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </Container>
   );
 }
