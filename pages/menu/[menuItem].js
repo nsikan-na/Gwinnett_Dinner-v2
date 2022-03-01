@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 import { menuItems } from "../api/data";
 import { Context } from "../../context";
 export default function MenuItems({ menuItems }) {
-  const { cart, setCart,setAlertText,setAlertLink } = useContext(Context);
+  const { cart, setCart, setAlertText, setAlertLink } = useContext(Context);
   const router = useRouter();
   const index = menuItems.findIndex((item) => {
     return item.title == router.query.menuItem;

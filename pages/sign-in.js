@@ -30,7 +30,7 @@ export default function SignIn() {
           <Modal.Title>Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SignInForm from="LandingPage"/>
+          <SignInForm from="LandingPage" />
         </Modal.Body>
       </Modal>
     </Container>

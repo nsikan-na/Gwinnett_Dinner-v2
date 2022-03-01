@@ -19,8 +19,7 @@ export default function CardPayment() {
         backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         onHide={() => {
-
-          router.push('/')
+          router.push("/");
         }}
       >
         <Modal.Header closeButton>
@@ -30,7 +29,7 @@ export default function CardPayment() {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
-              router.push('/')
+              router.push("/");
             }}
           >
             <Form.Group className="mb-3">
@@ -62,8 +61,7 @@ export default function CardPayment() {
             <Button
               className="mt-3"
               onClick={() => {
- 
-                router.push('/review-order')
+                router.push("/review-order");
               }}
             >
               Pay ${runningTotal}

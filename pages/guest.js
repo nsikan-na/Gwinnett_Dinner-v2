@@ -17,7 +17,6 @@ export default function Guest() {
       <Modal
         onExit={() => {
           router.push("/");
-
         }}
         show={show}
         backdrop="static"
@@ -63,13 +62,12 @@ export default function Guest() {
               />
             </span>
           </Form>
-          {showForm ? <SignInForm from="GuestModule"/> : ""}
+          {showForm ? <SignInForm from="GuestModule" /> : ""}
           {!showForm && showForm != null ? (
             <Container className="flex justify-center pt-3">
               <Button
                 variant="primary"
                 onClick={() => {
-
                   router.push("/delivery");
                 }}
               >

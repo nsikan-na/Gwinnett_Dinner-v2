@@ -34,7 +34,6 @@ export default function ReviewOrder() {
         backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         onExit={() => {
-    
           router.push("/");
         }}
         size="lg"
@@ -65,7 +64,7 @@ export default function ReviewOrder() {
                 >
                   <Col className="md:flex justify-center">
                     <Image
-                        alt={item.title}
+                      alt={item.title}
                       src={`/images/${item.img}`}
                       width="100%"
                       height="100%"

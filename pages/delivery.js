@@ -47,7 +47,7 @@ export default function Delivery() {
     } else {
       setValidPostal(true);
     }
-  }, [postalCode, formSubmit,location]);
+  }, [postalCode, formSubmit, location]);
 
   useEffect(() => {
     if (showForm == null) return;

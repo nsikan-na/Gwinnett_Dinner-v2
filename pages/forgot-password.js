@@ -78,7 +78,7 @@ export default function ForgotPassword() {
               </a>
             </p>
             <p>
-              Create a new account? {" "}
+              Create a new account?{" "}
               <a
                 href="#"
                 onClick={(e) => {
