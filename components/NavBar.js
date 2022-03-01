@@ -34,7 +34,7 @@ export default function NavBar() {
                 <Nav.Link
                   href="#"
                   onClick={() => {
-                    router.push('/location')
+                    router.push("/location");
                     setCart([]);
                   }}
                 >
@@ -49,7 +49,7 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                     router.push('/sign-up')
+                      router.push("/sign-up");
                     }}
                   >
                     Sign Up
@@ -59,7 +59,7 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                   router.push('/sign-in')
+                      router.push("/sign-in");
                     }}
                   >
                     Sign In
@@ -68,7 +68,6 @@ export default function NavBar() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      // setCartModule(true);
                       router.push("/cart");
                     }}
                   >
@@ -94,7 +93,7 @@ export default function NavBar() {
                     onClick={(e) => {
                       e.preventDefault();
                       setUsername("");
-                      setAlertText(`You are now Signed Out!`);
+                      setAlertText(`You have signed out!`);
                     }}
                   >
                     Sign Out
