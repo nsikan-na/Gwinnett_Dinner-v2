@@ -4,14 +4,15 @@ export default async function handler(req, res) {
     try {
       const { username, password } = req.body;
       if (!username || !password) {
-        return res.status(201).json({
+        return res.json({
           success: false,
-          message: "Please complete all fields!"
+          message: "Please complete all fields!",
         });
       }
       const query = await db.execute(
-        `SELECT * FROM user_data WHERE username = '${username}'`
+        `SELECT * FROM user_data WHERE username = "${username}"`
       );
+      console.log(JSON.parse(query));
       const queryUserData = query[0];
       const validateUser = queryUserData.some((user) => {
         return password == user.password;
@@ -22,7 +23,7 @@ export default async function handler(req, res) {
           message: "Please enter valid password and username!",
         });
       }
-      res.json({ success: true, message: "" });
+      return res.json({ success: true });
     } catch (err) {
       console.log(err.message);
     }
