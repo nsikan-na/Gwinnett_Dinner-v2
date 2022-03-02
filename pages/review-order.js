@@ -1,15 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
+import LandingPage from "../components/LandingPage";
 
-export default function ReviewModule() {
+
+export default function ReviewOrder() {
+  const router = useRouter();
   const {
-    setReviewModule,
     setCart,
     cart,
     setRunningTotal,
@@ -17,9 +20,8 @@ export default function ReviewModule() {
     payment,
     setPayment,
     location,
-    setDeliveryModule,
     setAlertText,
-    setShowAlert
+    username,
   } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -34,15 +36,22 @@ export default function ReviewModule() {
         backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         onExit={() => {
-          setReviewModule(false);
+          router.push("/");
         }}
         size="lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Review Order-${runningTotal}</Modal.Title>
+          <Modal.Title>
+            Review Order-${runningTotal}{" "}
+            {username ? (
+              <span className="text-lg">(3% discount applied!)</span>
+            ) : (
+              ""
+            )}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h5>Estimated Wait Time: 15 minutes</h5>
+          <h5>Estimated Wait Time: 7 minutes</h5>
           <h5>{location}</h5>
           <h5 className="inline">{payment.method} </h5>
           <h5 className="inline">{`${
@@ -57,9 +66,10 @@ export default function ReviewModule() {
                 >
                   <Col className="md:flex justify-center">
                     <Image
+                      alt={item.title}
                       src={`/images/${item.img}`}
-                      width="200%"
-                      height="130%"
+                      width="100%"
+                      height="100%"
                     />
                   </Col>
                   <Col>
@@ -85,13 +95,11 @@ export default function ReviewModule() {
               href=""
               onClick={(e) => {
                 e.preventDefault();
+                router.push("/");
                 setCart([]);
                 setPayment({});
                 setRunningTotal(0);
-                setReviewModule(false);
-                setDeliveryModule(false);
-                setAlertText(`Thank You For Your Order! It'll be ready in 15 minutes`)
-                setShowAlert(true)
+                setAlertText(`Thank You For Your Order! (7 minute wait time)`);
               }}
             >
               Submit Order
@@ -99,6 +107,8 @@ export default function ReviewModule() {
           </Container>
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </>
   );
 }

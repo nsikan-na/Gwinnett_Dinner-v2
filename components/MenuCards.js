@@ -1,19 +1,10 @@
 import React, { useContext, useState } from "react";
+import { useRouter } from "next/router";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Context } from "../context";
-
-export default function MenuCards({
-  title,
-  price,
-  desc,
-  img,
-  type,
-  location,
-  sides,
-  variants,
-}) {
-  const { setActiveItem, setComboModule, setSideModule } = useContext(Context);
+import Image from "next/image";
+export default function MenuCards({ title, price, desc, img, type, local }) {
+  const router = useRouter();
   const [viewDesc, setViewDesc] = useState(false);
   return (
     <Card className="w-72 my-2">
@@ -29,7 +20,7 @@ export default function MenuCards({
         }}
       >
         {viewDesc ? (
-          <div className="hidden lg:flex pl-5 items-center absolute bg-gray-50 bg-opacity-50  h-full text-xl ">
+          <div className="hidden lg:flex pl-8 items-center absolute bg-gray-100 bg-opacity-50 w-full h-full text-xl ">
             {desc}
           </div>
         ) : (
@@ -42,44 +33,32 @@ export default function MenuCards({
         />
       </div>
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <div className="flex justify-between">
+          <Card.Title>{title}</Card.Title>
+          {local != "all" ? (
+            <Image
+              alt={`unique to ${local}`}
+              src="/images/star.png"
+              width="30%"
+              height="30%"
+              className=""
+            />
+          ) : (
+            ""
+          )}
+        </div>
         <Card.Text>${price}</Card.Text>
         <p className="lg:hidden">{desc}</p>
-        <form
-          method="Post"
-          action="#"
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (e.target.type.value === "combo") {
-              setComboModule(true);
-            } else {
-              setSideModule(true);
-            }
-            setActiveItem({
-              title: e.target.title.value,
-              price: e.target.price.value,
-              desc: e.target.desc.value,
-              img: e.target.img.value,
-              location: e.target.location.value,
-              type: e.target.type.value,
-              sides: e.target.sides.value,
-              variants: e.target.variants.value,
-            });
+
+        <Button
+          type="submit"
+          variant="primary"
+          onClick={() => {
+            router.push(`/menu/${title}#${type}`);
           }}
         >
-          <input hidden value={title} name="title" readOnly />
-          <input hidden value={price} name="price" readOnly />
-          <input hidden value={desc} name="desc" readOnly />
-          <input hidden value={img} name="img" readOnly />
-          <input hidden value={location} name="location" readOnly />
-          <input hidden value={type} name="type" readOnly />
-          <input hidden value={sides} name="sides" readOnly />
-          <input hidden value={variants} name="variants" readOnly />
-
-          <Button type="submit" variant="primary">
-            Add To Cart
-          </Button>
-        </form>
+          Add To Cart
+        </Button>
       </Card.Body>
     </Card>
   );

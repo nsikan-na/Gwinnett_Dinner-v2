@@ -4,15 +4,12 @@ import Menu from "./Menu";
 import Footer from "./Footer";
 import Container from "react-bootstrap/Container";
 
-
-export default function LandingPage() {
+export default function Home() {
+  
   return (
     <Container>
       <NavBar />
-      
-      <Container className="">
         <Menu />
-      </Container>
       <Footer />
     </Container>
   );

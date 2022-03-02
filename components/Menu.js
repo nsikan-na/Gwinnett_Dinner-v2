@@ -4,9 +4,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Context } from "../context";
-import { menuItems } from "../data/menuItems";
+import { menuItems } from "../pages/api/data";
+import Image from "next/image";
 
 const menuCards = (filteredItems) => {
+  
   return filteredItems.map((item) => (
     <Col key={item.title} className="flex justify-center items-center ">
       <MenuCards
@@ -15,7 +17,7 @@ const menuCards = (filteredItems) => {
         price={item.price}
         desc={item.desc}
         img={item.img}
-        location={item.location}
+        local={item.location}
         type={item.type}
         sides={item.sides}
       />
@@ -34,14 +36,36 @@ const loadMenu = (location, type) => {
 
 export default function Menu() {
   const { location } = useContext(Context);
+
   return (
-    <Container id="menu">
+    <Container>
       <h1 className="text-center my-3">Menu</h1>
-      <h2 className="text-center pt-16" id='combos'>Combos</h2>
+      {location ? (
+        <h5 className="text-center pb-1">
+          (
+          <Image
+            src="/images/star.png"
+            alt={`unique to ${location}`}
+            width="25%"
+            height="25%"
+            className="inline translate-y-1 "
+          />
+          <div className="inline">=unique to {location} location)</div>
+        </h5>
+      ) : (
+        ""
+      )}
+      <h2 className="text-center pt-16" id="combo">
+        Combos
+      </h2>
       <Row>{loadMenu(location, "combo")}</Row>
-      <h2 className="text-center pt-16" id='sides'>Sides</h2>
+      <h2 className="text-center pt-16" id="side">
+        Sides
+      </h2>
       <Row>{loadMenu(location, "side")}</Row>
-      <h2 className="text-center pt-16" id='desserts'>Desserts</h2>
+      <h2 className="text-center pt-16" id="dessert">
+        Desserts
+      </h2>
       <Row>{loadMenu(location, "dessert")}</Row>
     </Container>
   );

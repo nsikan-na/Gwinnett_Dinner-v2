@@ -1,26 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Alert from "react-bootstrap/Alert";
 import { Context } from "../context";
 
 export default function AlertSuccess() {
-  const {
-    showAlert,
-    setShowAlert,
-    alertText,
-    alertLink,
-    setAlertLink,
-    setCartModule,
-  } = useContext(Context);
+  const router = useRouter();
+  const { alertText, alertLink, setAlertLink,setAlertText, setCartModule } =
+    useContext(Context);
   useEffect(() => {
-    if (!showAlert) return;
+    if (!alertText) return;
     setTimeout(() => {
-      setShowAlert(false);
+      setAlertText("");
       setAlertLink(false);
     }, 4500);
-  }, [showAlert]);
+  }, [alertText,setAlertLink,setAlertText]);
   return (
     <Alert
-      className=" w-max mx-auto text-white"
+      className=" w-11/12 md:w-max mx-auto text-white text-center"
       style={{ backgroundColor: "green", border: "0px" }}
     >
       {`${alertText} `}
@@ -29,10 +25,10 @@ export default function AlertSuccess() {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setCartModule(true);
+            router.push("/cart");
           }}
           className="alertLink"
-          style={{  }}
+          style={{}}
         >
           View Cart
         </a>
