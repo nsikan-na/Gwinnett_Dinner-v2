@@ -1,11 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Form from "react-bootstrap/Form";
-export default function StripeModule() {
-  const { stripeModule, setStripeModule, setReviewModule, runningTotal } =
-    useContext(Context);
+import LandingPage from "../components/LandingPage";
+
+export default function CardPayment() {
+  const router = useRouter();
+  const { runningTotal } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
     setShow(true);
@@ -18,7 +21,7 @@ export default function StripeModule() {
         backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         onHide={() => {
-          setStripeModule(false);
+          router.push("/");
         }}
       >
         <Modal.Header closeButton>
@@ -28,10 +31,9 @@ export default function StripeModule() {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
-              setStripeModule(false);
+              router.push("/");
             }}
           >
-
             <Form.Group className="mb-3">
               <Form.Label>Card Information</Form.Label>
               <Form.Control
@@ -61,8 +63,7 @@ export default function StripeModule() {
             <Button
               className="mt-3"
               onClick={() => {
-                setReviewModule(true);
-                setStripeModule(false);
+                router.push("/review-order");
               }}
             >
               Pay ${runningTotal}
@@ -70,6 +71,8 @@ export default function StripeModule() {
           </Form>
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </>
   );
 }

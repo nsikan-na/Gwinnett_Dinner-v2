@@ -1,20 +1,40 @@
 import React, { useState, useContext } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import { Context } from "../../context";
+import { Context } from "../context";
+import LandingPage from "../components/LandingPage";
 
-export default function SignUpModule() {
-  const { setSignInModule, setSignUpModule,setShowAlert,setAlertText } = useContext(Context);
+export default function SignUp() {
+  const router = useRouter();
+  const { setAlertText, setUsername } = useContext(Context);
   const [show, setShow] = useState(true);
-
+  const [error, setError] = useState("");
+  async function signUpHandler(e) {
+    const response = await fetch(`/api/sign-up`, {
+      method: "POST",
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.target.password.value,
+        confirmPassword: e.target.confirmPassword.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    if (!data.success) return setError(data.message);
+    setUsername(e.target.username.value);
+    router.push("/");
+    setAlertText(`Account Created! Welcome ${e.target.username.value}!`);
+  }
   return (
     <Container>
       <Modal
         onExit={() => {
-          setSignInModule(false);
-          setSignUpModule(false);
+          router.push("/");
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -26,11 +46,12 @@ export default function SignUpModule() {
         </Modal.Header>
         <Modal.Body>
           <Form
+            onChange={() => {
+              setError("");
+            }}
             onSubmit={(e) => {
               e.preventDefault();
-              setSignUpModule(false);
-              setShowAlert(true)
-              setAlertText(`Account Created!`) 
+              signUpHandler(e);
             }}
           >
             <Form.Group className="mb-3">
@@ -51,19 +72,20 @@ export default function SignUpModule() {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  setSignInModule(true);
-                  setSignUpModule(false);
+                  router.push("/sign-in");
                 }}
               >
                 Sign In!
               </a>
             </p>
+            {error ? <div className="text-red-600">{error}</div> : ""}
             <Button type="submit" variant="primary" className="mt-2">
               Sign Up!
             </Button>
           </Form>
         </Modal.Body>
       </Modal>
+      <LandingPage />
     </Container>
   );
 }

@@ -1,22 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { locationData } from "../../data/locationData";
+import { locationData } from "./api/data";
+import LandingPage from "../components/LandingPage";
 
-export default function SignInModule() {
-  const {
-    setDeliveryModule,
-    setStripeModule,
-    setReviewModule,
-    setPayment,
-    runningTotal,
-    location,
-  } = useContext(Context);
+export default function Delivery() {
+  const router = useRouter();
+  const { setPayment, runningTotal, location } = useContext(Context);
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
@@ -36,7 +32,6 @@ export default function SignInModule() {
     if (!postalCode) {
       return setValidPostal(false);
     }
-    setFormSubmit(false);
     setValidPostal(false);
     if (postalCode.length < 5) {
       return setValidPostal(false);
@@ -53,7 +48,7 @@ export default function SignInModule() {
     } else {
       setValidPostal(true);
     }
-  }, [postalCode]);
+  }, [postalCode, formSubmit, location]);
 
   useEffect(() => {
     if (showForm == null) return;
@@ -70,7 +65,7 @@ export default function SignInModule() {
     <Container>
       <Modal
         onExit={() => {
-          setDeliveryModule(false);
+          router.push("/");
         }}
         show={show}
         backdrop="static"
@@ -79,9 +74,11 @@ export default function SignInModule() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Delivery Method-${runningTotal}</Modal.Title>
+          <Modal.Title>Method Options-${runningTotal}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h5 className="text-center">Delivery Method</h5>
+
           <p
             className={`text-center ${
               location != "Mountain Park" ? "block" : "hidden"
@@ -89,6 +86,7 @@ export default function SignInModule() {
           >
             ($6 delivery fee)
           </p>
+
           <p
             className={`text-center text-red-600  ${
               location == "Mountain Park" ? "block" : "hidden"
@@ -136,13 +134,15 @@ export default function SignInModule() {
           </Form>
           <Form
             className={`${showForm ? "block" : "hidden"}`}
+            onChange={() => {
+              setFormSubmit(false);
+            }}
             onSubmit={(e) => {
               e.preventDefault();
               setFormSubmit(true);
               if (validPostal) return;
               if (!postalCode || postalCode.length != 5) return;
-              setStripeModule(true);
-              setDeliveryModule(false);
+              router.push("/card-payment");
             }}
           >
             <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -189,9 +189,10 @@ export default function SignInModule() {
             >
               Please enter valid zip code!
             </p>
-              <Button variant="primary" type="submit">
-                Continue to Payment
-              </Button>
+
+            <Button variant="primary" type="submit">
+              Continue to Payment
+            </Button>
           </Form>
           <Form
             className={`${
@@ -205,54 +206,43 @@ export default function SignInModule() {
             onSubmit={(e) => {
               e.preventDefault();
               if (!paymentForm) {
-                setDeliveryModule(false);
-                setReviewModule(true);
+                router.push("/review-order");
               } else {
-                setStripeModule(true);
-                setDeliveryModule(false);
+                router.push("/card-payment");
               }
             }}
           >
             <h5>Payment Method</h5>
             <Container className="flex justify-evenly">
-              <span>
-                <Form.Label htmlFor="Cash">Cash</Form.Label>
-                <Form.Check
-                  inline
-                  name="paymentMethod"
-                  type="radio"
-                  id="Cash"
-                  value="Cash"
-                  className="mx-2"
-                />
-              </span>
-              <span>
-                <Form.Label htmlFor="Card">Card</Form.Label>
-                <Form.Check
-                  inline
-                  name="paymentMethod"
-                  type="radio"
-                  id="Card"
-                  value="Card"
-                  className="mx-2"
-                />
-              </span>
+              {["Cash", "Card"].map((type) => (
+                <span key={type}>
+                  <Form.Label htmlFor={type}>{type}</Form.Label>
+                  <Form.Check
+                    inline
+                    name="paymentMethod"
+                    type="radio"
+                    id={type}
+                    value={type}
+                    className="mx-2"
+                  />
+                </span>
+              ))}
             </Container>
             <div className={`${paymentForm == null ? "hidden" : "block"}`}>
               {!paymentForm ? (
-                  <Button variant="primary" type="submit">
-                    Submit Order
-                  </Button>
+                <Button variant="primary" type="submit">
+                  Submit Order
+                </Button>
               ) : (
-                  <Button variant="primary" type="submit">
-                    Continue to Payment
-                  </Button>
-
+                <Button variant="primary" type="submit">
+                  Continue to Payment
+                </Button>
               )}
             </div>
           </Form>
         </Modal.Body>
       </Modal>
+      <LandingPage />
     </Container>
   );
 }

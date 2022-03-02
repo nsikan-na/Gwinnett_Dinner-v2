@@ -1,24 +1,26 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Image from "next/image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import LandingPage from "../components/LandingPage";
 
-export default function CartModule() {
-  const { cart, runningTotal, setCartModule, setCart, setGuestModule } =
-    useContext(Context);
+export default function Cart() {
+  const router = useRouter();
+  const { cart, runningTotal, setCart, username } = useContext(Context);
   const [show, setShow] = useState(true);
   return (
     <Container>
       <Modal
         onExit={() => {
-          setCartModule(false);
+          router.push("/");
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -28,18 +30,16 @@ export default function CartModule() {
       >
         <Modal.Header className="" closeButton>
           <Modal.Title className="">
-            <h1>
-              Shopping Cart-${runningTotal}{" "}
-              {cart.length !== 0 ? (
-                <h5>
-                  {cart.length > 1
-                    ? `${cart.length} items`
-                    : `${cart.length} item`}
-                </h5>
-              ) : (
-                ``
-              )}
-            </h1>
+            <h1>Shopping Cart-${runningTotal} </h1>
+            {cart.length !== 0 ? (
+              <h5>
+                {cart.length > 1
+                  ? `${cart.length} items`
+                  : `${cart.length} item`}
+              </h5>
+            ) : (
+              ``
+            )}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -56,6 +56,7 @@ export default function CartModule() {
                     >
                       <Col className="hidden md:flex justify-center">
                         <Image
+                          alt={item.title}
                           src={`/images/${item.img}`}
                           width="100%"
                           height="100%"
@@ -184,8 +185,12 @@ export default function CartModule() {
                 className="mt-3"
                 variant="primary"
                 onClick={() => {
-                  setCartModule(false);
-                  setGuestModule(true);
+                  if (!username) {
+                    router.push("/guest");
+                  }
+                  if (username) {
+                    router.push("/delivery");
+                  }
                 }}
               >
                 Proceed to Checkout
@@ -194,6 +199,8 @@ export default function CartModule() {
           )}
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </Container>
   );
 }

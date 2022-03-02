@@ -1,14 +1,16 @@
 import React, { useState, useContext } from "react";
+import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
-import { Context } from "../../context";
+import { Context } from "../context";
 import Form from "react-bootstrap/Form";
-import SignInForm from "../Forms/SignInForm";
+import SignInForm from "../components/SignInForm";
+import LandingPage from "../components/LandingPage";
 
-export default function SignInModule() {
-  const { setGuestModule,runningTotal, setDeliveryModule } =
-    useContext(Context);
+export default function Guest() {
+  const router = useRouter();
+  const { runningTotal } = useContext(Context);
   const [showForm, setShowForm] = useState(null);
   const [show, setShow] = useState(true);
 
@@ -16,7 +18,7 @@ export default function SignInModule() {
     <Container>
       <Modal
         onExit={() => {
-          setGuestModule(false);
+          router.push("/");
         }}
         show={show}
         backdrop="static"
@@ -28,11 +30,7 @@ export default function SignInModule() {
           <Modal.Title>Sign In for Discounts-${runningTotal}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="">
-        <p
-            className='text-center'
-          >
-            (3% discount if you Sign In!)
-          </p>
+          <p className="text-center">(3% discount if you Sign In!)</p>
           <Form
             className="justify-evenly flex"
             onChange={(e) => {
@@ -72,8 +70,7 @@ export default function SignInModule() {
               <Button
                 variant="primary"
                 onClick={() => {
-                  setGuestModule(false);
-                  setDeliveryModule(true);
+                  router.push("/delivery");
                 }}
               >
                 Proceed To CheckOut
@@ -84,6 +81,8 @@ export default function SignInModule() {
           )}
         </Modal.Body>
       </Modal>
+      <LandingPage />
+
     </Container>
   );
 }
