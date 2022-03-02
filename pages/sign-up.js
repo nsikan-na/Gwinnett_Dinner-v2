@@ -103,5 +103,5 @@ export async function getStaticProps() {
   });
   console.log(result);
   client.close();
-  return { props: {} };
+  return { props: {}, revalidate: 1 };
 }
