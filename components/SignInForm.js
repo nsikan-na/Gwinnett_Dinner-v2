@@ -12,12 +12,14 @@ export default function SignInForm({ from }) {
   const [failedLogin, setFailedLogin] = useState(false);
 
   async function getUserData(e) {
-    const response = await fetch(`/api/sign-in`, {
+    const response = await fetch("api/sign-in", {
       method: "POST",
-      body: JSON.stringify({
-        username: e.target.username.value,
-        password: e.target.password.value,
-      }),
+      body: JSON.stringify(
+        JSON.stringify({
+          username: e.target.username.value,
+          password: e.target.password.value,
+        })
+      ),
       headers: {
         "Content-Type": "application/json",
       },

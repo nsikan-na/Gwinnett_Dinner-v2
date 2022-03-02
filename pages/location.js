@@ -16,6 +16,20 @@ export default function Location() {
   useEffect(() => {
     setShow(true);
   }, []);
+  async function locationFormHandler(e) {
+    const response = await fetch("api/location", {
+      method: "POST",
+      body: JSON.stringify({ location: e.target.location.value }),
+      header: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    console.log(data);
+    if (!data.success) {
+      return setError(data.message);
+    }
+    setLocation(e.target.location.value);
+    router.push("/");
+  }
   return (
     <>
       <Container>
@@ -31,12 +45,12 @@ export default function Location() {
           </Modal.Header>
           <Modal.Body>
             <Form
+              onChange={() => {
+                setError("");
+              }}
               onSubmit={(e) => {
                 e.preventDefault();
-                if (!e.target.location.value)
-                  return setError("Please select a location");
-                setLocation(e.target.location.value);
-                router.push("/");
+                locationFormHandler(e);
               }}
             >
               {locationData.map((location) => {
@@ -55,11 +69,7 @@ export default function Location() {
                   </Container>
                 );
               })}
-              {error ? (
-                <div className="text-red-600">Please select a location.</div>
-              ) : (
-                ""
-              )}
+              {error ? <div className="text-red-600">{error}</div> : ""}
               <Button type="submit" variant="primary" className="mt-2">
                 I live here
               </Button>

@@ -2,7 +2,8 @@ import { MongoClient } from "mongodb";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { username, password } = req.body;
+      const data = req.body;
+      const { username, password } = JSON.parse(data);
       if (!username || !password) {
         return res.json({
           success: false,
