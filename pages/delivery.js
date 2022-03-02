@@ -181,7 +181,14 @@ export default function Delivery() {
             </p>
             <p
               className={`text-red-600 ${
-                !validPostal && formSubmit && validPostal ? "block" : "hidden"
+                !validPostal && formSubmit&&!postalCode ? "block" : "hidden"
+              }`}
+            >
+              Please enter valid zip code!
+            </p>
+            <p
+              className={`text-red-600 ${
+                postalCode ? "block" : "hidden"
               }`}
             >
               Please enter valid zip code!

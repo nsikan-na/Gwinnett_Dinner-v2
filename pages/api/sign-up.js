@@ -5,13 +5,13 @@ export default async function handler(req, res) {
       const data = req.body;
       const { username, password, confirmPassword } = data;
       if (!username || !password) {
-        return res.json({
+        return res.send({
           success: false,
           message: "Please complete all fields!",
         });
       }
       if (password != confirmPassword) {
-        return res.json({
+        return res.send({
           success: false,
           message: "Passwords do not match!",
         });
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       await db.execute(
         `INSERT INTO user_data (username,password) VALUES("${username}","${password}")`
       );
-      return res.json({ success: true });
+      return res.send({ success: true });
     } catch (err) {
       console.log(error.message);
     }

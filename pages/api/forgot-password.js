@@ -5,13 +5,13 @@ export default async function handler(req, res) {
     const data = req.body;
     const { username, password, confirmPassword } = data;
     if (!username || !password) {
-      return res.json({
+      return res.send({
         success: false,
         message: "Please complete all fields!",
       });
     }
     if (password != confirmPassword)
-      return res.json({
+      return res.send({
         success: false,
         message: "Passwords do not match!",
       });
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       `SELECT username FROM user_data WHERE username = '${username}'`
     );
     if (getAllUserNames[0].length == 0) {
-      return res.json({
+      return res.send({
         success: false,
         message: `No account has "${username}" as username!`,
       });
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         `Update user_data SET password='${password}' WHERE username ='${username}'`
       );
     }
-    res.json({ success: true });
+    res.send({ success: true });
   }
   catch (err) {
     console.log(error.message);
