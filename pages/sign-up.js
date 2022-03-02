@@ -91,7 +91,7 @@ export default function SignUp() {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const client = await MongoClient.connect(
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ewgfl.mongodb.net/${process.env.DB_DATABASE}?retryWrites=true&w=majority`
   );
@@ -103,5 +103,5 @@ export async function getStaticProps() {
   });
   console.log(result);
   client.close();
-  return { props: {}, revalidate: 1 };
+  return { props: {} };
 }
