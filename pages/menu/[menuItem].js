@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
+import Image from "next/image";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Form from "react-bootstrap/Form";
@@ -42,6 +42,8 @@ export default function MenuItems({ menuItem }) {
           <Image
             src={`/images/${img}`}
             className="mx-auto w-8/12"
+            width='300%'
+            height='300%'
             alt={`${title} image`}
           />
           <br />
