@@ -74,9 +74,11 @@ export default function Delivery() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Delivery Method-${runningTotal}</Modal.Title>
+          <Modal.Title>Method Options-${runningTotal}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h5 className="text-center">Delivery Method</h5>
+
           <p
             className={`text-center ${
               location != "Mountain Park" ? "block" : "hidden"
@@ -84,6 +86,7 @@ export default function Delivery() {
           >
             ($6 delivery fee)
           </p>
+
           <p
             className={`text-center text-red-600  ${
               location == "Mountain Park" ? "block" : "hidden"
@@ -181,18 +184,12 @@ export default function Delivery() {
             </p>
             <p
               className={`text-red-600 ${
-                !validPostal && formSubmit&&!postalCode ? "block" : "hidden"
+                !validPostal && formSubmit ? "block" : "hidden"
               }`}
             >
               Please enter valid zip code!
             </p>
-            <p
-              className={`text-red-600 ${
-                postalCode ? "block" : "hidden"
-              }`}
-            >
-              Please enter valid zip code!
-            </p>
+
             <Button variant="primary" type="submit">
               Continue to Payment
             </Button>
@@ -217,28 +214,19 @@ export default function Delivery() {
           >
             <h5>Payment Method</h5>
             <Container className="flex justify-evenly">
-              <span>
-                <Form.Label htmlFor="Cash">Cash</Form.Label>
-                <Form.Check
-                  inline
-                  name="paymentMethod"
-                  type="radio"
-                  id="Cash"
-                  value="Cash"
-                  className="mx-2"
-                />
-              </span>
-              <span>
-                <Form.Label htmlFor="Card">Card</Form.Label>
-                <Form.Check
-                  inline
-                  name="paymentMethod"
-                  type="radio"
-                  id="Card"
-                  value="Card"
-                  className="mx-2"
-                />
-              </span>
+              {["Cash", "Card"].map((type) => (
+                <span key={type}>
+                  <Form.Label htmlFor={type}>{type}</Form.Label>
+                  <Form.Check
+                    inline
+                    name="paymentMethod"
+                    type="radio"
+                    id={type}
+                    value={type}
+                    className="mx-2"
+                  />
+                </span>
+              ))}
             </Container>
             <div className={`${paymentForm == null ? "hidden" : "block"}`}>
               {!paymentForm ? (
@@ -255,7 +243,6 @@ export default function Delivery() {
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </Container>
   );
 }
