@@ -40,7 +40,7 @@ export default function Menu() {
   return (
     <Container>
       <h1 className="text-center my-3">Menu</h1>
-      {location ? (
+      {location && location !='Mountain Park' ? (
         <h5 className="text-center pb-1">
           (
           <Image
