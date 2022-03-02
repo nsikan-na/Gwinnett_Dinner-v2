@@ -22,6 +22,7 @@ export default async function handler(req, res) {
       const db = client.db();
       const userDataCollection = db.collection(`${process.env.DB_COLLECTION}`);
       const result = await userDataCollection.insertOne({ username, password });
+      console.log(result);
       if (result.acknowledged) return res.json({ success: true });
       client.close();
     } catch (err) {
