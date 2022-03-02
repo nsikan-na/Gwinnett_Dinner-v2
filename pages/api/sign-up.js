@@ -1,4 +1,6 @@
 import { MongoClient } from "mongodb";
+const bcrypt = require("bcrypt");
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
@@ -21,7 +23,18 @@ export default async function handler(req, res) {
       );
       const db = client.db();
       const userDataCollection = db.collection(`${process.env.DB_COLLECTION}`);
-      await userDataCollection.insertOne({ username, password });
+      const result = await userDataCollection.find({ username }).toArray();
+      if (result.length > 0) {
+        return res.json({
+          success: false,
+          message: "Username is already in use!",
+        });
+      }
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await userDataCollection.insertOne({
+        username,
+        password: hashedPassword,
+      });
       client.close();
       return res.json({ success: true });
     } catch (error) {

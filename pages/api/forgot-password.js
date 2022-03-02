@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import bcrypt from "bcrypt";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
@@ -21,7 +22,7 @@ export default async function handler(req, res) {
       const db = client.db();
       const userDataCollection = db.collection(`${process.env.DB_COLLECTION}`);
       const result = await userDataCollection
-        .find({ username: username })
+        .find({ username })
         .toArray();
       if (result.length == 0) {
         return res.send({
@@ -30,7 +31,11 @@ export default async function handler(req, res) {
         });
       }
       if (result.length != 0) {
-        userDataCollection.updateOne({ username }, { $set: { password } });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        userDataCollection.updateOne(
+          { username },
+          { $set: { password:hashedPassword } }
+        );
         return res.json({ success: true });
       }
       client.close();

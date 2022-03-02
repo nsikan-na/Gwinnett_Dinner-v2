@@ -433,7 +433,6 @@ export async function getStaticPaths() {
       menuItem: item.title.toString(),
     },
   }));
-  console.log(paths);
   return { paths, fallback: false };
 }
 
@@ -443,6 +442,5 @@ export async function getStaticProps(context) {
     return item.title == title;
   });
   const menuItem = menuItems[index];
-  console.log(menuItem);
   return { props: { menuItem } };
 }

@@ -14,12 +14,10 @@ export default function SignInForm({ from }) {
   async function getUserData(e) {
     const response = await fetch("api/sign-in", {
       method: "POST",
-      body: 
-        JSON.stringify({
-          username: e.target.username.value,
-          password: e.target.password.value,
-        }
-      ),
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.target.password.value,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -27,7 +25,7 @@ export default function SignInForm({ from }) {
     const data = await response.json();
     if (!data.success) {
       setError(data.message);
-      if (data.message == "Please enter valid password and username!") {
+      if (data.showForget) {
         setFailedLogin(true);
       }
       return;
