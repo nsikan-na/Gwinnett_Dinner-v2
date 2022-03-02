@@ -7,7 +7,7 @@ import Image from "react-bootstrap/Image";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Form from "react-bootstrap/Form";
-import { menuItems } from "../api/data";
+import { menuItems } from "../../data";
 import { Context } from "../../context";
 import LandingPage from "../../components/LandingPage";
 

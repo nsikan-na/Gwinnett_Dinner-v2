@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Context } from "../context";
-import { locationData } from "./api/data";
+import { locationData } from "../data";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";

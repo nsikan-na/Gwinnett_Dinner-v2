@@ -7,7 +7,8 @@ import { Context } from "../context";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { locationData } from "./api/data";
+import { locationData } from "../data";
+
 import LandingPage from "../components/LandingPage";
 import Spinner from "react-bootstrap/Spinner";
 
@@ -156,9 +157,7 @@ export default function Delivery() {
                 <Form.Control />
               </Form.Group>
 
-              <Form.Group
-                as={Col}
-              >
+              <Form.Group as={Col}>
                 <Form.Label>Zip</Form.Label>
 
                 <Form.Control name="zipCode" />

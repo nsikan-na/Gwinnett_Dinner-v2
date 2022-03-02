@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Context } from "../context";
-import { menuItems } from "../pages/api/data";
+import { menuItems } from "../data";
 import Image from "next/image";
 
 const menuCards = (filteredItems) => {
