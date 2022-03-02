@@ -11,14 +11,11 @@ import { menuItems } from "../api/data";
 import { Context } from "../../context";
 import LandingPage from "../../components/LandingPage";
 
-export default function MenuItems({ menuItems }) {
+export default function MenuItems({ menuItem }) {
   const { cart, setCart, setAlertText, setAlertLink } = useContext(Context);
   const router = useRouter();
-  const index = menuItems.findIndex((item) => {
-    return item.title == router.query.menuItem;
-  });
-  const { title, price, desc, type, img, location, sides, variants } =
-    menuItems[index];
+
+  const { title, price, desc, type, img, location, sides, variants } = menuItem;
   const [show, setShow] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [doneError, setDoneError] = useState(false);
@@ -30,7 +27,6 @@ export default function MenuItems({ menuItems }) {
       <Modal
         onExit={() => {
           router.push(`/#${type}`);
-
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -205,7 +201,6 @@ export default function MenuItems({ menuItems }) {
                   }
                   router.push(`/#${type}`);
 
-
                   setAlertText(
                     `${variant ? variant : ""} ${
                       title.split("&")[0]
@@ -337,7 +332,6 @@ export default function MenuItems({ menuItems }) {
                       },
                     ]);
                     router.push(`/#${type}`);
-
                   }
                   if (cart.length != 0) {
                     if (
@@ -430,10 +424,25 @@ export default function MenuItems({ menuItems }) {
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </Container>
   );
 }
-export async function getServerSideProps() {
-  return { props: { menuItems } };
+export async function getStaticPaths() {
+  const paths = menuItems.map((item) => ({
+    params: {
+      menuItem: item.title.toString(),
+    },
+  }));
+  console.log(paths);
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps(context) {
+  const title = context.params.menuItem;
+  const index = menuItems.findIndex((item) => {
+    return item.title == title;
+  });
+  const menuItem = menuItems[index];
+  console.log(menuItem);
+  return { props: { menuItem } };
 }
