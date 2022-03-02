@@ -26,10 +26,12 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
         ) : (
           ""
         )}
-        <Card.Img
+        <Image
+          alt={title}
+          width="300%"
+          height="300%"
           variant="top"
           src={`/images/${img}`}
-          style={{ maxHeight: "300%" }}
         />
       </div>
       <Card.Body>
