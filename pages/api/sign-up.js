@@ -3,7 +3,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const data = req.body;
-      const { username, password, confirmPassword } = data;
+      const { username, password, confirmPassword } = JSON.parse(data);
       if (!username || !password || !confirmPassword) {
         return res.json({
           success: false,

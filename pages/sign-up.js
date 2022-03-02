@@ -15,11 +15,11 @@ export default function SignUp() {
   async function signUpHandler(e) {
     const response = await fetch(`/api/sign-up`, {
       method: "POST",
-      body: JSON.stringify({
+      body: JSON.stringify(JSON.stringify({
         username: e.target.username.value,
         password: e.target.password.value,
         confirmPassword: e.target.confirmPassword.value,
-      }),
+      })),
       headers: {
         "Content-Type": "application/json",
       },

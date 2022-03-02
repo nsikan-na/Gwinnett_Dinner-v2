@@ -4,6 +4,7 @@ export default async function handler(req, res) {
     try {
       const data = req.body;
       const { username, password } = JSON.parse(data);
+      console.log(username,password);
       if (!username || !password) {
         return res.json({
           success: false,
@@ -15,9 +16,11 @@ export default async function handler(req, res) {
       );
       const db = client.db();
       const userDataCollection = db.collection(`${process.env.DB_COLLECTION}`);
+      console.log(userDataCollection);
       const result = await userDataCollection
-        .find({ username: username })
+        .find({ username})
         .toArray();
+        console.log(result);
       client.close();
       const validateUser = result.some((user) => {
         return password == user.password;
