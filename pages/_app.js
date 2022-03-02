@@ -15,7 +15,9 @@ function MyApp({ Component, pageProps }) {
   const [signUpModule, setSignUpModule] = useState(false);
   const [alertText, setAlertText] = useState("");
   const [alertLink, setAlertLink] = useState(false);
-
+  useEffect(() => {
+    if (!location) return router.push("/location");
+  }, [location]);
 
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);
