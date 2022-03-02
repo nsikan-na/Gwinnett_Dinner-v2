@@ -23,7 +23,6 @@ export default function Location() {
       header: { "Content-Type": "application/json" },
     });
     const data = await response.json();
-    console.log(data);
     if (!data.success) {
       return setError(data.message);
     }

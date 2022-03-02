@@ -14,11 +14,11 @@ export default function SignInForm({ from }) {
   async function getUserData(e) {
     const response = await fetch("api/sign-in", {
       method: "POST",
-      body: JSON.stringify(
+      body: 
         JSON.stringify({
           username: e.target.username.value,
           password: e.target.password.value,
-        })
+        }
       ),
       headers: {
         "Content-Type": "application/json",
