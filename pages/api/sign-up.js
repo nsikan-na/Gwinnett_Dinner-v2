@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     try {
       const data = req.body;
       const { username, password, confirmPassword } = data;
-      if (!username || !password) {
+      if (!username || !password || !confirmPassword) {
         return res.json({
           success: false,
           message: "Please complete all fields!",
