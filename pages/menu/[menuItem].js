@@ -442,5 +442,5 @@ export async function getStaticProps(context) {
     return item.title == title;
   });
   const menuItem = menuItems[index];
-  return { props: { menuItem }, revalidate: 5 };
+  return { props: { menuItem } };
 }
