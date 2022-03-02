@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { MongoClient } from "mongodb";
 import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -89,19 +88,4 @@ export default function SignUp() {
       <LandingPage />
     </Container>
   );
-}
-
-export async function getServerSideProps() {
-  const client = await MongoClient.connect(
-    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ewgfl.mongodb.net/${process.env.DB_DATABASE}?retryWrites=true&w=majority`
-  );
-  const db = client.db();
-  const userDataCollection = db.collection(`${process.env.DB_COLLECTION}`);
-  const result = await userDataCollection.insertOne({
-    username: "test",
-    password: "testpass",
-  });
-  console.log(result);
-  client.close();
-  return { props: {} };
 }
