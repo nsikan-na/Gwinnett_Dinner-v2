@@ -144,7 +144,7 @@ const menuItems = [
   },
 ];
 
-export default function MenuItems() {
+export default function MenuItems({ menuItems }) {
   const { cart, setCart, setAlertText, setAlertLink } = useContext(Context);
   const router = useRouter();
   const index = menuItems.findIndex((item) => {
@@ -564,4 +564,11 @@ export default function MenuItems() {
       <LandingPage />
     </Container>
   );
+}
+export async function getServerSideProps() {
+  return {
+    props: {
+      menuItems,
+    },
+  };
 }
