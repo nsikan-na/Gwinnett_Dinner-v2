@@ -1,12 +1,20 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Context } from "../context";
-import { locationData } from "../data";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import LandingPage from "../components/LandingPage";
+const locationData = [
+  { title: "Snellville", postalCodes: [30017, 30039, 30078] },
+  {
+    title: "Peachtree Corners",
+    postalCodes: [30071, 30092, 30096, 30097, 30360],
+  },
+  { title: "Lawrenceville", postalCodes: [30043, 30046, 30049] },
+  { title: "Mountain Park", postalCodes: [30075] },
+];
 
 export default function Location() {
   const { setLocation } = useContext(Context);
