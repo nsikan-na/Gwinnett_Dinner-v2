@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { zipCode, locationZipCodes } = req.body;
+      const { zipCode, locationZipCodes, curLocation } = req.body;
       if (!zipCode) {
         return res.json({
           success: false,
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       ) {
         return res.json({
           success: false,
-          message: `Valid zip codes are ${locationZipCodes}!`,
+          message: `The ${curLocation} location only delivers to ${locationZipCodes}!`,
         });
       }
       return res.json({ success: true });

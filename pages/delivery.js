@@ -39,6 +39,7 @@ export default function Delivery() {
       body: JSON.stringify({
         zipCode: e.target.zipCode.value,
         locationZipCodes: locationZipCodes[0].postalCodes,
+        curLocation:location
       }),
       headers: {
         "Content-Type": "application/json",
