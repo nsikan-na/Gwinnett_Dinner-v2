@@ -171,7 +171,7 @@ export default function Menu() {
   return (
     <Container>
       <h1 className="text-center my-3">Menu</h1>
-      {location && location != "Mountain Park" ? (
+      {/* {location && location != "Mountain Park" ? (
         <h5 className="text-center pb-1">
           (
           <Image
@@ -181,12 +181,12 @@ export default function Menu() {
             height="25%"
             className="inline translate-y-1 "
           />
-          <div className="inline">=unique to {location} location)</div>
+          <div className="inline text-sm">=unique to {location} location)</div>
         </h5>
       ) : (
         ""
-      )}
-      <h2 className="text-center pt-16" id="combo">
+      )} */}
+      <h2 className="text-center " id="combo">
         Combos
       </h2>
       <Row>{loadMenu(location, "combo")}</Row>
