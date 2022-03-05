@@ -7,12 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Context } from "../context";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Image from 'next/image'
 import AlertSuccess from "./AlertSuccess";
 export default function NavBar() {
   const router = useRouter();
   const {
-    setSignInModule,
-    setSignUpModule,
     setCart,
     setLocation,
     username,
@@ -30,7 +29,7 @@ export default function NavBar() {
               <Nav className="">
                 <Nav.Link
                   href="#"
-                  onCLick={() => {
+                  onClick={(e) => {
                     e.preventDefault();
                     router.push("/");
                   }}

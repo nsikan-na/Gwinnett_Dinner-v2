@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Image from "next/image";
 export default function MenuCards({ title, price, desc, img, type, local }) {
   const router = useRouter();
+
   const [viewDesc, setViewDesc] = useState(false);
   return (
     <Card className="w-72 my-2">
       <div
-        className="relative flex "
+        className="relative flex"
         onMouseEnter={(e) => {
           e.preventDefault();
           setViewDesc(true);
@@ -26,7 +27,7 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
         ) : (
           ""
         )}
-        <Image
+        <Card.Img
           alt={title}
           width="300%"
           height="300%"

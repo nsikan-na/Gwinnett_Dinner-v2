@@ -169,8 +169,16 @@ export default function Menu() {
   const { location } = useContext(Context);
 
   return (
-    <Container>
+    <Container className="">
+      {/* <Image
+        src={`/images/logo.png`}
+        width="200%"
+        height="200%"
+        alt="logo"
+        className="inline"
+      /> */}
       <h1 className="text-center my-3">Menu</h1>
+
       {/* {location && location != "Mountain Park" ? (
         <h5 className="text-center pb-1">
           (
