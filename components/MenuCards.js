@@ -38,7 +38,7 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
       <Card.Body>
         <div className="flex justify-between">
           <Card.Title>{title}</Card.Title>
-          {local != "all" ? (
+          {/* {local != "all" ? (
             <Image
               alt={`unique to ${local}`}
               src="/images/star.png"
@@ -48,7 +48,7 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
             />
           ) : (
             ""
-          )}
+          )} */}
         </div>
         <Card.Text>${price}</Card.Text>
         <p className="lg:hidden">{desc}</p>
