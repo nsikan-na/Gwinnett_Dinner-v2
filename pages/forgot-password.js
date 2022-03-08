@@ -48,7 +48,7 @@ export default function ForgotPassword() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Forgot Password</Modal.Title>
+          <Modal.Title className="text-red-600">Forgot Password</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -76,6 +76,7 @@ export default function ForgotPassword() {
               Remember password and username?{" "}
               <a
                 href="#"
+                className="link text-red-600"
                 onClick={(e) => {
                   e.preventDefault();
                   router.push("/sign-in");
@@ -88,6 +89,7 @@ export default function ForgotPassword() {
               Create a new account?{" "}
               <a
                 href="#"
+                className="link text-red-600"
                 onClick={(e) => {
                   e.preventDefault();
                   router.push("/sign-up");
@@ -98,7 +100,11 @@ export default function ForgotPassword() {
             </p>
             {error ? <div className="text-red-600">{error}</div> : ""}
             {spinner ? (
-              <Button variant="primary" disabled>
+              <Button
+                variant="primary"
+                disabled
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
                 <Spinner
                   as="span"
                   animation="border"
@@ -109,7 +115,12 @@ export default function ForgotPassword() {
                 <span className="visually-hidden">Loading...</span>
               </Button>
             ) : (
-              <Button type="submit" variant="primary" className="mt-2">
+              <Button
+                type="submit"
+                variant="primary"
+                className="mt-2"
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
                 Reset Login
               </Button>
             )}

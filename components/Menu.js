@@ -17,7 +17,7 @@ const menuItems = [
   },
   {
     title: "Cheesecake",
-    price: "8.95",
+    price: "3.95",
     desc: `In house Assorted Cheesecake`,
     type: "dessert",
     img: "cheesecake.jpg",
@@ -26,7 +26,7 @@ const menuItems = [
 
   {
     title: "Fried Shrimp & Fries",
-    price: "9.99",
+    price: "7.99",
     desc: `Beer battered fried shrimp with seasoned fries`,
     type: "combo",
     img: "fried_shrimp_&_fries.jpg",
@@ -35,7 +35,7 @@ const menuItems = [
   },
   {
     title: "Grilled Shrimp & 2 Sides",
-    price: "9.99",
+    price: "7.99",
     desc: `Grilled Garlic Shrimp served with fresh parsley and olive oil`,
     type: "combo",
 
@@ -53,7 +53,7 @@ const menuItems = [
   },
   {
     title: "Steak & 2 Sides",
-    price: "12.99",
+    price: "9.99",
     desc: `New York Style Steak`,
     type: "combo",
 
@@ -80,7 +80,7 @@ const menuItems = [
   },
   {
     title: "Chicken & 2 Sides",
-    price: "12.99",
+    price: "9.99",
     desc: `Parmesan Breaded Chicken severed with greens and lemon on the side`,
     type: "combo",
     img: "chicken.jpg",
@@ -89,7 +89,7 @@ const menuItems = [
   },
   {
     title: "Fish & 2 Sides",
-    price: "14.99",
+    price: "8.99",
     desc: `Pan seared salmon severed with fresh greens and lightly sauted medley tomatoes`,
     type: "combo",
     img: "fish.jpg",
@@ -98,7 +98,7 @@ const menuItems = [
   },
   {
     title: "Burger & 1 Side",
-    price: "12.99",
+    price: "8.99",
     desc: `100% Beef Whiskey Burger`,
     type: "combo",
     img: "burger.jpg",
@@ -107,7 +107,7 @@ const menuItems = [
   },
   {
     title: "Ice Cream",
-    price: "2.99",
+    price: "2.50",
     desc: `Choose between chocolate chip, vanilla, butter pecan, strawberry, and cookies and cream`,
     type: "dessert",
     img: "ice_cream.jpg",
@@ -139,6 +139,7 @@ const menuItems = [
     location: "all",
   },
 ];
+
 const menuCards = (filteredItems) => {
   return filteredItems.map((item) => (
     <Col key={item.title} className="flex justify-center items-center ">
@@ -177,7 +178,7 @@ export default function Menu() {
         alt="logo"
         className="inline"
       /> */}
-      <h1 className="text-center my-3">Menu</h1>
+      <h1 className="text-center my-3 text-red-600">Menu</h1>
 
       {/* {location && location != "Mountain Park" ? (
         <h5 className="text-center pb-1">
@@ -194,18 +195,20 @@ export default function Menu() {
       ) : (
         ""
       )} */}
-      <h2 className="text-center " id="combo">
+      {/* <h2 className="text-center bg-red-600 text-white" id="combo">
         Combos
-      </h2>
-      <Row>{loadMenu(location, "combo")}</Row>
-      <h2 className="text-center pt-16" id="side">
+      </h2> */}
+      <Row>
+        {loadMenu(location, "combo")}
+        {/* <h2 className="text-center mt-16 bg-red-600 text-white" id="side">
         Sides
-      </h2>
-      <Row>{loadMenu(location, "side")}</Row>
-      <h2 className="text-center pt-16" id="dessert">
+      </h2> */}
+        {loadMenu(location, "side")}
+        {/* <h2 className="text-center mt-16 bg-red-600 text-white" id="dessert">
         Desserts
-      </h2>
-      <Row>{loadMenu(location, "dessert")}</Row>
+      </h2> */}
+        {loadMenu(location, "dessert")}
+      </Row>
     </Container>
   );
 }

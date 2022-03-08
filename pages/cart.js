@@ -29,10 +29,10 @@ export default function Cart() {
         size="xl"
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title className="">
-            <h1>Shopping Cart-${runningTotal} </h1>
+          <Modal.Title >
+            <h1 >Shopping Cart-${runningTotal} </h1>
             {cart.length !== 0 ? (
-              <h5>
+              <h5 className="text-red-600">
                 {cart.length > 1
                   ? `${cart.length} items`
                   : `${cart.length} item`}
@@ -182,6 +182,7 @@ export default function Cart() {
               </Container>
 
               <Button
+                style={{ backgroundColor: "red", border: "0px" }}
                 className="mt-3"
                 variant="primary"
                 onClick={() => {
@@ -200,7 +201,6 @@ export default function Cart() {
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </Container>
   );
 }

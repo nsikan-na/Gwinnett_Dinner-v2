@@ -39,7 +39,7 @@ export default function Delivery() {
       body: JSON.stringify({
         zipCode: e.target.zipCode.value,
         locationZipCodes: locationZipCodes[0].postalCodes,
-        curLocation:location
+        curLocation: location,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -110,7 +110,9 @@ export default function Delivery() {
             }}
           >
             <span>
-              <Form.Label htmlFor="pickup">Pick-Up</Form.Label>
+              <Form.Label htmlFor="pickup" className="cursor-pointer">
+                Pick-Up
+              </Form.Label>
               <Form.Check
                 inline
                 name="deliveryMethod"
@@ -122,7 +124,9 @@ export default function Delivery() {
             </span>
             {location !== "Mountain Park" ? (
               <span>
-                <Form.Label htmlFor="Delivery">Delivery</Form.Label>
+                <Form.Label htmlFor="Delivery" className="cursor-pointer">
+                  Delivery
+                </Form.Label>
                 <Form.Check
                   inline
                   name="deliveryMethod"
@@ -185,7 +189,11 @@ export default function Delivery() {
                 <span className="visually-hidden">Loading...</span>
               </Button>
             ) : (
-              <Button variant="primary" type="submit">
+              <Button
+                variant="primary"
+                type="submit"
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
                 Continue to Payment
               </Button>
             )}
@@ -212,7 +220,7 @@ export default function Delivery() {
             <Container className="flex justify-evenly">
               {["Cash", "Card"].map((type) => (
                 <span key={type}>
-                  <Form.Label htmlFor={type}>{type}</Form.Label>
+                  <Form.Label htmlFor={type} className='cursor-pointer'>{type}</Form.Label>
                   <Form.Check
                     inline
                     name="paymentMethod"
@@ -226,11 +234,19 @@ export default function Delivery() {
             </Container>
             <div className={`${paymentForm == null ? "hidden" : "block"}`}>
               {!paymentForm ? (
-                <Button variant="primary" type="submit">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
                   Submit Order
                 </Button>
               ) : (
-                <Button variant="primary" type="submit">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
                   Continue to Payment
                 </Button>
               )}

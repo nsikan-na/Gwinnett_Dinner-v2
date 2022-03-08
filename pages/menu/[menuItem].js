@@ -21,7 +21,7 @@ const menuItems = [
   },
   {
     title: "Cheesecake",
-    price: "8.95",
+    price: "3.95",
     desc: `In house Assorted Cheesecake`,
     type: "dessert",
     img: "cheesecake.jpg",
@@ -30,7 +30,7 @@ const menuItems = [
 
   {
     title: "Fried Shrimp & Fries",
-    price: "9.99",
+    price: "7.99",
     desc: `Beer battered fried shrimp with seasoned fries`,
     type: "combo",
     img: "fried_shrimp_&_fries.jpg",
@@ -39,7 +39,7 @@ const menuItems = [
   },
   {
     title: "Grilled Shrimp & 2 Sides",
-    price: "9.99",
+    price: "7.99",
     desc: `Grilled Garlic Shrimp served with fresh parsley and olive oil`,
     type: "combo",
 
@@ -57,7 +57,7 @@ const menuItems = [
   },
   {
     title: "Steak & 2 Sides",
-    price: "12.99",
+    price: "9.99",
     desc: `New York Style Steak`,
     type: "combo",
 
@@ -84,7 +84,7 @@ const menuItems = [
   },
   {
     title: "Chicken & 2 Sides",
-    price: "12.99",
+    price: "9.99",
     desc: `Parmesan Breaded Chicken severed with greens and lemon on the side`,
     type: "combo",
     img: "chicken.jpg",
@@ -93,7 +93,7 @@ const menuItems = [
   },
   {
     title: "Fish & 2 Sides",
-    price: "14.99",
+    price: "8.99",
     desc: `Pan seared salmon severed with fresh greens and lightly sauted medley tomatoes`,
     type: "combo",
     img: "fish.jpg",
@@ -102,7 +102,7 @@ const menuItems = [
   },
   {
     title: "Burger & 1 Side",
-    price: "12.99",
+    price: "8.99",
     desc: `100% Beef Whiskey Burger`,
     type: "combo",
     img: "burger.jpg",
@@ -111,7 +111,7 @@ const menuItems = [
   },
   {
     title: "Ice Cream",
-    price: "2.99",
+    price: "2.50",
     desc: `Choose between chocolate chip, vanilla, butter pecan, strawberry, and cookies and cream`,
     type: "dessert",
     img: "ice_cream.jpg",
@@ -162,7 +162,7 @@ export default function MenuItems({ menuItems }) {
     <Container>
       <Modal
         onExit={() => {
-          router.push(`/#${type}`);
+          router.push(`/#${title.replaceAll(" ", "%")}`);
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -171,7 +171,7 @@ export default function MenuItems({ menuItems }) {
       >
         <Modal.Header className="" closeButton>
           <Modal.Title>
-            <h3 className="">{title}</h3>
+            <h3 className="text-red-600">{title}</h3>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-center">
@@ -183,8 +183,8 @@ export default function MenuItems({ menuItems }) {
             alt={`${title} image`}
           />
           <br />
-          <h4>${price}</h4>
-          <h5>Select quantity</h5>
+          <h4 className="mt-2"> ${price}</h4>
+          <h5 className="">Select quantity</h5>
           <Container className="flex justify-center items-center space-x-5">
             <Button
               variant="primary"
@@ -337,7 +337,7 @@ export default function MenuItems({ menuItems }) {
                       }
                     }
                   }
-                  router.push(`/#${type}`);
+                  router.push(`/#${title.replaceAll(" ", "%")}`);
 
                   setAlertText(
                     `${variant ? variant : ""} ${
@@ -407,7 +407,13 @@ export default function MenuItems({ menuItems }) {
                         />
                       </td>
                       <td>
-                        <Form.Label htmlFor="Fries">Fries</Form.Label>
+                        <Form.Label
+                          htmlFor="Fries"
+                          className="cursor-pointer"
+                     
+                        >
+                          Fries
+                        </Form.Label>
                       </td>
                     </tr>
                     <tr>
@@ -420,7 +426,13 @@ export default function MenuItems({ menuItems }) {
                         />
                       </td>
                       <td>
-                        <Form.Label htmlFor="Broccoli">Broccoli</Form.Label>
+                        <Form.Label
+                          htmlFor="Broccoli"
+                          className="cursor-pointer"
+                       
+                        >
+                          Broccoli
+                        </Form.Label>
                       </td>
                     </tr>
                     <tr>
@@ -434,7 +446,11 @@ export default function MenuItems({ menuItems }) {
                         />
                       </td>
                       <td>
-                        <Form.Label htmlFor="Garlic Pasta & Bread">
+                        <Form.Label
+                          htmlFor="Garlic Pasta & Bread"
+                          className="cursor-pointer"
+
+                        >
                           Pasta & Bread
                         </Form.Label>
                       </td>
@@ -447,13 +463,19 @@ export default function MenuItems({ menuItems }) {
                 >
                   You must enter {sides} sides!
                 </h6>
-                <Button className="" type="submit">
+
+                <Button
+                  className=""
+                  type="submit"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
                   Add to Cart
                 </Button>
               </Form>
             ) : (
               <Button
-                className=" mt-4"
+                className=" mt-4 "
+                style={{ backgroundColor: "red", border: "0px" }}
                 type="submit"
                 onClick={() => {
                   if (cart.length === 0) {
@@ -469,7 +491,7 @@ export default function MenuItems({ menuItems }) {
                         quantity,
                       },
                     ]);
-                    router.push(`/#${type}`);
+                    router.push(`/#${title.replaceAll(" ", "%")}`);
                   }
                   if (cart.length != 0) {
                     if (
@@ -497,7 +519,7 @@ export default function MenuItems({ menuItems }) {
                       ]);
                     }
                   }
-                  router.push(`/#${type}`);
+                  router.push(`/#${title.replaceAll(" ", "%")}`);
 
                   setAlertText(`${title} Added to Cart!`);
                   setAlertLink(true);
@@ -510,6 +532,7 @@ export default function MenuItems({ menuItems }) {
             <Button
               className=" mt-4"
               type="submit"
+              style={{ backgroundColor: "red", border: "0px" }}
               onClick={() => {
                 if (cart.length === 0) {
                   setCart((prevCart) => [
@@ -551,7 +574,7 @@ export default function MenuItems({ menuItems }) {
                     ]);
                   }
                 }
-                router.push(`/#${type}`);
+                router.push(`/#${title.replaceAll(" ", "%")}`);
                 setAlertText(`${title} Added to Cart!`);
                 setAlertLink(true);
               }}

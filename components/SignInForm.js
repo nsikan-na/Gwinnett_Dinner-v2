@@ -57,7 +57,7 @@ export default function SignInForm({ from }) {
       }}
     >
       <Form.Group className="mb-3">
-        <Form.Label>Username</Form.Label>
+        <Form.Label >Username</Form.Label>
         <Form.Control type="text" name="username" />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -70,6 +70,7 @@ export default function SignInForm({ from }) {
           Don't have an account!{" "}
           <a
             href="#"
+            className="text-red-600 link"
             onClick={(e) => {
               e.preventDefault();
               router.push("/sign-up");
@@ -85,7 +86,7 @@ export default function SignInForm({ from }) {
         <>
           <a
             href="#"
-            className=""
+            className="text-red-600 link"
             onClick={() => {
               router.push("/forgot-password");
             }}
@@ -101,7 +102,11 @@ export default function SignInForm({ from }) {
         {error}
       </div>
       {spinner ? (
-        <Button variant="primary" disabled>
+        <Button
+          variant="primary"
+          disabled
+          style={{ backgroundColor: "red", border: "0px" }}
+        >
           <Spinner
             as="span"
             animation="border"
@@ -112,7 +117,12 @@ export default function SignInForm({ from }) {
           <span className="visually-hidden">Loading...</span>
         </Button>
       ) : (
-        <Button type="submit" variant="primary" className="mt-2">
+        <Button
+          type="submit"
+          variant="primary"
+          className="mt-2"
+          style={{ backgroundColor: "red", border: "0px" }}
+        >
           Sign in!
         </Button>
       )}

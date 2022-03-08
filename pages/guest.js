@@ -42,25 +42,25 @@ export default function Guest() {
             }}
           >
             <span>
-              <Form.Label htmlFor="Guest">Continue as Guest</Form.Label>
+              <Form.Label htmlFor="Guest"  className="cursor-pointer">Continue as Guest</Form.Label>
               <Form.Check
                 inline
                 name="loginStatus"
                 type="radio"
                 id="Guest"
                 value="Guest"
-                className="mx-2"
+                className="mx-2 cursor-pointer"
               />
             </span>
             <span>
-              <Form.Label htmlFor="Sign In">Sign In</Form.Label>
+              <Form.Label htmlFor="Sign In" className="cursor-pointer">Sign In</Form.Label>
               <Form.Check
                 inline
                 name="loginStatus"
                 type="radio"
                 id="Sign In"
                 value="Sign In"
-                className="mx-2"
+                className="mx-2 cursor-pointer"
               />
             </span>
           </Form>
@@ -68,6 +68,7 @@ export default function Guest() {
           {!showForm && showForm != null ? (
             <Container className="flex justify-center pt-3">
               <Button
+                    style={{ backgroundColor: "red", border: "0px" }}
                 variant="primary"
                 onClick={() => {
                   router.push("/delivery");

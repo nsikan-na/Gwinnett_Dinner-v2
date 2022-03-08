@@ -28,3 +28,13 @@ html {
 .alertLink:hover {
   color: lightgray;
 }
+.redButton {
+  background-color: red;
+  border: 0px;
+}
+.links{
+  color:red;
+}
+.link:hover {
+color:rgba(255, 0, 0, 0.616)
+}

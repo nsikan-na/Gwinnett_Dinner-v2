@@ -48,7 +48,7 @@ export default function SignUp() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Create An Account</Modal.Title>
+          <Modal.Title className="text-red-600">Create An Account</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -75,6 +75,7 @@ export default function SignUp() {
             <p>
               Already have an account!{" "}
               <a
+                className="link text-red-600"
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -86,7 +87,11 @@ export default function SignUp() {
             </p>
             {error ? <div className="text-red-600">{error}</div> : ""}
             {spinner ? (
-              <Button variant="primary" disabled>
+              <Button
+                variant="primary"
+                disabled
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
                 <Spinner
                   as="span"
                   animation="border"
@@ -97,7 +102,12 @@ export default function SignUp() {
                 <span className="visually-hidden">Loading...</span>
               </Button>
             ) : (
-              <Button type="submit" variant="primary" className="mt-2">
+              <Button
+                type="submit"
+                variant="primary"
+                className="mt-2 "
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
                 Sign Up!
               </Button>
             )}

@@ -48,7 +48,7 @@ export default function Location() {
           centered
         >
           <Modal.Header className="">
-            <Modal.Title>Choose A Location</Modal.Title>
+            <Modal.Title className='text-red-600'>Choose A Location</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form
@@ -77,7 +77,7 @@ export default function Location() {
                 );
               })}
               {error ? <div className="text-red-600">{error}</div> : ""}
-              <Button type="submit" variant="primary" className="mt-2">
+              <Button type="submit" variant="primary" className="mt-2"       style={{ backgroundColor: "red", border: "0px" }}>
                 I live here
               </Button>
             </Form>

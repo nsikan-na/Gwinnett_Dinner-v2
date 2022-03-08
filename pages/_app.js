@@ -13,12 +13,13 @@ function MyApp({ Component, pageProps }) {
   const [runningTotal, setRunningTotal] = useState(0);
   const [payment, setPayment] = useState([]);
   const [username, setUsername] = useState(false);
-  const [signInModule, setSignInModule] = useState(false);
-  const [signUpModule, setSignUpModule] = useState(false);
   const [alertText, setAlertText] = useState("");
   const [alertLink, setAlertLink] = useState(false);
   useEffect(() => {
-    if (!location) return router.push("/location");
+    if (location) return;
+    setTimeout(() => {
+      router.push("/location");
+    }, 750);
   }, [location]);
 
   useEffect(() => {

@@ -9,7 +9,6 @@ import Col from "react-bootstrap/Col";
 import Image from "next/image";
 import LandingPage from "../components/LandingPage";
 
-
 export default function ReviewOrder() {
   const router = useRouter();
   const {
@@ -41,7 +40,7 @@ export default function ReviewOrder() {
         size="lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title>
+          <Modal.Title >
             Review Order-${runningTotal}{" "}
             {username ? (
               <span className="text-lg">(3% discount applied!)</span>
@@ -90,6 +89,7 @@ export default function ReviewOrder() {
               );
             })}
             <Button
+              style={{ backgroundColor: "red", border: "0px" }}
               variant="primary"
               className="mt-3"
               href=""
@@ -108,7 +108,6 @@ export default function ReviewOrder() {
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </>
   );
 }
