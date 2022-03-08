@@ -13,24 +13,24 @@ export default function MobileNav() {
   return (
     <Container>
       <Modal show={true} fullscreen={true} onHide={() => router.push("/")}>
-        <Modal.Header className="pt-2 mb-1">
+        <Modal.Header className="pt-2 mb-1 ">
           <Modal.Title>
             <CloseIcon
               className="text-red-600 cursor-pointer link"
               onClick={() => router.push("/")}
             />
             <Nav className=" flex flex-col pt-4 space-y-14 pb-10">
-              <Link href="/">
+              <Link href="/" passHref>
                 <div className="text-red-600 text-2xl font-semibold cursor-pointer link">
                   Our Menu
                 </div>
               </Link>
-              <Link href="#">
+              <Link href="#" passHref>
                 <div className="text-red-600 text-2xl font-semibold cursor-pointer link">
                   About Us
                 </div>
               </Link>
-              <Link
+              <Link passHref
                 href="/location"
                 onClick={() => {
                   router.push("/location");
@@ -49,12 +49,12 @@ export default function MobileNav() {
           <Nav className={`${!username ? "flex space-x-14" : "flex flex-col space-y-4"}`}>
             {!username ? (
               <>
-                <Link href="/sign-up">
+                <Link href="/sign-up" passHref>
                   <div className="text-red-600 text-2xl font-semibold cursor-pointer link">
                     Sign Up
                   </div>
                 </Link>
-                <Link href="/sign-in">
+                <Link href="/sign-in" passHref>
                   <div className="text-red-600 text-2xl font-semibold cursor-pointer link">
                     Sign In
                   </div>

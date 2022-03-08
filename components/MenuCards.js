@@ -55,7 +55,7 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
           <Card.Text>${price}</Card.Text>
           <p className="lg:hidden">{desc}</p>
 
-          <Link type="submit" className="" href={`/menu/${title}`}>
+          <Link type="submit" className="" href={`/menu/${title}`} passHref>
             <Button style={{ backgroundColor: "red", border: "0" }}>
               Add To Cart
             </Button>
