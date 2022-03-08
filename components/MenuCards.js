@@ -10,7 +10,7 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
   const [viewDesc, setViewDesc] = useState(false);
   return (
     <>
-      <Card className="w-72 my-2" id={title.replaceAll(" ", "%")}>
+      <Card className="w-72 my-2" id={title}>
         <div
           className="relative flex"
           onMouseEnter={(e) => {

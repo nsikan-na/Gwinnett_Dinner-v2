@@ -162,7 +162,7 @@ export default function MenuItems({ menuItems }) {
     <Container>
       <Modal
         onExit={() => {
-          router.push(`/#${title.replaceAll(" ", "%")}`);
+          router.push(`/#${title}`);
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -337,7 +337,7 @@ export default function MenuItems({ menuItems }) {
                       }
                     }
                   }
-                  router.push(`/#${title.replaceAll(" ", "%")}`);
+                  router.push(`/#${title}`);
 
                   setAlertText(
                     `${variant ? variant : ""} ${
@@ -491,7 +491,7 @@ export default function MenuItems({ menuItems }) {
                         quantity,
                       },
                     ]);
-                    router.push(`/#${title.replaceAll(" ", "%")}`);
+                    router.push(`/#${title}`);
                   }
                   if (cart.length != 0) {
                     if (
@@ -519,7 +519,7 @@ export default function MenuItems({ menuItems }) {
                       ]);
                     }
                   }
-                  router.push(`/#${title.replaceAll(" ", "%")}`);
+                  router.push(`/#${title}`);
 
                   setAlertText(`${title} Added to Cart!`);
                   setAlertLink(true);
@@ -574,7 +574,7 @@ export default function MenuItems({ menuItems }) {
                     ]);
                   }
                 }
-                router.push(`/#${title.replaceAll(" ", "%")}`);
+                router.push(`/#${title}`);
                 setAlertText(`${title} Added to Cart!`);
                 setAlertLink(true);
               }}
