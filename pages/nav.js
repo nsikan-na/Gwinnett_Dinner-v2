@@ -16,10 +16,13 @@ export default function MobileNav() {
         <Modal.Header className="pt-2 mb-1 ">
           <Modal.Title>
             <CloseIcon
-              className="text-red-600 cursor-pointer link"
+              className="text-red-600 cursor-pointer link ml-4"
               onClick={() => router.push("/")}
             />
-            <Nav className=" flex flex-col pt-4 space-y-14 pb-10">
+           
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="pl-4"> <Nav className=" flex flex-col pt-4 space-y-14 pb-10">
               <Link href="/" passHref>
                 <div className="text-red-600 text-2xl font-semibold cursor-pointer link">
                   Our Menu
@@ -43,9 +46,7 @@ export default function MobileNav() {
                 </div>
               </Link>
             </Nav>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="pl-4">
+            <div className=' bg-gray-200 mb-4' style={{paddingTop:'1px'}}></div>
           <Nav className={`${!username ? "flex space-x-14" : "flex flex-col space-y-4"}`}>
             {!username ? (
               <>
@@ -68,6 +69,7 @@ export default function MobileNav() {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
+                    router.push('/')
                     setUsername("");
                     setAlertText(`You have signed out!`);
                   }}
