@@ -12,6 +12,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import LandingPage from "../components/LandingPage";
 import Link from "next/link";
+import DeleteIcon from "@mui/icons-material/Delete";
 export default function Cart() {
   const router = useRouter();
   const { cart, runningTotal, setCart, username } = useContext(Context);
@@ -30,8 +31,8 @@ export default function Cart() {
       >
         <Modal.Header className="" closeButton>
           <Modal.Title>
-            <h1>Shopping Cart-${runningTotal} </h1>
-            {cart.length !== 0 ? (
+            Shopping Cart
+            {/* {cart.length !== 0 ? (
               <h5 className="text-red-600">
                 {cart.length > 1
                   ? `${cart.length} items`
@@ -39,14 +40,15 @@ export default function Cart() {
               </h5>
             ) : (
               ``
-            )}
+            )} */}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {cart.length === 0 ? (
-            <h5>Cart is empty!</h5>
+            <h5>Your cart is empty!</h5>
           ) : (
             <Container>
+              <h4>Subtotal-${runningTotal}</h4>
               <Container className="cart">
                 {cart.map((item, index) => {
                   return (
@@ -108,11 +110,19 @@ export default function Cart() {
                             readOnly
                           />
                           <button>
-                            <RemoveIcon
-                              className="cursor-pointer"
-                              onClick={() => {}}
-                              type="submit"
-                            />
+                            {item.quantity == 1 ? (
+                              <DeleteIcon
+                                className="cursor-pointer"
+                                onClick={() => {}}
+                                type="submit"
+                              />
+                            ) : (
+                              <RemoveIcon
+                                className="cursor-pointer"
+                                onClick={() => {}}
+                                type="submit"
+                              />
+                            )}
                           </button>
                         </form>
 
@@ -180,33 +190,52 @@ export default function Cart() {
                   );
                 })}
               </Container>
-              <Container className="flex justify-between items-center">
+              <Container className="flex justify-around items-center ">
                 <a
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     router.push("/");
                   }}
-                  className="link text-red-600"
+                  className="link text-red-600  no-underline"
                   style={{ color: "red" }}
                 >
-                  Back
+                  Back to Menu
                 </a>
-                <Button
-                  style={{ backgroundColor: "red", border: "0px" }}
-                  className="mt-2"
-                  variant="primary"
-                  onClick={() => {
-                    if (!username) {
-                      router.push("/guest");
-                    }
-                    if (username) {
-                      router.push("/delivery");
-                    }
-                  }}
-                >
-                  Proceed to Checkout
-                </Button>
+                <div className="md:hidden">
+                  <Button
+                    style={{ backgroundColor: "red", border: "0px" }}
+                    className="mt-2 "
+                    variant="primary"
+                    onClick={() => {
+                      if (!username) {
+                        router.push("/guest");
+                      }
+                      if (username) {
+                        router.push("/delivery");
+                      }
+                    }}
+                  >
+                    Checkout
+                  </Button>
+                </div>
+                <div className="hidden md:block">
+                  <Button
+                    style={{ backgroundColor: "red", border: "0px" }}
+                    className="mt-2 "
+                    variant="primary"
+                    onClick={() => {
+                      if (!username) {
+                        router.push("/guest");
+                      }
+                      if (username) {
+                        router.push("/delivery");
+                      }
+                    }}
+                  >
+                    Proceed to Checkout
+                  </Button>
+                </div>
               </Container>
             </Container>
           )}

@@ -9,7 +9,9 @@ export default function Footer() {
   const { location, runningTotal, cart, setCartModule } = useContext(Context);
   const router = useRouter();
   return (
-    <Container className="text-center fixed bottom-0 bg-gray-50">
+    <Container
+      className="text-center fixed bottom-0 bg-gray-50 "
+    >
       <h6 className="">Gwinnett Dinner {location ? `@ ${location}` : ""}</h6>
     </Container>
   );

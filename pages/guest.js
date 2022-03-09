@@ -27,7 +27,7 @@ export default function Guest() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Sign In for Discounts-${runningTotal}</Modal.Title>
+          <Modal.Title>Sign In for Discount</Modal.Title>
         </Modal.Header>
         <Modal.Body className="">
           <p className="text-center">(3% discount if you Sign In!)</p>
@@ -42,7 +42,9 @@ export default function Guest() {
             }}
           >
             <span>
-              <Form.Label htmlFor="Guest"  className="cursor-pointer">Continue as Guest</Form.Label>
+              <Form.Label htmlFor="Guest" className="cursor-pointer">
+                Continue as Guest
+              </Form.Label>
               <Form.Check
                 inline
                 name="loginStatus"
@@ -53,7 +55,9 @@ export default function Guest() {
               />
             </span>
             <span>
-              <Form.Label htmlFor="Sign In" className="cursor-pointer">Sign In</Form.Label>
+              <Form.Label htmlFor="Sign In" className="cursor-pointer">
+                Sign In
+              </Form.Label>
               <Form.Check
                 inline
                 name="loginStatus"
@@ -64,11 +68,40 @@ export default function Guest() {
               />
             </span>
           </Form>
+          {showForm == null ? (
+            <div className="flex items-center justify-around">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/cart");
+                }}
+                className="link text-red-600 no-underline"
+                style={{ color: "red" }}
+              >
+                Back
+              </a>
+              <div></div>
+            </div>
+          ) : (
+            ""
+          )}
           {showForm ? <SignInForm from="GuestModule" /> : ""}
           {!showForm && showForm != null ? (
-            <Container className="flex justify-center pt-3">
+            <Container className=" pt-3 flex justify-around items-center ">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/cart");
+                }}
+                className="link text-red-600 no-underline"
+                style={{ color: "red" }}
+              >
+                Back
+              </a>
               <Button
-                    style={{ backgroundColor: "red", border: "0px" }}
+                style={{ backgroundColor: "red", border: "0px" }}
                 variant="primary"
                 onClick={() => {
                   router.push("/delivery");
@@ -83,7 +116,6 @@ export default function Guest() {
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </Container>
   );
 }

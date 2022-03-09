@@ -25,7 +25,7 @@ export default function CardPayment() {
         }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Card Payment-${runningTotal}</Modal.Title>
+          <Modal.Title>Card Payment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form

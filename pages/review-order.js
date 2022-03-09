@@ -40,14 +40,7 @@ export default function ReviewOrder() {
         size="lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title >
-            Review Order-${runningTotal}{" "}
-            {username ? (
-              <span className="text-lg">(3% discount applied!)</span>
-            ) : (
-              ""
-            )}
-          </Modal.Title>
+          <Modal.Title>Review Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h5>Estimated Wait Time: 7 minutes</h5>
@@ -56,6 +49,11 @@ export default function ReviewOrder() {
           <h5 className="inline">{`${
             payment.type === "Card" ? `(Card)` : "(Cash)"
           }`}</h5>
+          {username ? (
+            <h6 className="text-lg">3% discount applied for being signed in</h6>
+          ) : (
+            ""
+          )}
           <Container className="mt-3">
             {cart.map((item, index) => {
               return (

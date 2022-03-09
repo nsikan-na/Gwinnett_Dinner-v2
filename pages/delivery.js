@@ -78,7 +78,7 @@ export default function Delivery() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Method Options-${runningTotal}</Modal.Title>
+          <Modal.Title>Delivery/Payment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h5 className="text-center">Delivery Method</h5>

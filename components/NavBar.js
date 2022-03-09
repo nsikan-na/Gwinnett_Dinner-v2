@@ -21,7 +21,10 @@ export default function NavBar() {
   } = useContext(Context);
   return (
     <>
-      <Container className="sticky bg-gray-50 top-0 z-50 mx-auto lg:hidden flex justify-between ">
+      <Container
+        style={{ boxShadow: "0px 1px 0px 0px rgba(0, 0, 0, 0.1)" }}
+        className="sticky bg-gray-50 top-0 z-50 mx-auto lg:hidden flex justify-between "
+      >
         <MenuIcon
           className="scale-125  text-red-600 cursor-pointer link my-3"
           onClick={() => {
@@ -47,8 +50,12 @@ export default function NavBar() {
           />
         </div>
       </Container>
-      <Container className="sticky top-0 z-50 mx-auto  ">
-        <Container className="bg-gray-50 hidden lg:block py-2">
+
+      <Container
+        className="sticky top-0 z-50 mx-auto  "
+        style={{ boxShadow: "0px 1px 0px 0px rgba(0, 0, 0, 0.1)" }}
+      >
+        <Container className="bg-gray-50 hidden lg:block py-3">
           <Container className="flex items-center justify-between">
             <div className="space-x-5 z-20">
               <a
@@ -58,7 +65,7 @@ export default function NavBar() {
                   e.preventDefault();
                   router.push("/");
                 }}
-                className="cursor-pointer"
+                className="text-lg"
               >
                 Our Menu
               </a>
@@ -69,6 +76,7 @@ export default function NavBar() {
                   e.preventDefault();
                   // router.push("/about");
                 }}
+                className="text-lg"
               >
                 About Us
               </a>
@@ -79,6 +87,7 @@ export default function NavBar() {
                   router.push("/location");
                   setCart([]);
                 }}
+                className="text-lg"
               >
                 Change Location
               </a>
@@ -89,7 +98,7 @@ export default function NavBar() {
                 width="100%"
                 height="60%"
                 alt="logo"
-                className="scale-50 z-20 cursor-pointer"
+                className="scale-75 z-20 cursor-pointer"
                 onClick={() => {
                   router.push("/");
                 }}
@@ -105,6 +114,7 @@ export default function NavBar() {
                       e.preventDefault();
                       router.push("/sign-up");
                     }}
+                    className="text-lg"
                   >
                     Sign Up
                   </a>
@@ -115,6 +125,7 @@ export default function NavBar() {
                       e.preventDefault();
                       router.push("/sign-in");
                     }}
+                    className="text-lg"
                   >
                     Sign In
                   </a>
@@ -127,12 +138,11 @@ export default function NavBar() {
                     onClick={(e) => {
                       e.preventDefault();
                     }}
-                    className=""
+                    className="text-lg no-underline"
                   >
                     Welcome {username}!
                   </a>
                   <a
-                    className=""
                     style={{ color: "red" }}
                     href="#"
                     onClick={(e) => {
@@ -140,6 +150,7 @@ export default function NavBar() {
                       setUsername("");
                       setAlertText(`You have signed out!`);
                     }}
+                    className="text-lg"
                   >
                     Sign Out
                   </a>

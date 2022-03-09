@@ -57,7 +57,7 @@ export default function SignInForm({ from }) {
       }}
     >
       <Form.Group className="mb-3">
-        <Form.Label >Username</Form.Label>
+        <Form.Label>Username</Form.Label>
         <Form.Control type="text" name="username" />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -116,7 +116,7 @@ export default function SignInForm({ from }) {
           />
           <span className="visually-hidden">Loading...</span>
         </Button>
-      ) : (
+      ) : from !== "GuestModule" ? (
         <Button
           type="submit"
           variant="primary"
@@ -125,6 +125,28 @@ export default function SignInForm({ from }) {
         >
           Sign in!
         </Button>
+      ) : (
+        <div className="flex justify-around items-center">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/cart");
+            }}
+            className="link text-red-600 no-underline"
+            style={{ color: "red" }}
+          >
+            Back
+          </a>
+          <Button
+            type="submit"
+            variant="primary"
+            className="mt-2"
+            style={{ backgroundColor: "red", border: "0px" }}
+          >
+            Sign in!
+          </Button>
+        </div>
       )}
     </Form>
   );
