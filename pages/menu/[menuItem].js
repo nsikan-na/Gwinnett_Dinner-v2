@@ -11,18 +11,22 @@ import { Context } from "../../context";
 import LandingPage from "../../components/LandingPage";
 import { menuItems } from "../../data/menuItems";
 export default function MenuItems({ menuItems }) {
-  const { cart, setCart, setCardSpinner } = useContext(Context);
+  const { cart, setCart, setCardSpinner, location } = useContext(Context);
   const router = useRouter();
   const index = menuItems.findIndex((item) => {
     return item.title == router.query.menuItem;
   });
   const menuItem = menuItems[index];
-  const { title, price, desc, type, img, location, sides, variants } = menuItem;
+  const { title, price, desc, type, img, sides, variants } = menuItem;
   const [show, setShow] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [doneError, setDoneError] = useState(false);
   const form = useRef();
   const [error, setError] = useState(false);
+  const locationSideItems =
+    location == "Lawrenceville"
+      ? [" Fries", " Broccoli", " Pasta & Bread", " Mashed Potatoes"]
+      : [" Fries", " Broccoli", " Pasta & Bread"];
   useEffect(() => {
     setCardSpinner(false);
   }, []);
@@ -122,7 +126,6 @@ export default function MenuItems({ menuItems }) {
                         desc,
                         img,
                         price,
-                        location,
                         type,
                         sideItems,
                         quantity,
@@ -160,7 +163,6 @@ export default function MenuItems({ menuItems }) {
                               desc,
                               img,
                               price,
-                              location,
                               type,
                               sideItems,
                               quantity,
@@ -194,7 +196,6 @@ export default function MenuItems({ menuItems }) {
                               desc,
                               img,
                               price,
-                              location,
                               type,
                               sideItems,
                               quantity,
@@ -253,70 +254,27 @@ export default function MenuItems({ menuItems }) {
                 <h5>
                   Pick {`${sides} ${sides > 1 ? "side items" : "side item"}`}
                 </h5>
-                <table className="mx-auto ">
-                  <thead></thead>
-                  <tbody className="text-left">
-                    <tr>
-                      <td>
-                        <Form.Check
-                          inline
-                          name="side"
-                          type="checkbox"
-                          id="Fries"
-                        />
-                      </td>
-                      <td>
-                        <Form.Label htmlFor="Fries" className="cursor-pointer">
-                          Fries
-                        </Form.Label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Form.Check
-                          inline
-                          name="side"
-                          type="checkbox"
-                          id="Broccoli"
-                        />
-                      </td>
-                      <td>
-                        <Form.Label
-                          htmlFor="Broccoli"
-                          className="cursor-pointer"
-                        >
-                          Broccoli
-                        </Form.Label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Form.Check
-                          className=""
-                          inline
-                          name="side"
-                          type="checkbox"
-                          id="Garlic Pasta & Bread"
-                        />
-                      </td>
-                      <td>
-                        <Form.Label
-                          htmlFor="Garlic Pasta & Bread"
-                          className="cursor-pointer"
-                        >
-                          Pasta & Bread
-                        </Form.Label>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tfoot></tfoot>
-                </table>
+                {locationSideItems.map((item) => {
+                  return (
+                    <Form.Group className="mb-3" key={item}>
+                      <Form.Check
+                        inline
+                        name="side"
+                        type="checkbox"
+                        id={item}
+                      />
+                      <Form.Label htmlFor={item} className="cursor-pointer">
+                        {item}
+                      </Form.Label>
+                    </Form.Group>
+                  );
+                })}
+
                 <h6
                   className={`text-red-500 ${error ? "visible" : "invisible"}`}
                 >
                   You must enter {sides} sides!
                 </h6>
-
                 <Button
                   className="myButton"
                   type="submit"
@@ -339,7 +297,6 @@ export default function MenuItems({ menuItems }) {
                         desc,
                         img,
                         price,
-                        location,
                         type,
                         quantity,
                       },
@@ -365,7 +322,6 @@ export default function MenuItems({ menuItems }) {
                           desc,
                           img,
                           price,
-                          location,
                           type,
                           quantity,
                         },
@@ -392,7 +348,6 @@ export default function MenuItems({ menuItems }) {
                       desc,
                       img,
                       price,
-                      location,
                       type,
                       quantity,
                     },
@@ -417,7 +372,6 @@ export default function MenuItems({ menuItems }) {
                         desc,
                         img,
                         price,
-                        location,
                         type,
                         quantity,
                       },
