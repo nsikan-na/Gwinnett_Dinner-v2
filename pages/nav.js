@@ -12,8 +12,7 @@ export default function MobileNav() {
   return (
     <Container>
       <Modal
-        className=""
-        style={{ border: "0px solid white" }}
+        className="h-screen"
         show={true}
         fullscreen={true}
         onHide={() => router.push("/")}
