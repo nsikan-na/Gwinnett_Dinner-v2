@@ -11,7 +11,13 @@ export default function MobileNav() {
   const { username, setUsername, setAlertText } = useContext(Context);
   return (
     <Container>
-      <Modal show={true} fullscreen={true} onHide={() => router.push("/")}>
+      <Modal
+        className=""
+        style={{ border: "0px solid white" }}
+        show={true}
+        fullscreen={true}
+        onHide={() => router.push("/")}
+      >
         <Modal.Header className="pt-2 mb-1 ">
           <Modal.Title className="w-full">
             <div className="flex justify-between content-center ">
@@ -63,12 +69,7 @@ export default function MobileNav() {
             className=" bg-gray-200 mb-4"
             style={{ paddingTop: "1px" }}
           ></div>
-          <div
-            style={{ border: "0px" }}
-            className={`${
-              !username ? "flex space-x-14" : "flex flex-col space-y-4"
-            }`}
-          >
+          <div style={{ border: "0px" }} className={`${"flex space-x-14"}`}>
             {!username ? (
               <>
                 <Link href="/sign-up" passHref>
