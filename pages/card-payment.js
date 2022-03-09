@@ -5,14 +5,33 @@ import Modal from "react-bootstrap/Modal";
 import { Context } from "../context";
 import Form from "react-bootstrap/Form";
 import LandingPage from "../components/LandingPage";
-
+import Spinner from "react-bootstrap/Spinner";
 export default function CardPayment() {
   const router = useRouter();
   const { runningTotal } = useContext(Context);
   const [show, setShow] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+  const [error, setError] = useState(false);
   useEffect(() => {
     setShow(true);
   }, []);
+
+  async function cardPaymentHandler(e) {
+    setSpinner(true);
+    const response = await fetch(`/api/card-payment`, {
+      method: "POST",
+      body: JSON.stringify({
+        cardName: e.target.cardName.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    setSpinner(false);
+    if (!data.success) return setError(data.message);
+    router.push("/review-order");
+  }
   return (
     <>
       <Modal
@@ -31,57 +50,84 @@ export default function CardPayment() {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
-              router.push("/");
+              cardPaymentHandler(e);
+            }}
+            onChange={() => {
+              setError("");
             }}
           >
             <Form.Group className="mb-3">
               <Form.Label>Card Information</Form.Label>
               <Form.Control
+                className="bg-white"
                 type="text"
                 name="cardNum"
-                placeholder="1234 1234 1234 1234"
+                value="4242 4242 4242 4242"
+                readOnly
               />
               <div className="flex">
                 <Form.Control
+                  className="bg-white w-6/1"
                   type="text"
                   name="expireDate"
-                  placeholder="MM/YY"
-                  className="w-6/12"
+                  value="42/42"
+                  readOnly
                 />
                 <Form.Control
+                  className="bg-white w-6/12"
                   type="text"
                   name="cvc"
-                  placeholder="CVC"
-                  className="w-6/12"
+                  value="424"
+                  readOnly
                 />
               </div>
             </Form.Group>
             <Form.Group>
               <Form.Label>Name on card</Form.Label>
-              <Form.Control type="text" name="name" />
+              <Form.Control type="text" name="cardName" />
             </Form.Group>
-            <div className="flex justify-around items-center">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.back();
-                }}
-                className="link text-red-600 no-underline"
-                style={{ color: "red" }}
-              >
-                Back
-              </a>
+            {error ? (
+              <div className="text-red-600 text-center my-3">{error}</div>
+            ) : (
+              ""
+            )}
+            {spinner ? (
               <Button
+                variant="primary"
+                disabled
                 style={{ backgroundColor: "red", border: "0px" }}
-                className="mt-2 myButton"
-                onClick={() => {
-                  router.push("/review-order");
-                }}
               >
-                Pay ${runningTotal}
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Loading...</span>
               </Button>
-            </div>
+            ) : (
+              <div className="flex justify-around items-center">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.back();
+                  }}
+                  className="link text-red-600 no-underline"
+                  style={{ color: "red" }}
+                >
+                  Back
+                </a>
+                <Button
+                  type="submit"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                  className="mt-2 myButton"
+                >
+                  Pay ${runningTotal}
+                </Button>
+              </div>
+            )}
           </Form>
         </Modal.Body>
       </Modal>

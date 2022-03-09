@@ -29,6 +29,7 @@ export default function Delivery() {
     if (payment.method == "Pick-Up" && !payment.type) return setShowBack(true);
     if (payment.length != 0) return setShowBack(false);
   }, [payment]);
+
   async function deliveryHandler(e) {
     setSpinner(true);
     const locationZipCodes = locationData.filter((loc) => {
@@ -38,6 +39,9 @@ export default function Delivery() {
       method: "POST",
       body: JSON.stringify({
         zipCode: e.target.zipCode.value,
+        address: e.target.address.value,
+        city: e.target.city.value,
+        state: e.target.state.value,
         locationZipCodes: locationZipCodes[0].postalCodes,
         curLocation: location,
       }),
@@ -50,6 +54,7 @@ export default function Delivery() {
     if (!data.success) return setError(data.message);
     router.push("/card-payment");
   }
+
   useEffect(() => {
     setShow(true);
   }, []);
@@ -151,27 +156,39 @@ export default function Delivery() {
             }}
           >
             <Form.Group className="mb-3" controlId="formGridAddress1">
-              <Form.Label>Address</Form.Label>
-              <Form.Control placeholder="1234 Main St" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formGridAddress2">
-              <Form.Label>Address 2</Form.Label>
-              <Form.Control placeholder="Apartment, studio, or floor" />
+              <Form.Label>Address*</Form.Label>
+              <Form.Control
+                name="address"
+                value="1234 Main St"
+                readOnly
+                className="bg-white"
+              />
             </Form.Group>
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridCity">
-                <Form.Label>City</Form.Label>
-                <Form.Control />
+                <Form.Label>City*</Form.Label>
+                <Form.Control
+                  name="city"
+                  readOnly
+                  value={location}
+                  className="bg-white"
+                />
               </Form.Group>
-
+            </Row>
+            <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridState">
-                <Form.Label>State</Form.Label>
-                <Form.Control />
+                <Form.Label>State*</Form.Label>
+                <Form.Control
+                  name="state"
+                  readOnly
+                  value="GA"
+                  className="bg-white"
+                />
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Zip</Form.Label>
+                <Form.Label>Zip Code*</Form.Label>
 
                 <Form.Control name="zipCode" />
               </Form.Group>
