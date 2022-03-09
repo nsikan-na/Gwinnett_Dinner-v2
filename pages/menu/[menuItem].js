@@ -254,22 +254,33 @@ export default function MenuItems({ menuItems }) {
                 <h5>
                   Pick {`${sides} ${sides > 1 ? "side items" : "side item"}`}
                 </h5>
-                {locationSideItems.map((item) => {
-                  return (
-                    <Form.Group className="mb-3" key={item}>
-                      <Form.Check
-                        inline
-                        name="side"
-                        type="checkbox"
-                        id={item}
-                      />
-                      <Form.Label htmlFor={item} className="cursor-pointer">
-                        {item}
-                      </Form.Label>
-                    </Form.Group>
-                  );
-                })}
-
+                <table className="mx-auto ">
+                  <thead></thead>
+                  <tbody className="text-left">
+                    {locationSideItems.map((item) => {
+                      return (
+                        <tr key={item}>
+                          <td>
+                            <Form.Check
+                              inline
+                              name="side"
+                              type="checkbox"
+                              id={item}
+                            />
+                          </td>
+                          <td>
+                            <Form.Label
+                              htmlFor={item}
+                              className="cursor-pointer"
+                            >
+                              {item}
+                            </Form.Label>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
                 <h6
                   className={`text-red-500 ${error ? "visible" : "invisible"}`}
                 >
