@@ -11,7 +11,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import LandingPage from "../components/LandingPage";
-
+import Link from "next/link";
 export default function Cart() {
   const router = useRouter();
   const { cart, runningTotal, setCart, username } = useContext(Context);
@@ -29,8 +29,8 @@ export default function Cart() {
         size="xl"
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title >
-            <h1 >Shopping Cart-${runningTotal} </h1>
+          <Modal.Title>
+            <h1>Shopping Cart-${runningTotal} </h1>
             {cart.length !== 0 ? (
               <h5 className="text-red-600">
                 {cart.length > 1
@@ -180,22 +180,34 @@ export default function Cart() {
                   );
                 })}
               </Container>
-
-              <Button
-                style={{ backgroundColor: "red", border: "0px" }}
-                className="mt-3"
-                variant="primary"
-                onClick={() => {
-                  if (!username) {
-                    router.push("/guest");
-                  }
-                  if (username) {
-                    router.push("/delivery");
-                  }
-                }}
-              >
-                Proceed to Checkout
-              </Button>
+              <Container className="flex justify-between items-center">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/");
+                  }}
+                  className="link text-red-600"
+                  style={{ color: "red" }}
+                >
+                  Back
+                </a>
+                <Button
+                  style={{ backgroundColor: "red", border: "0px" }}
+                  className="mt-2"
+                  variant="primary"
+                  onClick={() => {
+                    if (!username) {
+                      router.push("/guest");
+                    }
+                    if (username) {
+                      router.push("/delivery");
+                    }
+                  }}
+                >
+                  Proceed to Checkout
+                </Button>
+              </Container>
             </Container>
           )}
         </Modal.Body>

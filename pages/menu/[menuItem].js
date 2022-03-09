@@ -145,7 +145,7 @@ const menuItems = [
 ];
 
 export default function MenuItems({ menuItems }) {
-  const { cart, setCart, setAlertText, setAlertLink } = useContext(Context);
+  const { cart, setCart } = useContext(Context);
   const router = useRouter();
   const index = menuItems.findIndex((item) => {
     return item.title == router.query.menuItem;
@@ -337,16 +337,7 @@ export default function MenuItems({ menuItems }) {
                       }
                     }
                   }
-                  router.push(`/#${title}`);
-
-                  setAlertText(
-                    `${variant ? variant : ""} ${
-                      title.split("&")[0]
-                    }  w/ ${sideItems
-                      .toString()
-                      .replace(",", " & ")} Added to Cart!`
-                  );
-                  setAlertLink(true);
+                  router.push(`/cart`);
                 }}
               >
                 {variants ? (
@@ -407,11 +398,7 @@ export default function MenuItems({ menuItems }) {
                         />
                       </td>
                       <td>
-                        <Form.Label
-                          htmlFor="Fries"
-                          className="cursor-pointer"
-                     
-                        >
+                        <Form.Label htmlFor="Fries" className="cursor-pointer">
                           Fries
                         </Form.Label>
                       </td>
@@ -429,7 +416,6 @@ export default function MenuItems({ menuItems }) {
                         <Form.Label
                           htmlFor="Broccoli"
                           className="cursor-pointer"
-                       
                         >
                           Broccoli
                         </Form.Label>
@@ -449,7 +435,6 @@ export default function MenuItems({ menuItems }) {
                         <Form.Label
                           htmlFor="Garlic Pasta & Bread"
                           className="cursor-pointer"
-
                         >
                           Pasta & Bread
                         </Form.Label>
@@ -491,7 +476,7 @@ export default function MenuItems({ menuItems }) {
                         quantity,
                       },
                     ]);
-                    router.push(`/#${title}`);
+                    router.push(`/cart`);
                   }
                   if (cart.length != 0) {
                     if (
@@ -519,10 +504,7 @@ export default function MenuItems({ menuItems }) {
                       ]);
                     }
                   }
-                  router.push(`/#${title}`);
-
-                  setAlertText(`${title} Added to Cart!`);
-                  setAlertLink(true);
+                  router.push(`/cart`);
                 }}
               >
                 Add to Cart
@@ -574,9 +556,7 @@ export default function MenuItems({ menuItems }) {
                     ]);
                   }
                 }
-                router.push(`/#${title}`);
-                setAlertText(`${title} Added to Cart!`);
-                setAlertLink(true);
+                router.push(`/cart`);
               }}
             >
               Add to Cart

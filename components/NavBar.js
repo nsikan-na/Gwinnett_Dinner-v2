@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Context } from "../context";
 import AlertSuccess from "./AlertSuccess";
 import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Image from "next/image";
 export default function NavBar() {
   const router = useRouter();
   const {
@@ -19,56 +21,84 @@ export default function NavBar() {
   } = useContext(Context);
   return (
     <>
-      <Container className="sticky bg-gray-50 top-0 z-50 mx-auto lg:hidden">
+      <Container className="sticky bg-gray-50 top-0 z-50 mx-auto lg:hidden flex justify-between ">
         <MenuIcon
-          className="scale-125 my-3 text-red-600 cursor-pointer link"
+          className="scale-125  text-red-600 cursor-pointer link my-3"
           onClick={() => {
             router.push("/nav");
           }}
         />
+        <Image
+          src="/images/cfa.png"
+          width="100%"
+          height="10%"
+          alt="logo"
+          className="scale-50 cursor-pointer"
+          onClick={() => {
+            router.push("/");
+          }}
+        />
+        <div className="my-3">
+          <ShoppingCartIcon
+            className="text-red-600 cursor-pointer"
+            onClick={() => {
+              router.push("/cart");
+            }}
+          />
+        </div>
       </Container>
       <Container className="sticky top-0 z-50 mx-auto  ">
-        <Container className="bg-gray-50 hidden lg:block">
-          <Navbar expand="lg" className=" w-full ">
-            <Container>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" className="" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="">
-                  <Nav.Link
-                    style={{ color: "red" }}
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.push("/");
-                    }}
-                  >
-                    Our Menu
-                  </Nav.Link>
-                  <Nav.Link
-                    style={{ color: "red" }}
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      // router.push("/about");
-                    }}
-                  >
-                    About Us
-                  </Nav.Link>
-                  <Nav.Link
-                    style={{ color: "red" }}
-                    href="#"
-                    onClick={() => {
-                      router.push("/location");
-                      setCart([]);
-                    }}
-                  >
-                    Change Location
-                  </Nav.Link>
-                </Nav>
-              </Navbar.Collapse>
+        <Container className="bg-gray-50 hidden lg:block py-2">
+          <Container className="flex items-center justify-between">
+            <div className="space-x-5 z-20">
+              <a
+                style={{ color: "red" }}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/");
+                }}
+                className="cursor-pointer"
+              >
+                Our Menu
+              </a>
+              <a
+                style={{ color: "red" }}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  // router.push("/about");
+                }}
+              >
+                About Us
+              </a>
+              <a
+                style={{ color: "red" }}
+                href="#"
+                onClick={() => {
+                  router.push("/location");
+                  setCart([]);
+                }}
+              >
+                Change Location
+              </a>
+            </div>
+            <div className="absolute flex w-11/12 justify-center ">
+              <Image
+                src="/images/cfa.png"
+                width="100%"
+                height="60%"
+                alt="logo"
+                className="scale-50 z-20 cursor-pointer"
+                onClick={() => {
+                  router.push("/");
+                }}
+              />
+            </div>
+            <div className="space-x-5 z-20">
               {!username ? (
                 <>
-                  <Nav.Link
+                  <a
                     style={{ color: "red" }}
                     href="#"
                     onClick={(e) => {
@@ -77,8 +107,8 @@ export default function NavBar() {
                     }}
                   >
                     Sign Up
-                  </Nav.Link>
-                  <Nav.Link
+                  </a>
+                  <a
                     style={{ color: "red" }}
                     href="#"
                     onClick={(e) => {
@@ -87,21 +117,21 @@ export default function NavBar() {
                     }}
                   >
                     Sign In
-                  </Nav.Link>
+                  </a>
                 </>
               ) : (
                 <>
-                  <Nav.Link
+                  <a
                     href="#"
                     style={{ color: "black" }}
                     onClick={(e) => {
                       e.preventDefault();
                     }}
-                    className="mr-4"
+                    className=""
                   >
                     Welcome {username}!
-                  </Nav.Link>
-                  <Nav.Link
+                  </a>
+                  <a
                     className=""
                     style={{ color: "red" }}
                     href="#"
@@ -112,11 +142,17 @@ export default function NavBar() {
                     }}
                   >
                     Sign Out
-                  </Nav.Link>{" "}
+                  </a>
                 </>
               )}
-
-              {/* {!username ? (
+              <ShoppingCartIcon
+                className="text-red-600 cursor-pointer"
+                onClick={() => {
+                  router.push("/cart");
+                }}
+              />
+            </div>
+            {/* {!username ? (
                 <></>
               ) : (
                 <p
@@ -129,19 +165,17 @@ export default function NavBar() {
                   Welcome {username}!
                 </p>
               )} */}
-            </Container>
-          </Navbar>
+          </Container>
         </Container>
         {alertText ? (
           <>
-          <div className="pb-3">
+            <div className="pb-3">
               <AlertSuccess />
-              </div>
+            </div>
           </>
         ) : (
           ""
         )}
-
       </Container>
     </>
   );

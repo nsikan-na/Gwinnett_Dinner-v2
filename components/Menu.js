@@ -170,7 +170,7 @@ export default function Menu() {
   const { location } = useContext(Context);
 
   return (
-    <Container className="">
+    <Container className="pb-5">
       {/* <Image
         src={`/images/logo.png`}
         width="200%"
