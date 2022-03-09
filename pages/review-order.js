@@ -9,7 +9,6 @@ import Col from "react-bootstrap/Col";
 import Image from "next/image";
 import LandingPage from "../components/LandingPage";
 
-
 export default function ReviewOrder() {
   const router = useRouter();
   const {
@@ -41,14 +40,7 @@ export default function ReviewOrder() {
         size="lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title>
-            Review Order-${runningTotal}{" "}
-            {username ? (
-              <span className="text-lg">(3% discount applied!)</span>
-            ) : (
-              ""
-            )}
-          </Modal.Title>
+          <Modal.Title>Review Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h5>Estimated Wait Time: 7 minutes</h5>
@@ -57,6 +49,11 @@ export default function ReviewOrder() {
           <h5 className="inline">{`${
             payment.type === "Card" ? `(Card)` : "(Cash)"
           }`}</h5>
+          {username ? (
+            <h6 className="text-lg">3% discount applied for being signed in</h6>
+          ) : (
+            ""
+          )}
           <Container className="mt-3">
             {cart.map((item, index) => {
               return (
@@ -89,26 +86,41 @@ export default function ReviewOrder() {
                 </Row>
               );
             })}
-            <Button
-              variant="primary"
-              className="mt-3"
-              href=""
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/");
-                setCart([]);
-                setPayment({});
-                setRunningTotal(0);
-                setAlertText(`Thank You For Your Order! (7 minute wait time)`);
-              }}
-            >
-              Submit Order
-            </Button>
+            <div className="flex justify-around items-center">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.back();
+                }}
+                className="link text-red-600 no-underline"
+                style={{ color: "red" }}
+              >
+                Back
+              </a>
+              <Button
+                style={{ backgroundColor: "red", border: "0px" }}
+                variant="primary"
+                className="mt-3"
+                href=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/");
+                  setCart([]);
+                  setPayment({});
+                  setRunningTotal(0);
+                  setAlertText(
+                    `Thank You For Your Order! (7 minute wait time)`
+                  );
+                }}
+              >
+                Submit Order
+              </Button>
+            </div>
           </Container>
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </>
   );
 }

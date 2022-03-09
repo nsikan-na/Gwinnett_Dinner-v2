@@ -25,7 +25,7 @@ export default function CardPayment() {
         }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Card Payment-${runningTotal}</Modal.Title>
+          <Modal.Title>Card Payment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -60,19 +60,32 @@ export default function CardPayment() {
               <Form.Label>Name on card</Form.Label>
               <Form.Control type="text" name="name" />
             </Form.Group>
-            <Button
-              className="mt-3"
-              onClick={() => {
-                router.push("/review-order");
-              }}
-            >
-              Pay ${runningTotal}
-            </Button>
+            <div className="flex justify-around items-center">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.back();
+                }}
+                className="link text-red-600 no-underline"
+                style={{ color: "red" }}
+              >
+                Back
+              </a>
+              <Button
+                style={{ backgroundColor: "red", border: "0px" }}
+                className="mt-2"
+                onClick={() => {
+                  router.push("/review-order");
+                }}
+              >
+                Pay ${runningTotal}
+              </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </>
   );
 }

@@ -3,18 +3,154 @@ import { useRouter } from "next/router";
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
+import Image from "next/image";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Form from "react-bootstrap/Form";
-import { menuItems } from "../api/data";
 import { Context } from "../../context";
 import LandingPage from "../../components/LandingPage";
+const menuItems = [
+  {
+    title: "Hot Dog & Chips",
+    price: "6.99",
+    desc: `Assorted(beef,sausage,and vegetarian) gourmet hotdogs`,
+    type: "combo",
+    img: "hot_dog_&_chips.jpg",
+    location: "Snellville",
+    sides: 0,
+  },
+  {
+    title: "Cheesecake",
+    price: "3.95",
+    desc: `In house Assorted Cheesecake`,
+    type: "dessert",
+    img: "cheesecake.jpg",
+    location: "Snellville",
+  },
 
-export default function MenuItems({ menuItem }) {
-  const { cart, setCart, setAlertText, setAlertLink } = useContext(Context);
+  {
+    title: "Fried Shrimp & Fries",
+    price: "7.99",
+    desc: `Beer battered fried shrimp with seasoned fries`,
+    type: "combo",
+    img: "fried_shrimp_&_fries.jpg",
+    location: "Peachtree Corners",
+    sides: 0,
+  },
+  {
+    title: "Grilled Shrimp & 2 Sides",
+    price: "7.99",
+    desc: `Grilled Garlic Shrimp served with fresh parsley and olive oil`,
+    type: "combo",
+
+    img: "grilled_shrimp.jpg",
+    location: "Peachtree Corners",
+    sides: 2,
+  },
+  {
+    title: "Cobblor",
+    price: "4.99",
+    desc: `Freshly baked warm peach cobbler`,
+    type: "dessert",
+    img: "cobblor.jpg",
+    location: "Peachtree Corners",
+  },
+  {
+    title: "Steak & 2 Sides",
+    price: "9.99",
+    desc: `New York Style Steak`,
+    type: "combo",
+
+    img: "steak.jpg",
+    location: "Lawrenceville",
+    sides: 2,
+    variants: ["Rare", "Medium Rare", "Medium", "Medium Well", "Well"],
+  },
+  {
+    title: "Mashed Potatoes",
+    price: "5.99",
+    desc: `Garlic mashed potatoes`,
+    type: "side",
+    img: "mashed_potatoes.jpg",
+    location: "Lawrenceville",
+  },
+  {
+    title: "Pie",
+    price: "3.99",
+    desc: `Choose between blueberry pie,pink lemonade pie, chocolate chip cookie,peanut butter pie,white chocolate silk,and brown sugar pumpkin pie`,
+    type: "dessert",
+    img: "pie.jpg",
+    location: "Lawrenceville",
+  },
+  {
+    title: "Chicken & 2 Sides",
+    price: "9.99",
+    desc: `Parmesan Breaded Chicken severed with greens and lemon on the side`,
+    type: "combo",
+    img: "chicken.jpg",
+    location: "all",
+    sides: 2,
+  },
+  {
+    title: "Fish & 2 Sides",
+    price: "8.99",
+    desc: `Pan seared salmon severed with fresh greens and lightly sauted medley tomatoes`,
+    type: "combo",
+    img: "fish.jpg",
+    location: "all",
+    sides: 2,
+  },
+  {
+    title: "Burger & 1 Side",
+    price: "8.99",
+    desc: `100% Beef Whiskey Burger`,
+    type: "combo",
+    img: "burger.jpg",
+    location: "all",
+    sides: 1,
+  },
+  {
+    title: "Ice Cream",
+    price: "2.50",
+    desc: `Choose between chocolate chip, vanilla, butter pecan, strawberry, and cookies and cream`,
+    type: "dessert",
+    img: "ice_cream.jpg",
+    location: "all",
+  },
+
+  {
+    title: "Fries",
+    price: "4.99",
+    desc: `French fries with in house ketchup`,
+    type: "side",
+    img: "fries.jpg",
+    location: "all",
+  },
+  {
+    title: "Broccoli",
+    price: "3.99",
+    desc: `Fresh steamed broccoli`,
+    type: "side",
+    img: "broccoli.jpg",
+    location: "all",
+  },
+  {
+    title: "Garlic Pasta & Bread",
+    price: "6.99",
+    desc: `Fresh breadstick with served with in-house marinated sauce and in house garlic pasta`,
+    type: "side",
+    img: "garlic_pasta_&_bread.jpg",
+    location: "all",
+  },
+];
+
+export default function MenuItems({ menuItems }) {
+  const { cart, setCart } = useContext(Context);
   const router = useRouter();
-
+  const index = menuItems.findIndex((item) => {
+    return item.title == router.query.menuItem;
+  });
+  const menuItem = menuItems[index];
   const { title, price, desc, type, img, location, sides, variants } = menuItem;
   const [show, setShow] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -26,7 +162,7 @@ export default function MenuItems({ menuItem }) {
     <Container>
       <Modal
         onExit={() => {
-          router.push(`/#${type}`);
+          router.push(`/#${title}`);
         }}
         show={show}
         onHide={() => setShow(false)}
@@ -35,18 +171,20 @@ export default function MenuItems({ menuItem }) {
       >
         <Modal.Header className="" closeButton>
           <Modal.Title>
-            <h3 className="">{title}</h3>
+            <h3 className="text-red-600">{title}</h3>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-center">
           <Image
             src={`/images/${img}`}
             className="mx-auto w-8/12"
+            width="300%"
+            height="300%"
             alt={`${title} image`}
           />
           <br />
-          <h4>${price}</h4>
-          <h5>Select quantity</h5>
+          <h4 className="mt-2"> ${price}</h4>
+          <h5 className="">Select quantity</h5>
           <Container className="flex justify-center items-center space-x-5">
             <Button
               variant="primary"
@@ -199,16 +337,7 @@ export default function MenuItems({ menuItem }) {
                       }
                     }
                   }
-                  router.push(`/#${type}`);
-
-                  setAlertText(
-                    `${variant ? variant : ""} ${
-                      title.split("&")[0]
-                    }  w/ ${sideItems
-                      .toString()
-                      .replace(",", " & ")} Added to Cart!`
-                  );
-                  setAlertLink(true);
+                  router.push(`/cart`);
                 }}
               >
                 {variants ? (
@@ -269,7 +398,9 @@ export default function MenuItems({ menuItem }) {
                         />
                       </td>
                       <td>
-                        <Form.Label htmlFor="Fries">Fries</Form.Label>
+                        <Form.Label htmlFor="Fries" className="cursor-pointer">
+                          Fries
+                        </Form.Label>
                       </td>
                     </tr>
                     <tr>
@@ -282,7 +413,12 @@ export default function MenuItems({ menuItem }) {
                         />
                       </td>
                       <td>
-                        <Form.Label htmlFor="Broccoli">Broccoli</Form.Label>
+                        <Form.Label
+                          htmlFor="Broccoli"
+                          className="cursor-pointer"
+                        >
+                          Broccoli
+                        </Form.Label>
                       </td>
                     </tr>
                     <tr>
@@ -296,7 +432,10 @@ export default function MenuItems({ menuItem }) {
                         />
                       </td>
                       <td>
-                        <Form.Label htmlFor="Garlic Pasta & Bread">
+                        <Form.Label
+                          htmlFor="Garlic Pasta & Bread"
+                          className="cursor-pointer"
+                        >
                           Pasta & Bread
                         </Form.Label>
                       </td>
@@ -309,13 +448,19 @@ export default function MenuItems({ menuItem }) {
                 >
                   You must enter {sides} sides!
                 </h6>
-                <Button className="" type="submit">
+
+                <Button
+                  className=""
+                  type="submit"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
                   Add to Cart
                 </Button>
               </Form>
             ) : (
               <Button
-                className=" mt-4"
+                className=" mt-4 "
+                style={{ backgroundColor: "red", border: "0px" }}
                 type="submit"
                 onClick={() => {
                   if (cart.length === 0) {
@@ -331,7 +476,7 @@ export default function MenuItems({ menuItem }) {
                         quantity,
                       },
                     ]);
-                    router.push(`/#${type}`);
+                    router.push(`/cart`);
                   }
                   if (cart.length != 0) {
                     if (
@@ -359,10 +504,7 @@ export default function MenuItems({ menuItem }) {
                       ]);
                     }
                   }
-                  router.push(`/#${type}`);
-
-                  setAlertText(`${title} Added to Cart!`);
-                  setAlertLink(true);
+                  router.push(`/cart`);
                 }}
               >
                 Add to Cart
@@ -372,6 +514,7 @@ export default function MenuItems({ menuItem }) {
             <Button
               className=" mt-4"
               type="submit"
+              style={{ backgroundColor: "red", border: "0px" }}
               onClick={() => {
                 if (cart.length === 0) {
                   setCart((prevCart) => [
@@ -413,9 +556,7 @@ export default function MenuItems({ menuItem }) {
                     ]);
                   }
                 }
-                router.push(`/#${type}`);
-                setAlertText(`${title} Added to Cart!`);
-                setAlertLink(true);
+                router.push(`/cart`);
               }}
             >
               Add to Cart
@@ -427,20 +568,10 @@ export default function MenuItems({ menuItem }) {
     </Container>
   );
 }
-export async function getStaticPaths() {
-  const paths = menuItems.map((item) => ({
-    params: {
-      menuItem: item.title.toString(),
+export async function getServerSideProps() {
+  return {
+    props: {
+      menuItems,
     },
-  }));
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps(context) {
-  const title = context.params.menuItem;
-  const index = menuItems.findIndex((item) => {
-    return item.title == title;
-  });
-  const menuItem = menuItems[index];
-  return { props: { menuItem } };
+  };
 }

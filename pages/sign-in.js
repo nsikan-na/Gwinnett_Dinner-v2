@@ -8,8 +8,6 @@ import { Context } from "../context";
 import SignInForm from "../components/SignInForm";
 import LandingPage from "../components/LandingPage";
 
-
-
 export default function SignIn() {
   const router = useRouter();
   const {} = useContext(Context);
@@ -30,14 +28,13 @@ export default function SignIn() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Sign in</Modal.Title>
+          <Modal.Title className="text-red-600">Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <SignInForm from="LandingPage" />
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </Container>
   );
 }

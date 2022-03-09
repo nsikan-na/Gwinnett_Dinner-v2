@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+const getDb = require("./db").getDb;
 const bcrypt = require("bcrypt");
 
 export default async function handler(req, res) {
@@ -18,10 +18,7 @@ export default async function handler(req, res) {
           message: "Passwords do not match!",
         });
       }
-      const client = await MongoClient.connect(
-        `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ewgfl.mongodb.net/${process.env.DB_DATABASE}`
-      );
-      const db = client.db();
+      const db = await getDb();
       const userDataCollection = db.collection(`${process.env.DB_COLLECTION}`);
       const result = await userDataCollection.find({ username }).toArray();
       if (result.length > 0) {
@@ -35,7 +32,6 @@ export default async function handler(req, res) {
         username,
         password: hashedPassword,
       });
-      client.close();
       return res.json({ success: true });
     } catch (error) {
       console.log(error.message);

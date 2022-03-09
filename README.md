@@ -1,6 +1,3 @@
-# Gwinnett_Dinner
+# Gwinnett_Diner
 
-[Visit Live Site](https://gwinnett-dinner.vercel.app/)
-
-
-
+[Visit Live Site](https://gwinnett-diner.vercel.app/)

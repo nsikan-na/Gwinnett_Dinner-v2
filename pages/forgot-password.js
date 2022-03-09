@@ -6,13 +6,17 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { Context } from "../context";
 import LandingPage from "../components/LandingPage";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function ForgotPassword() {
   const router = useRouter();
   const { setAlertText, setUsername } = useContext(Context);
   const [show, setShow] = useState(true);
   const [error, setError] = useState("");
+  const [spinner, setSpinner] = useState(false);
+
   async function resetLoginHandler(e) {
+    setSpinner(true);
     const response = await fetch(`/api/forgot-password`, {
       method: "POST",
       body: JSON.stringify({
@@ -25,6 +29,8 @@ export default function ForgotPassword() {
       },
     });
     const data = await response.json();
+    setSpinner(false);
+
     if (!data.success) return setError(data.message);
     setUsername(e.target.username.value);
     router.push("/");
@@ -42,7 +48,7 @@ export default function ForgotPassword() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Forgot Password</Modal.Title>
+          <Modal.Title className="text-red-600">Forgot Password</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -70,6 +76,7 @@ export default function ForgotPassword() {
               Remember password and username?{" "}
               <a
                 href="#"
+                className="link text-red-600"
                 onClick={(e) => {
                   e.preventDefault();
                   router.push("/sign-in");
@@ -82,6 +89,7 @@ export default function ForgotPassword() {
               Create a new account?{" "}
               <a
                 href="#"
+                className="link text-red-600"
                 onClick={(e) => {
                   e.preventDefault();
                   router.push("/sign-up");
@@ -91,14 +99,35 @@ export default function ForgotPassword() {
               </a>
             </p>
             {error ? <div className="text-red-600">{error}</div> : ""}
-            <Button type="submit" variant="primary" className="mt-2">
-              Reset Login
-            </Button>
+            {spinner ? (
+              <Button
+                variant="primary"
+                disabled
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Loading...</span>
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                variant="primary"
+                className="mt-2"
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
+                Reset Login
+              </Button>
+            )}
           </Form>
         </Modal.Body>
       </Modal>
       <LandingPage />
-
     </Container>
   );
 }

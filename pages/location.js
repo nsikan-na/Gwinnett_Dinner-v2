@@ -1,12 +1,20 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Context } from "../context";
-import { locationData } from "./api/data";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import LandingPage from "../components/LandingPage";
+const locationData = [
+  { title: "Snellville", postalCodes: [30017, 30039, 30078] },
+  {
+    title: "Peachtree Corners",
+    postalCodes: [30071, 30092, 30096, 30097, 30360],
+  },
+  { title: "Lawrenceville", postalCodes: [30043, 30046, 30049] },
+  { title: "Mountain Park", postalCodes: [30075] },
+];
 
 export default function Location() {
   const { setLocation } = useContext(Context);
@@ -40,7 +48,7 @@ export default function Location() {
           centered
         >
           <Modal.Header className="">
-            <Modal.Title>Choose A Location</Modal.Title>
+            <Modal.Title className='text-red-600'>Choose A Location</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form
@@ -69,7 +77,7 @@ export default function Location() {
                 );
               })}
               {error ? <div className="text-red-600">{error}</div> : ""}
-              <Button type="submit" variant="primary" className="mt-2">
+              <Button type="submit" variant="primary" className="mt-2"       style={{ backgroundColor: "red", border: "0px" }}>
                 I live here
               </Button>
             </Form>

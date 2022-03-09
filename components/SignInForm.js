@@ -3,15 +3,17 @@ import { useRouter } from "next/router";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Context } from "../context";
-import Link from "next/link";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function SignInForm({ from }) {
   const router = useRouter();
   const { setAlertText, setUsername } = useContext(Context);
   const [error, setError] = useState("");
   const [failedLogin, setFailedLogin] = useState(false);
+  const [spinner, setSpinner] = useState(false);
 
   async function getUserData(e) {
+    setSpinner(true);
     const response = await fetch("api/sign-in", {
       method: "POST",
       body: JSON.stringify({
@@ -23,6 +25,8 @@ export default function SignInForm({ from }) {
       },
     });
     const data = await response.json();
+    setSpinner(false);
+
     if (!data.success) {
       setError(data.message);
       if (data.showForget) {
@@ -66,6 +70,7 @@ export default function SignInForm({ from }) {
           Don't have an account!{" "}
           <a
             href="#"
+            className="text-red-600 link"
             onClick={(e) => {
               e.preventDefault();
               router.push("/sign-up");
@@ -81,7 +86,7 @@ export default function SignInForm({ from }) {
         <>
           <a
             href="#"
-            className=""
+            className="text-red-600 link"
             onClick={() => {
               router.push("/forgot-password");
             }}
@@ -96,10 +101,53 @@ export default function SignInForm({ from }) {
       <div className={`${error ? "block" : "hidden"} text-red-600`}>
         {error}
       </div>
-
-      <Button type="submit" variant="primary" className="mt-2">
-        Sign in!
-      </Button>
+      {spinner ? (
+        <Button
+          variant="primary"
+          disabled
+          style={{ backgroundColor: "red", border: "0px" }}
+        >
+          <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+          <span className="visually-hidden">Loading...</span>
+        </Button>
+      ) : from !== "GuestModule" ? (
+        <Button
+          type="submit"
+          variant="primary"
+          className="mt-2"
+          style={{ backgroundColor: "red", border: "0px" }}
+        >
+          Sign in!
+        </Button>
+      ) : (
+        <div className="flex justify-around items-center">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/cart");
+            }}
+            className="link text-red-600 no-underline"
+            style={{ color: "red" }}
+          >
+            Back
+          </a>
+          <Button
+            type="submit"
+            variant="primary"
+            className="mt-2"
+            style={{ backgroundColor: "red", border: "0px" }}
+          >
+            Sign in!
+          </Button>
+        </div>
+      )}
     </Form>
   );
 }

@@ -7,48 +7,61 @@ import { Context } from "../context";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { locationData } from "./api/data";
 import LandingPage from "../components/LandingPage";
+import Spinner from "react-bootstrap/Spinner";
+
+const locationData = [
+  { title: "Snellville", postalCodes: [30017, 30039, 30078] },
+  {
+    title: "Peachtree Corners",
+    postalCodes: [30071, 30092, 30096, 30097, 30360],
+  },
+  { title: "Lawrenceville", postalCodes: [30043, 30046, 30049] },
+  { title: "Mountain Park", postalCodes: [30075] },
+];
 
 export default function Delivery() {
   const router = useRouter();
-  const { setPayment, runningTotal, location } = useContext(Context);
+  const { setPayment, runningTotal, location, payment, username } =
+    useContext(Context);
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
-  const [postalCode, setPostalCode] = useState(null);
-  const [validPostal, setValidPostal] = useState(false);
-  const [formSubmit, setFormSubmit] = useState(false);
-  let locationZipCodes;
-  locationData.forEach((item) => {
-    if (item.title === location) {
-      locationZipCodes = item.postalCodes.toString();
-    }
-  });
+  const [spinner, setSpinner] = useState(false);
+  const [error, setError] = useState(false);
+  const [showBack, setShowBack] = useState(true);
+  useEffect(() => {
+    setPayment([]);
+  }, []);
+  useEffect(() => {
+    if (showForm == null) return setShowBack(true);
+    if (payment.method == "Pick-Up" && !payment.type) return setShowBack(true);
+    if (payment.length != 0) return setShowBack(false);
+  }, [payment]);
+  async function deliveryHandler(e) {
+    setSpinner(true);
+    const locationZipCodes = locationData.filter((loc) => {
+      return loc.title == location;
+    });
+    const response = await fetch(`/api/delivery`, {
+      method: "POST",
+      body: JSON.stringify({
+        zipCode: e.target.zipCode.value,
+        locationZipCodes: locationZipCodes[0].postalCodes,
+        curLocation: location,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    setSpinner(false);
+    if (!data.success) return setError(data.message);
+    router.push("/card-payment");
+  }
   useEffect(() => {
     setShow(true);
   }, []);
-  useEffect(() => {
-    if (!postalCode) {
-      return setValidPostal(false);
-    }
-    setValidPostal(false);
-    if (postalCode.length < 5) {
-      return setValidPostal(false);
-    }
-    const valid = locationData
-      .filter((loc) => {
-        return loc.title === location ? loc.postalCodes : "";
-      })[0]
-      .postalCodes.some((code) => {
-        return code == postalCode;
-      });
-    if (valid) {
-      setValidPostal(false);
-    } else {
-      setValidPostal(true);
-    }
-  }, [postalCode, formSubmit, location]);
 
   useEffect(() => {
     if (showForm == null) return;
@@ -74,7 +87,7 @@ export default function Delivery() {
         centered
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>Method Options-${runningTotal}</Modal.Title>
+          <Modal.Title>Delivery/Payment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h5 className="text-center">Delivery Method</h5>
@@ -106,7 +119,9 @@ export default function Delivery() {
             }}
           >
             <span>
-              <Form.Label htmlFor="pickup">Pick-Up</Form.Label>
+              <Form.Label htmlFor="pickup" className="cursor-pointer">
+                Pick-Up
+              </Form.Label>
               <Form.Check
                 inline
                 name="deliveryMethod"
@@ -118,7 +133,9 @@ export default function Delivery() {
             </span>
             {location !== "Mountain Park" ? (
               <span>
-                <Form.Label htmlFor="Delivery">Delivery</Form.Label>
+                <Form.Label htmlFor="Delivery" className="cursor-pointer">
+                  Delivery
+                </Form.Label>
                 <Form.Check
                   inline
                   name="deliveryMethod"
@@ -135,14 +152,11 @@ export default function Delivery() {
           <Form
             className={`${showForm ? "block" : "hidden"}`}
             onChange={() => {
-              setFormSubmit(false);
+              setError("");
             }}
             onSubmit={(e) => {
               e.preventDefault();
-              setFormSubmit(true);
-              if (validPostal) return;
-              if (!postalCode || postalCode.length != 5) return;
-              router.push("/card-payment");
+              deliveryHandler(e);
             }}
           >
             <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -165,34 +179,54 @@ export default function Delivery() {
                 <Form.Control />
               </Form.Group>
 
-              <Form.Group
-                as={Col}
-                controlId="formGridZip"
-                onChange={(e) => {
-                  setPostalCode(e.target.value);
-                }}
-                value={postalCode}
-              >
+              <Form.Group as={Col}>
                 <Form.Label>Zip</Form.Label>
-                <Form.Control />
+
+                <Form.Control name="zipCode" />
               </Form.Group>
             </Row>
-            <p className={`text-red-600 ${!validPostal ? "hidden" : "block"}`}>
-              {`The ${location} branch only delivers to 
-                ${locationZipCodes}
-              .`}
-            </p>
-            <p
-              className={`text-red-600 ${
-                !validPostal && formSubmit ? "block" : "hidden"
-              }`}
-            >
-              Please enter valid zip code!
-            </p>
-
-            <Button variant="primary" type="submit">
-              Continue to Payment
-            </Button>
+            {error ? (
+              <div className="text-red-600 text-center my-3">{error}</div>
+            ) : (
+              ""
+            )}
+            {spinner ? (
+              <Button
+                variant="primary"
+                disabled
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Loading...</span>
+              </Button>
+            ) : (
+              <div className="flex justify-around items-center">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.back();
+                  }}
+                  className="link text-red-600 no-underline"
+                  style={{ color: "red" }}
+                >
+                  Back
+                </a>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
+                  Continue to Payment
+                </Button>
+              </div>
+            )}
           </Form>
           <Form
             className={`${
@@ -216,7 +250,9 @@ export default function Delivery() {
             <Container className="flex justify-evenly">
               {["Cash", "Card"].map((type) => (
                 <span key={type}>
-                  <Form.Label htmlFor={type}>{type}</Form.Label>
+                  <Form.Label htmlFor={type} className="cursor-pointer">
+                    {type}
+                  </Form.Label>
                   <Form.Check
                     inline
                     name="paymentMethod"
@@ -228,18 +264,61 @@ export default function Delivery() {
                 </span>
               ))}
             </Container>
-            <div className={`${paymentForm == null ? "hidden" : "block"}`}>
+            <div
+              className={`${
+                paymentForm == null ? "hidden" : "block"
+              } flex justify-around`}
+            >
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (username) return router.push("/cart");
+                  router.push("/guest");
+                }}
+                className="link text-red-600 no-underline"
+                style={{ color: "red" }}
+              >
+                Back
+              </a>
               {!paymentForm ? (
-                <Button variant="primary" type="submit">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
                   Submit Order
                 </Button>
               ) : (
-                <Button variant="primary" type="submit">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
                   Continue to Payment
                 </Button>
               )}
             </div>
           </Form>
+          {showBack ? (
+            <div className="flex justify-around">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (username) return router.push("/cart");
+                  router.push("/guest");
+                }}
+                className="link text-red-600 no-underline"
+                style={{ color: "red" }}
+              >
+                Back
+              </a>
+              <div></div>
+            </div>
+          ) : (
+            ""
+          )}
         </Modal.Body>
       </Modal>
       <LandingPage />
