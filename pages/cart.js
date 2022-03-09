@@ -32,15 +32,6 @@ export default function Cart() {
         <Modal.Header className="" closeButton>
           <Modal.Title>
             Shopping Cart
-            {/* {cart.length !== 0 ? (
-              <h5 className="text-red-600">
-                {cart.length > 1
-                  ? `${cart.length} items`
-                  : `${cart.length} item`}
-              </h5>
-            ) : (
-              ``
-            )} */}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

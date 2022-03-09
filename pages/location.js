@@ -7,15 +7,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 import LandingPage from "../components/LandingPage";
-const locationData = [
-  { title: "Snellville", postalCodes: [30017, 30039, 30078] },
-  {
-    title: "Peachtree Corners",
-    postalCodes: [30071, 30092, 30096, 30097, 30360],
-  },
-  { title: "Lawrenceville", postalCodes: [30043, 30046, 30049] },
-  { title: "Mountain Park", postalCodes: [30075] },
-];
+import { locationData } from "../data/locations";
 
 export default function Location() {
   const [spinner, setSpinner] = useState(false);
@@ -27,14 +19,14 @@ export default function Location() {
     setShow(true);
   }, []);
   async function locationFormHandler(e) {
-    setSpinner(true)
+    setSpinner(true);
     const response = await fetch("api/location", {
       method: "POST",
       body: JSON.stringify({ location: e.target.location.value }),
       header: { "Content-Type": "application/json" },
     });
     const data = await response.json();
-    setSpinner(false)
+    setSpinner(false);
     if (!data.success) {
       return setError(data.message);
     }
