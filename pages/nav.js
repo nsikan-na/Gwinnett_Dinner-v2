@@ -20,10 +20,12 @@ export default function MobileNav() {
         <Modal.Header className="pt-2 mb-1 ">
           <Modal.Title className="w-full">
             <div className="flex justify-between content-center ">
-              <CloseIcon
-                className="text-red-600 cursor-pointer link scale-125 mt-2"
-                onClick={() => router.push("/")}
-              />
+              <div className="ml-5">
+                <CloseIcon
+                  className="text-red-600 cursor-pointer link scale-125 mt-2"
+                  onClick={() => router.push("/")}
+                />
+              </div>
               <Image
                 src="/images/cfa.png"
                 width="70%"
