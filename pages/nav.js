@@ -64,6 +64,7 @@ export default function MobileNav() {
             style={{ paddingTop: "1px" }}
           ></div>
           <div
+            style={{ border: "0px" }}
             className={`${
               !username ? "flex space-x-14" : "flex flex-col space-y-4"
             }`}
