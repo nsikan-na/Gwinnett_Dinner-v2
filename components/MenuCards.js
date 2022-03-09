@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
+import { Context } from "../context";
+import Spinner from "react-bootstrap/Spinner";
 import Image from "next/image";
 export default function MenuCards({ title, price, desc, img, type, local }) {
   const router = useRouter();
-
+  const { cardSpinner, setCardSpinner } = useContext(Context);
   const [viewDesc, setViewDesc] = useState(false);
   return (
     <>
@@ -56,9 +58,32 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
           <p className="lg:hidden">{desc}</p>
 
           <Link type="submit" className="" href={`/menu/${title}`} passHref>
-            <Button style={{ backgroundColor: "red", border: "0" }}>
-              Add To Cart
-            </Button>
+            {cardSpinner ? (
+              <Button
+                variant="primary"
+                disabled
+                style={{ backgroundColor: "red", border: "0px" }}
+              >
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Loading...</span>
+              </Button>
+            ) : (
+              <Button
+              className='myButton'
+                style={{ backgroundColor: "red", border: "0" }}
+                onClick={() => {
+                  setCardSpinner(true);
+                }}
+              >
+                Add To Cart
+              </Button>
+            )}
           </Link>
         </Card.Body>
       </Card>

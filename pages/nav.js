@@ -24,7 +24,7 @@ export default function MobileNav() {
                 width="70%"
                 height="40%"
                 alt="logo"
-                className="scale-75 "
+                className="scale-75 cursor-pointer"
                 onClick={() => {
                   router.push("/");
                 }}

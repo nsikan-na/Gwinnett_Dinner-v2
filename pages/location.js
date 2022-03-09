@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
+import Spinner from "react-bootstrap/Spinner";
 import LandingPage from "../components/LandingPage";
 const locationData = [
   { title: "Snellville", postalCodes: [30017, 30039, 30078] },
@@ -17,6 +18,7 @@ const locationData = [
 ];
 
 export default function Location() {
+  const [spinner, setSpinner] = useState(false);
   const { setLocation } = useContext(Context);
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
@@ -25,12 +27,14 @@ export default function Location() {
     setShow(true);
   }, []);
   async function locationFormHandler(e) {
+    setSpinner(true)
     const response = await fetch("api/location", {
       method: "POST",
       body: JSON.stringify({ location: e.target.location.value }),
       header: { "Content-Type": "application/json" },
     });
     const data = await response.json();
+    setSpinner(false)
     if (!data.success) {
       return setError(data.message);
     }
@@ -48,7 +52,9 @@ export default function Location() {
           centered
         >
           <Modal.Header className="">
-            <Modal.Title className='text-red-600'>Choose A Location</Modal.Title>
+            <Modal.Title className="text-red-600">
+              Choose A Location
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form
@@ -77,9 +83,31 @@ export default function Location() {
                 );
               })}
               {error ? <div className="text-red-600">{error}</div> : ""}
-              <Button type="submit" variant="primary" className="mt-2"       style={{ backgroundColor: "red", border: "0px" }}>
-                I live here
-              </Button>
+              {spinner ? (
+                <Button
+                  variant="primary"
+                  disabled
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  <span className="visually-hidden">Loading...</span>
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="mt-2"
+                  style={{ backgroundColor: "red", border: "0px" }}
+                >
+                  I live here
+                </Button>
+              )}
             </Form>
           </Modal.Body>
         </Modal>

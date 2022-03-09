@@ -15,6 +15,8 @@ function MyApp({ Component, pageProps }) {
   const [username, setUsername] = useState(false);
   const [alertText, setAlertText] = useState("");
   const [alertLink, setAlertLink] = useState(false);
+  const [cardSpinner, setCardSpinner] = useState(false);
+
   useEffect(() => {
     if (location) return;
     setTimeout(() => {
@@ -55,6 +57,8 @@ function MyApp({ Component, pageProps }) {
         setAlertLink,
         username,
         setUsername,
+        cardSpinner,
+        setCardSpinner,
       }}
     >
       <Component {...pageProps} />

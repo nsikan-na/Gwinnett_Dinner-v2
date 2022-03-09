@@ -74,7 +74,7 @@ export default function CardPayment() {
               </a>
               <Button
                 style={{ backgroundColor: "red", border: "0px" }}
-                className="mt-2"
+                className="mt-2 myButton"
                 onClick={() => {
                   router.push("/review-order");
                 }}

@@ -10,7 +10,7 @@ import LandingPage from "../components/LandingPage";
 
 export default function Guest() {
   const router = useRouter();
-  const { runningTotal} = useContext(Context);
+  const { runningTotal } = useContext(Context);
   const [showForm, setShowForm] = useState(null);
   const [show, setShow] = useState(true);
 
@@ -101,6 +101,7 @@ export default function Guest() {
                 Back
               </a>
               <Button
+                className="myButton"
                 style={{ backgroundColor: "red", border: "0px" }}
                 variant="primary"
                 onClick={() => {

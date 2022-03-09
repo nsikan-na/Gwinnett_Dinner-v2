@@ -222,7 +222,7 @@ export default function Cart() {
                 <div className="hidden md:block">
                   <Button
                     style={{ backgroundColor: "red", border: "0px" }}
-                    className="mt-2 "
+                    className="mt-2 myButton"
                     variant="primary"
                     onClick={() => {
                       if (!username) {

@@ -10,7 +10,7 @@ export default function Footer() {
   const router = useRouter();
   return (
     <Container
-      className="text-center fixed bottom-0 bg-gray-50 "
+      className="text-center fixed bottom-0 bg-gray-50 pt-2"
     >
       <h6 className="">Gwinnett Dinner {location ? `@ ${location}` : ""}</h6>
     </Container>

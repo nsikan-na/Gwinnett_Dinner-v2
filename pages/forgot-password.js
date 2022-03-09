@@ -118,7 +118,7 @@ export default function ForgotPassword() {
               <Button
                 type="submit"
                 variant="primary"
-                className="mt-2"
+                className="mt-2 myButton"
                 style={{ backgroundColor: "red", border: "0px" }}
               >
                 Reset Login

@@ -43,7 +43,7 @@ export default function NavBar() {
         />
         <div className="my-3">
           <ShoppingCartIcon
-            className="text-red-600 cursor-pointer"
+            className="text-red-600 cursor-pointer link"
             onClick={() => {
               router.push("/cart");
             }}
@@ -65,7 +65,7 @@ export default function NavBar() {
                   e.preventDefault();
                   router.push("/");
                 }}
-                className="text-lg"
+                className="text-lg   link"
               >
                 Our Menu
               </a>
@@ -76,7 +76,7 @@ export default function NavBar() {
                   e.preventDefault();
                   // router.push("/about");
                 }}
-                className="text-lg"
+                className="text-lg link"
               >
                 About Us
               </a>
@@ -87,7 +87,7 @@ export default function NavBar() {
                   router.push("/location");
                   setCart([]);
                 }}
-                className="text-lg"
+                className="text-lg link"
               >
                 Change Location
               </a>
@@ -114,7 +114,7 @@ export default function NavBar() {
                       e.preventDefault();
                       router.push("/sign-up");
                     }}
-                    className="text-lg"
+                    className="text-lg link"
                   >
                     Sign Up
                   </a>
@@ -125,7 +125,7 @@ export default function NavBar() {
                       e.preventDefault();
                       router.push("/sign-in");
                     }}
-                    className="text-lg"
+                    className="text-lg link"
                   >
                     Sign In
                   </a>
@@ -150,14 +150,14 @@ export default function NavBar() {
                       setUsername("");
                       setAlertText(`You have signed out!`);
                     }}
-                    className="text-lg"
+                    className="text-lg link"
                   >
                     Sign Out
                   </a>
                 </>
               )}
               <ShoppingCartIcon
-                className="text-red-600 cursor-pointer"
+                className="text-red-600 cursor-pointer link"
                 onClick={() => {
                   router.push("/cart");
                 }}

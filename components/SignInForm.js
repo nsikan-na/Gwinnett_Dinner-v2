@@ -98,7 +98,11 @@ export default function SignInForm({ from }) {
       ) : (
         ""
       )}
-      <div className={`${error ? "block" : "hidden"} text-red-600`}>
+      <div
+        className={`${error ? "block" : "hidden"} text-red-600 ${
+          from == "GuestModule" ? "text-center" : ""
+        }`}
+      >
         {error}
       </div>
       {spinner ? (
@@ -120,7 +124,7 @@ export default function SignInForm({ from }) {
         <Button
           type="submit"
           variant="primary"
-          className="mt-2"
+          className="mt-2 myButton"
           style={{ backgroundColor: "red", border: "0px" }}
         >
           Sign in!
@@ -141,7 +145,7 @@ export default function SignInForm({ from }) {
           <Button
             type="submit"
             variant="primary"
-            className="mt-2"
+            className="mt-2 myButton"
             style={{ backgroundColor: "red", border: "0px" }}
           >
             Sign in!

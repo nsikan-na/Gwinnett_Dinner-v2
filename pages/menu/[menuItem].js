@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
@@ -145,7 +145,7 @@ const menuItems = [
 ];
 
 export default function MenuItems({ menuItems }) {
-  const { cart, setCart } = useContext(Context);
+  const { cart, setCart, setCardSpinner } = useContext(Context);
   const router = useRouter();
   const index = menuItems.findIndex((item) => {
     return item.title == router.query.menuItem;
@@ -157,7 +157,9 @@ export default function MenuItems({ menuItems }) {
   const [doneError, setDoneError] = useState(false);
   const form = useRef();
   const [error, setError] = useState(false);
-
+  useEffect(() => {
+    setCardSpinner(false);
+  }, []);
   return (
     <Container>
       <Modal
@@ -450,7 +452,7 @@ export default function MenuItems({ menuItems }) {
                 </h6>
 
                 <Button
-                  className=""
+                  className="myButton"
                   type="submit"
                   style={{ backgroundColor: "red", border: "0px" }}
                 >
@@ -459,7 +461,7 @@ export default function MenuItems({ menuItems }) {
               </Form>
             ) : (
               <Button
-                className=" mt-4 "
+                className=" mt-4 myButton"
                 style={{ backgroundColor: "red", border: "0px" }}
                 type="submit"
                 onClick={() => {
@@ -512,7 +514,7 @@ export default function MenuItems({ menuItems }) {
             )
           ) : (
             <Button
-              className=" mt-4"
+              className=" mt-4 myButton"
               type="submit"
               style={{ backgroundColor: "red", border: "0px" }}
               onClick={() => {

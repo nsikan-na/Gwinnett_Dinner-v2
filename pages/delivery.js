@@ -219,6 +219,7 @@ export default function Delivery() {
                   Back
                 </a>
                 <Button
+                  className="myButton"
                   variant="primary"
                   type="submit"
                   style={{ backgroundColor: "red", border: "0px" }}
@@ -285,6 +286,7 @@ export default function Delivery() {
                 <Button
                   variant="primary"
                   type="submit"
+                  className="myButton"
                   style={{ backgroundColor: "red", border: "0px" }}
                 >
                   Submit Order
@@ -293,6 +295,7 @@ export default function Delivery() {
                 <Button
                   variant="primary"
                   type="submit"
+                  className="myButton"
                   style={{ backgroundColor: "red", border: "0px" }}
                 >
                   Continue to Payment
