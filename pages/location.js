@@ -9,8 +9,9 @@ import Spinner from "react-bootstrap/Spinner";
 import LandingPage from "../components/LandingPage";
 import { locationData } from "../data/locations";
 import Image from "next/image";
-
-export default function Location() {
+import Carousel from "react-bootstrap/Carousel";
+import { menuItems } from "../data/menuItems";
+export default function Location({ menuItems }) {
   const [spinner, setSpinner] = useState(false);
   const { setLocation } = useContext(Context);
   const [show, setShow] = useState(false);
@@ -19,6 +20,9 @@ export default function Location() {
   useEffect(() => {
     setShow(true);
   }, []);
+  const carouselItems = menuItems.filter((item) => {
+    return item.location == "all" && item.type == "combo";
+  });
   async function locationFormHandler(e) {
     setSpinner(true);
     const response = await fetch("api/location", {
@@ -47,7 +51,9 @@ export default function Location() {
           <Modal.Header className="">
             <Modal.Title className="text-red-600 w-full">
               <div className="flex justify-between">
-                <h2 className="text-xl">Welcome to Gwinnett Diner!</h2>
+                <h2 className="text-base md:text-xl">
+                  Welcome to Gwinnett Diner!
+                </h2>
                 <div className="">
                   <Image
                     src="/images/cfa.png"
@@ -55,7 +61,6 @@ export default function Location() {
                     height="30%"
                     alt="logo"
                     className=""
-
                   />
                 </div>
               </div>
@@ -64,22 +69,26 @@ export default function Location() {
           <Modal.Body>
             <Container className="">
               <div className=" md:flex md:pb-3 md:w-9/12 md:mx-auto md:justify-center">
-                <Image
-                  src="/images/gwinnett-diner.jpg"
-                  width="400%"
-                  height="400%"
-                  alt="gwinnett dinner pic"
-                  className="rounded-xl"
-                />
+                <Carousel fade>
+                  {carouselItems.map((item) => (
+                    <Carousel.Item key={item.title} interval={5000}>
+                      <Image
+                        src={`/images/gray-${item.img}`}
+                        alt={item.title}
+                        className="rounded-xl"
+                        width="400%"
+                        height="400%"
+                      />
+
+                      <Carousel.Caption className="text-white font-semibold rounded-xl text-lg">
+                        {/* <div className="">{item.title}</div> */}
+                        <p className="">{item.desc}</p>
+                      </Carousel.Caption>
+                    </Carousel.Item>
+                  ))}
+                </Carousel>
               </div>
-              <div className="md:w-10/12 md:flex md:mx-auto indent-10 ">
-                Gwinnett Diner was built in 1975 and has been a staple in the
-                community ever since. Our menu offers something for everybody.
-                Whether you're ordering a multi-course meal or grabbing a drink
-                with a burger and fries at the bar. Gwinnett Diner's lively,
-                casual yet upscale atmosphere makes it perfect for dining with
-                friends, family, clients, and business associates.
-              </div>
+
             </Container>
             <Container className="flex justify-center">
               <Form
@@ -149,4 +158,9 @@ export default function Location() {
       </Container>
     </>
   );
+}
+export async function getServerSideProps() {
+  return {
+    props: { menuItems },
+  };
 }

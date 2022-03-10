@@ -64,7 +64,7 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
               </Button>
             ) : (
               <Button
-              className='myButton'
+                className="myButton"
                 style={{ backgroundColor: "red", border: "0" }}
                 onClick={() => {
                   setCardSpinner(true);
