@@ -43,17 +43,14 @@ export default function ReviewOrder() {
           <Modal.Title>Review Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h5>Total: ${runningTotal}</h5>
           <h5>Estimated Wait Time: 7 minutes</h5>
           <h5>{location}</h5>
           <h5 className="inline">{payment.method} </h5>
           <h5 className="inline">{`${
             payment.type === "Card" ? `(Card)` : "(Cash)"
           }`}</h5>
-          {username ? (
-            <h6 className="text-lg">3% discount applied for being signed in</h6>
-          ) : (
-            ""
-          )}
+
           <Container className="mt-3">
             {cart.map((item, index) => {
               return (
