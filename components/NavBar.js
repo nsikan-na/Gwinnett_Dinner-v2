@@ -87,7 +87,7 @@ export default function NavBar() {
                       e.preventDefault();
                       router.push("/sign-up");
                     }}
-                    className="text-lg link"
+                    className="text-xl link"
                   >
                     Sign Up
                   </a>
@@ -98,7 +98,7 @@ export default function NavBar() {
                       e.preventDefault();
                       router.push("/sign-in");
                     }}
-                    className="text-lg link"
+                    className="text-xl link"
                   >
                     Sign In
                   </a>
@@ -111,7 +111,7 @@ export default function NavBar() {
                     onClick={(e) => {
                       e.preventDefault();
                     }}
-                    className="text-lg no-underline"
+                    className="text-xl no-underline "
                   >
                     Welcome {username}!
                   </a>
@@ -123,7 +123,7 @@ export default function NavBar() {
                       setUsername("");
                       setAlertText(`You have signed out!`);
                     }}
-                    className="text-lg link"
+                    className="text-xl link "
                   >
                     Sign Out
                   </a>
@@ -136,7 +136,7 @@ export default function NavBar() {
                   router.push("/location");
                   setCart([]);
                 }}
-                className="text-lg link"
+                className="text-xl link "
               >
                 Change Location
               </a>
