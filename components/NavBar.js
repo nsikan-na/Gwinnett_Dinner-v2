@@ -78,17 +78,6 @@ export default function NavBar() {
               </h1>
             </div>
             <div className="space-x-5 z-20">
-              <a
-                style={{ color: "red" }}
-                href="#"
-                onClick={() => {
-                  router.push("/location");
-                  setCart([]);
-                }}
-                className="text-lg link"
-              >
-                Change Location
-              </a>
               {!username ? (
                 <>
                   <a
@@ -140,6 +129,17 @@ export default function NavBar() {
                   </a>
                 </>
               )}
+              <a
+                style={{ color: "red" }}
+                href="#"
+                onClick={() => {
+                  router.push("/location");
+                  setCart([]);
+                }}
+                className="text-lg link"
+              >
+                Change Location
+              </a>
               <ShoppingCartIcon
                 className="text-red-600 cursor-pointer link"
                 onClick={() => {

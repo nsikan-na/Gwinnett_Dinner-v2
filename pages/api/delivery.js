@@ -5,7 +5,7 @@ export default async function handler(req, res) {
       if (!zipCode) {
         return res.json({
           success: false,
-          message: "Please enter a valid zipCode!",
+          message: "Please enter a valid Zip Code!",
         });
       }
       if (isNaN(zipCode)) {
