@@ -42,16 +42,6 @@ export default function MobileNav() {
         </Modal.Header>
         <Modal.Body className="pl-4">
           <div className=" flex flex-col pt-4 space-y-14 pb-10">
-            <Link href="/" passHref>
-              <div className="text-red-600 text-2xl font-semibold cursor-pointer link">
-                Our Menu
-              </div>
-            </Link>
-            <Link href="#" passHref>
-              <div className="text-red-600 text-2xl font-semibold cursor-pointer link">
-                About Us
-              </div>
-            </Link>
             <Link
               passHref
               href="/location"

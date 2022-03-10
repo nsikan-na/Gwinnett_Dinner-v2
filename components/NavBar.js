@@ -57,29 +57,27 @@ export default function NavBar() {
       >
         <Container className="bg-gray-50 hidden lg:block py-3">
           <Container className="flex items-center justify-between">
-            <div className="space-x-5 z-20">
-              <a
-                style={{ color: "red" }}
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
+            <div className="flex">
+              <Image
+                src="/images/cfa.png"
+                width="90%"
+                height="50%"
+                alt="logo"
+                className="scale-75 z-20 cursor-pointer"
+                onClick={() => {
                   router.push("/");
                 }}
-                className="text-lg   link"
-              >
-                Our Menu
-              </a>
-              <a
-                style={{ color: "red" }}
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  // router.push("/about");
+              />
+              <h1
+                className="text-red-600 cursor-pointer "
+                onClick={() => {
+                  router.push("/");
                 }}
-                className="text-lg link"
               >
-                About Us
-              </a>
+                Gwinnett Diner
+              </h1>
+            </div>
+            <div className="space-x-5 z-20">
               <a
                 style={{ color: "red" }}
                 href="#"
@@ -91,20 +89,6 @@ export default function NavBar() {
               >
                 Change Location
               </a>
-            </div>
-            <div className="absolute flex w-11/12 justify-center ">
-              <Image
-                src="/images/cfa.png"
-                width="100%"
-                height="60%"
-                alt="logo"
-                className="scale-75 z-20 cursor-pointer"
-                onClick={() => {
-                  router.push("/");
-                }}
-              />
-            </div>
-            <div className="space-x-5 z-20">
               {!username ? (
                 <>
                   <a
