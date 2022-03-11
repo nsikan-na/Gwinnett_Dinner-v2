@@ -87,7 +87,7 @@ export default function NavBar() {
                       e.preventDefault();
                       router.push("/sign-up");
                     }}
-                    className="text-xl link"
+                    className="text-xl link no-underline"
                   >
                     Sign Up
                   </a>
@@ -98,7 +98,7 @@ export default function NavBar() {
                       e.preventDefault();
                       router.push("/sign-in");
                     }}
-                    className="text-xl link"
+                    className="text-xl link no-underline"
                   >
                     Sign In
                   </a>
@@ -123,7 +123,7 @@ export default function NavBar() {
                       setUsername("");
                       setAlertText(`You have signed out!`);
                     }}
-                    className="text-xl link "
+                    className="text-xl link no-underline"
                   >
                     Sign Out
                   </a>
@@ -136,30 +136,17 @@ export default function NavBar() {
                   router.push("/location");
                   setCart([]);
                 }}
-                className="text-xl link "
+                className="text-xl link no-underline"
               >
                 Change Location
               </a>
               <ShoppingCartIcon
-                className="text-red-600 cursor-pointer link"
+                className="text-red-600 cursor-pointer link "
                 onClick={() => {
                   router.push("/cart");
                 }}
               />
             </div>
-            {/* {!username ? (
-                <></>
-              ) : (
-                <p
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                  className="mr-4"
-                >
-                  Welcome {username}!
-                </p>
-              )} */}
           </Container>
         </Container>
         {alertText ? (
