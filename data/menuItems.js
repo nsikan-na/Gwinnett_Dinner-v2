@@ -101,7 +101,7 @@ export const menuItems = [
   {
     title: "Ice Cream",
     price: "2.50",
-    desc: `In house gluten-free sorbet (Lime, Orange Pineapple and Rainbow) and ice cream (Butter Pecan, Chocolate, Banana Peanut Butter Chip, Coconut Carmel, Chocolate salted fudge, Strawberry, and Vanilla).`,
+    desc: `In house gluten-free sorbet (Lime, Orange Pineapple and Rainbow) and ice cream (Chocolate, Strawberry, and Vanilla).`,
     type: "dessert",
     img: "ice_cream.jpg",
     location: "all",
