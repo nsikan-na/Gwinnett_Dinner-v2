@@ -12,7 +12,7 @@ export default function Footer() {
     <Container
       className="text-center fixed bottom-0 bg-gray-50 pt-2"
     >
-      <h6 className="">Gwinnett Dinner {location ? `@ ${location}` : ""}</h6>
+      <h6 className="">Gwinnett Diner {location ? `@ ${location}` : ""}</h6>
     </Container>
   );
 }
