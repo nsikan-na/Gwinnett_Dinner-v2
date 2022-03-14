@@ -27,9 +27,9 @@ export default function MobileNav() {
                 />
               </div>
               <Image
-                src="/images/cfa.png"
-                width="70%"
-                height="40%"
+                src="/images/logo.jpg"
+                width="50%"
+                height="60%"
                 alt="logo"
                 className="scale-75 cursor-pointer"
                 onClick={() => {

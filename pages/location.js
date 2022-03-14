@@ -50,15 +50,15 @@ export default function Location({ menuItems }) {
         >
           <Modal.Header className="">
             <Modal.Title className="text-red-600 w-full">
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <h2 className="text-base md:text-xl">
                   Welcome to Gwinnett Diner!
                 </h2>
                 <div className="">
                   <Image
-                    src="/images/cfa.png"
-                    width="50%"
-                    height="30%"
+                    src="/images/logo.jpg"
+                    width="40%"
+                    height="50%"
                     alt="logo"
                     className=""
                   />
@@ -146,7 +146,7 @@ export default function Location({ menuItems }) {
                       className="mt-2"
                       style={{ backgroundColor: "red", border: "0px" }}
                     >
-                      I live here
+                     Choose this location!
                     </Button>
                   )}
                 </div>

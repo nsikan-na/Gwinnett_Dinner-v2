@@ -32,11 +32,11 @@ export default function NavBar() {
           }}
         />
         <Image
-          src="/images/cfa.png"
-          width="100%"
-          height="10%"
+          src="/images/logo.jpg"
+          width="50%"
+          height="60%"
           alt="logo"
-          className="scale-50 cursor-pointer"
+          className="scale-75 cursor-pointer"
           onClick={() => {
             router.push("/");
           }}
@@ -59,17 +59,17 @@ export default function NavBar() {
           <Container className="flex items-center justify-between">
             <div className="flex">
               <Image
-                src="/images/cfa.png"
-                width="90%"
+                src="/images/logo.jpg"
+                width="50%"
                 height="50%"
                 alt="logo"
-                className="scale-75 z-20 cursor-pointer"
+                className="scale-100 z-20 cursor-pointer "
                 onClick={() => {
                   router.push("/");
                 }}
               />
               <h1
-                className="text-red-600 cursor-pointer "
+                className="text-red-600 cursor-pointer ml-2"
                 onClick={() => {
                   router.push("/");
                 }}
