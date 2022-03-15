@@ -21,6 +21,8 @@ export default function ReviewOrder() {
     location,
     setAlertText,
     username,
+    subtotal,
+    preTax
   } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -43,13 +45,16 @@ export default function ReviewOrder() {
           <Modal.Title>Review Order</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h5>Total: ${runningTotal}</h5>
-          <h5>Estimated Wait Time: 7 minutes</h5>
-          <h5>{location}</h5>
-          <h5 className="inline">{payment.method} </h5>
-          <h5 className="inline">{`${
-            payment.type === "Card" ? `(Card)` : "(Cash)"
-          }`}</h5>
+          <h6>Estimated Wait Time: 7 minutes</h6>
+          <h6 className="">
+            {payment.method == "Pick-Up" ? "Pick-Up at" : "Delivery from"}{" "}
+            {location}
+          </h6>
+          <h6 className="">{`${
+            payment.type != "Cash"
+              ? `Paid with Card!`
+              : "Paying with cash at store!"
+          }`}</h6>
 
           <Container className="mt-3">
             {cart.map((item, index) => {
@@ -83,6 +88,65 @@ export default function ReviewOrder() {
                 </Row>
               );
             })}
+          </Container>
+          <Container className="mt-3">
+            <Row className="">
+              <Col className=''>
+                <h6>Items Total</h6>
+              </Col>
+              <Col className=''>
+                <h6>${subtotal}</h6>
+              </Col>
+            </Row>
+
+            {username ? (
+              <Row className="">
+                <Col className=''>
+                  <h6>Signed in discount Applied (3%)</h6>
+                </Col>
+                <Col className=''>
+                  <h6>-${(subtotal * 0.03).toFixed(2)}</h6>
+                </Col>
+              </Row>
+            ) : (
+              ""
+            )}
+            {payment.method == "Pick-Up" ? (
+              ""
+            ) : (
+              <Row className="">
+                <Col className=''>
+                  <h6>Delivery Fee</h6>
+                </Col>
+                <Col className=''>
+                  <h6>$6.00</h6>
+                </Col>
+              </Row>
+            )}
+            
+            <Row className="totalRow">
+              <Col className=''><h6>Subtotal</h6>
+              </Col>
+              <Col>
+                <h6>${preTax}</h6>
+              </Col>
+            </Row>
+            <Row className="totalRow">
+              <Col className=''>
+                <h6>Tax (6%)</h6>
+              </Col>
+              <Col>
+                <h6>${(preTax * 0.06).toFixed(2)}</h6>
+              </Col>
+            </Row>
+            <Row className="totalRow">
+              <Col className=''>
+                <h5>Total</h5>
+              </Col>
+              <Col className=''>
+                <h5>${runningTotal}</h5>
+              </Col>
+            </Row>
             <div className="flex justify-around items-center">
               <a
                 href="#"

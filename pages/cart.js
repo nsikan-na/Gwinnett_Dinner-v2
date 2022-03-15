@@ -15,7 +15,7 @@ import Link from "next/link";
 import DeleteIcon from "@mui/icons-material/Delete";
 export default function Cart() {
   const router = useRouter();
-  const { cart, runningTotal, setCart, username } = useContext(Context);
+  const { cart, runningTotal, setCart, username,subtotal } = useContext(Context);
   const [show, setShow] = useState(true);
   return (
     <Container>
@@ -39,7 +39,7 @@ export default function Cart() {
             <h5>Your cart is empty!</h5>
           ) : (
             <Container>
-              <h4>Subtotal-${runningTotal}</h4>
+            
               <Container className="cart">
                 {cart.map((item, index) => {
                   return (
@@ -181,6 +181,14 @@ export default function Cart() {
                   );
                 })}
               </Container>
+              <Row className='mt-3 '>
+              <Col className='flex justify-center'>
+                <h5>Subtotal</h5>
+              </Col>
+              <Col>
+                <h5 className='flex justify-center'>${subtotal}</h5>
+              </Col>
+            </Row>
               <Container className="flex justify-around items-center ">
                 <a
                   href="#"

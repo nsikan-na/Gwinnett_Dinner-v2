@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
-  const [location, setLocation] = useState("");
-  // const [location, setLocation] = useState("Lawrenceville");
+  // const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("Lawrenceville");
 
   const [cart, setCart] = useState([]);
   const [runningTotal, setRunningTotal] = useState(0);
@@ -16,7 +16,8 @@ function MyApp({ Component, pageProps }) {
   const [alertText, setAlertText] = useState("");
   const [alertLink, setAlertLink] = useState(false);
   const [cardSpinner, setCardSpinner] = useState(false);
-
+  const [subtotal, setSubtotal] = useState(0);
+  const [preTax, setPreTax] = useState(0);
   useEffect(() => {
     if (location) return;
     setTimeout(() => {
@@ -26,20 +27,23 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);
-    const deliveryFee = payment.method === "Delivery" ? 6 : 0;
-    const discount = username ? 0.97 : 1;
-    setRunningTotal(
-      (
-        cart.reduce((total, item) => {
-          return total + item.price * item.quantity;
-        }, 0) *
-          discount *
-          1.06 +
-        deliveryFee
-      ).toFixed(2)
-    );
+
+    const sub = cart
+      .reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0)
+      .toFixed(2);
+    setSubtotal(sub);
+    const discount = username ? (0.97 * sub).toFixed(2) : (1 * sub).toFixed(2);
+    const deliveryFee =
+      payment.method === "Delivery" ? 6 + +discount : 0 + +discount;
+      setPreTax(deliveryFee);
+    const tax = (deliveryFee * 1.06).toFixed(2);
+    setRunningTotal(tax);
+    console.log(sub, discount, deliveryFee, tax);
   }, [cart, setRunningTotal, payment, username]);
 
+  useEffect(() => {}, [runningTotal]);
   return (
     <Context.Provider
       value={{
@@ -59,6 +63,10 @@ function MyApp({ Component, pageProps }) {
         setUsername,
         cardSpinner,
         setCardSpinner,
+        subtotal,
+        setSubtotal,
+        preTax,
+        setPreTax,
       }}
     >
       <Component {...pageProps} />
