@@ -90,7 +90,7 @@ export default function ReviewOrder() {
             })}
           </Container>
           <Container className="mt-3">
-            <Row className="">
+            <Row className="totalRow">
               <Col className=''>
                 <h6>Items Total</h6>
               </Col>
@@ -100,7 +100,7 @@ export default function ReviewOrder() {
             </Row>
 
             {username ? (
-              <Row className="">
+              <Row className="totalRow">
                 <Col className=''>
                   <h6>Signed in discount Applied (3%)</h6>
                 </Col>
@@ -114,7 +114,7 @@ export default function ReviewOrder() {
             {payment.method == "Pick-Up" ? (
               ""
             ) : (
-              <Row className="">
+              <Row className="totalRow">
                 <Col className=''>
                   <h6>Delivery Fee</h6>
                 </Col>
