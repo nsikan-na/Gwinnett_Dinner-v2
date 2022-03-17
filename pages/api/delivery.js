@@ -8,18 +8,6 @@ export default async function handler(req, res) {
           message: "Please enter a valid Zip Code!",
         });
       }
-      if (isNaN(zipCode)) {
-        return res.json({
-          success: false,
-          message: "Zip Code must be a number!",
-        });
-      }
-      if (zipCode.length != 5) {
-        return res.json({
-          success: false,
-          message: "Zip Code must be 5 characters long!",
-        });
-      }
       if (
         !locationZipCodes.some((location) => {
           return location == zipCode;
