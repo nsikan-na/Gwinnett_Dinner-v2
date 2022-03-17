@@ -56,12 +56,19 @@ export default function Location({ menuItems }) {
                 </h2>
                 <div className="">
                   <Image
+                    src="/images/logo2.png"
+                    width="60%"
+                    height="50%"
+                    alt="logo"
+                    className=""
+                  />
+                  {/* <Image
                     src="/images/logo.jpg"
                     width="40%"
                     height="50%"
                     alt="logo"
                     className=""
-                  />
+                  /> */}
                 </div>
               </div>
             </Modal.Title>

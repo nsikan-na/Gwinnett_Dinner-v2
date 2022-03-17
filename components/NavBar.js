@@ -32,6 +32,16 @@ export default function NavBar() {
           }}
         />
         <Image
+          src="/images/logo2.png"
+          width="50%"
+          height="40%"
+          alt="logo"
+          className="py-2"
+          onClick={() => {
+            router.push("/");
+          }}
+        />
+        {/* <Image
           src="/images/logo.jpg"
           width="50%"
           height="60%"
@@ -40,7 +50,7 @@ export default function NavBar() {
           onClick={() => {
             router.push("/");
           }}
-        />
+        /> */}
         <div className="my-3">
           <ShoppingCartIcon
             className="text-red-600 cursor-pointer link"
@@ -58,12 +68,22 @@ export default function NavBar() {
         <Container className="bg-gray-50 hidden lg:block py-3">
           <Container className="flex items-center justify-between">
             <div className="flex">
-              <Image
+              {/* <Image
                 src="/images/logo.jpg"
                 width="50%"
                 height="50%"
                 alt="logo"
                 className="scale-100 z-20 cursor-pointer "
+                onClick={() => {
+                  router.push("/");
+                }}
+              /> */}
+              <Image
+                src="/images/logo2.png"
+                width="60%"
+                height="50%"
+                alt="logo"
+                className=""
                 onClick={() => {
                   router.push("/");
                 }}
@@ -151,7 +171,7 @@ export default function NavBar() {
         </Container>
         {alertText ? (
           <>
-            <div className="pb-3">
+            <div className="pb-14 -mt-12 lg:-mt-0 lg:pb-4">
               <AlertSuccess />
             </div>
           </>

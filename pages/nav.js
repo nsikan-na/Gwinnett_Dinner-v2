@@ -26,12 +26,22 @@ export default function MobileNav() {
                   onClick={() => router.push("/")}
                 />
               </div>
-              <Image
+              {/* <Image
                 src="/images/logo.jpg"
                 width="50%"
                 height="60%"
                 alt="logo"
                 className="scale-75 cursor-pointer"
+                onClick={() => {
+                  router.push("/");
+                }}
+              /> */}
+              <Image
+                src="/images/logo2.png"
+                width="50%"
+                height="50%"
+                alt="logo"
+                className=""
                 onClick={() => {
                   router.push("/");
                 }}
