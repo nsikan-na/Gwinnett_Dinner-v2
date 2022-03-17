@@ -12,7 +12,7 @@ export default function AlertSuccess() {
     setTimeout(() => {
       setAlertText("");
       setAlertLink(false);
-    }, 94500);
+    }, 4500);
   }, [alertText,setAlertLink,setAlertText]);
   return (
     <Alert
