@@ -70,14 +70,14 @@ export default function CardPayment() {
                   className="bg-white w-6/1"
                   type="text"
                   name="expireDate"
-                  value="42/42"
+                  value="04/24"
                   readOnly
                 />
                 <Form.Control
                   className="bg-white w-6/12"
                   type="text"
                   name="cvc"
-                  value="424"
+                  value="242"
                   readOnly
                 />
               </div>
