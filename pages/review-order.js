@@ -22,7 +22,8 @@ export default function ReviewOrder() {
     setAlertText,
     username,
     subtotal,
-    preTax
+    preTax,
+    tip,
   } = useContext(Context);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -91,20 +92,20 @@ export default function ReviewOrder() {
           </Container>
           <Container className="mt-3">
             <Row className="totalRow">
-              <Col className=''>
+              <Col className="">
                 <h6>Items Total</h6>
               </Col>
-              <Col className=''>
+              <Col className="">
                 <h6>${subtotal}</h6>
               </Col>
             </Row>
 
             {username ? (
               <Row className="totalRow">
-                <Col className=''>
+                <Col className="">
                   <h6>Signed in discount Applied (3%)</h6>
                 </Col>
-                <Col className=''>
+                <Col className="">
                   <h6>-${(subtotal * 0.03).toFixed(2)}</h6>
                 </Col>
               </Row>
@@ -115,35 +116,48 @@ export default function ReviewOrder() {
               ""
             ) : (
               <Row className="totalRow">
-                <Col className=''>
+                <Col className="">
                   <h6>Delivery Fee</h6>
                 </Col>
-                <Col className=''>
+                <Col className="">
                   <h6>$6.00</h6>
                 </Col>
               </Row>
             )}
-            
+
             <Row className="totalRow">
-              <Col className=''><h6>Subtotal</h6>
+              <Col className="">
+                <h6>Subtotal</h6>
               </Col>
               <Col>
                 <h6>${preTax}</h6>
               </Col>
             </Row>
             <Row className="totalRow">
-              <Col className=''>
+              <Col className="">
                 <h6>Tax (6%)</h6>
               </Col>
               <Col>
                 <h6>${(preTax * 0.06).toFixed(2)}</h6>
               </Col>
             </Row>
+            {tip ? (
+              <Row className="totalRow">
+                <Col className="">
+                  <h6>Gratuity</h6>
+                </Col>
+                <Col className="">
+                  <h6>${tip}</h6>
+                </Col>
+              </Row>
+            ) : (
+              ""
+            )}
             <Row className="totalRow">
-              <Col className=''>
+              <Col className="">
                 <h5>Total</h5>
               </Col>
-              <Col className=''>
+              <Col className="">
                 <h5>${runningTotal}</h5>
               </Col>
             </Row>

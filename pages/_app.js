@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
-  const [location, setLocation] = useState("");
-  // const [location, setLocation] = useState("Lawrenceville");
+  // const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("Lawrenceville");
 
   const [cart, setCart] = useState([]);
   const [runningTotal, setRunningTotal] = useState(0);
@@ -18,6 +18,7 @@ function MyApp({ Component, pageProps }) {
   const [cardSpinner, setCardSpinner] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [preTax, setPreTax] = useState(0);
+  const [tip, setTip] = useState(0);
   useEffect(() => {
     if (location) return;
     setTimeout(() => {
@@ -37,11 +38,10 @@ function MyApp({ Component, pageProps }) {
     const discount = username ? (0.97 * sub).toFixed(2) : (1 * sub).toFixed(2);
     const deliveryFee =
       payment.method === "Delivery" ? 6 + +discount : 0 + +discount;
-      setPreTax(deliveryFee);
-    const tax = (deliveryFee * 1.06).toFixed(2);
+    setPreTax(deliveryFee);
+    const tax = (deliveryFee * 1.06 + Number(tip)).toFixed(2);
     setRunningTotal(tax);
-    console.log(sub, discount, deliveryFee, tax);
-  }, [cart, setRunningTotal, payment, username]);
+  }, [cart, setRunningTotal, payment, username, tip]);
 
   useEffect(() => {}, [runningTotal]);
   return (
@@ -67,6 +67,8 @@ function MyApp({ Component, pageProps }) {
         setSubtotal,
         preTax,
         setPreTax,
+        tip,
+        setTip,
       }}
     >
       <Component {...pageProps} />

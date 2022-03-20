@@ -13,8 +13,15 @@ import { locationData } from "../data/locations";
 
 export default function Delivery() {
   const router = useRouter();
-  const { setPayment, runningTotal, location, payment, username } =
-    useContext(Context);
+  const {
+    setPayment,
+    runningTotal,
+    location,
+    payment,
+    username,
+    subtotal,
+    setTip,
+  } = useContext(Context);
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(null);
   const [paymentForm, setPaymentForm] = useState(null);
@@ -44,6 +51,7 @@ export default function Delivery() {
         state: e.target.state.value,
         locationZipCodes: locationZipCodes[0].postalCodes,
         curLocation: location,
+        tip: e.target.tip.value,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -52,6 +60,9 @@ export default function Delivery() {
     const data = await response.json();
     setSpinner(false);
     if (!data.success) return setError(data.message);
+    if (e.target.tip.value) {
+      setTip(Number(e.target.tip.value).toFixed(2));
+    }
     router.push("/card-payment");
   }
 
@@ -189,10 +200,21 @@ export default function Delivery() {
 
               <Form.Group as={Col}>
                 <Form.Label>Zip Code*</Form.Label>
-
                 <Form.Control name="zipCode" />
               </Form.Group>
             </Row>
+            <Row>
+              <Form.Group>
+                <Form.Label className="w-full">
+                  <div className="text-center text-red-600">
+                    Tip your driver? (15% of ${(subtotal - 6).toFixed(2)} is $
+                    {((subtotal - 6).toFixed(2) * 0.15).toFixed(2)})
+                  </div>
+                </Form.Label>
+                <Form.Control name="tip" placeholder={`Optional`} className="" />
+              </Form.Group>
+            </Row>
+            <br />
             {error ? (
               <div className="text-red-600 text-center my-3">{error}</div>
             ) : (
