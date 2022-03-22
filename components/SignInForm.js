@@ -82,22 +82,6 @@ export default function SignInForm({ from }) {
       ) : (
         ""
       )}
-      {failedLogin && from !== "GuestModule" ? (
-        <>
-          <a
-            href="#"
-            className="text-red-600 link"
-            onClick={() => {
-              router.push("/forgot-password");
-            }}
-          >
-            Forgot Password
-          </a>
-          <br />
-        </>
-      ) : (
-        ""
-      )}
       <div
         className={`${error ? "block" : "hidden"} text-red-600 ${
           from == "GuestModule" ? "text-center" : ""

@@ -1,12 +1,14 @@
 export const menuItems = [
   {
-    title: "Hot Dog & Chips",
-    price: "6.99",
-    desc: `Assorted(beef,sausage,and vegetarian) gourmet hotdogs`,
+    title: "Steak & 2 Sides",
+    price: "9.99",
+    desc: `New York Style Steak`,
     type: "combo",
-    img: "hot_dog_&_chips.jpg",
+
+    img: "steak.jpg",
     location: "Snellville",
-    sides: 0,
+    sides: 2,
+    variants: ["Rare", "Medium Rare", "Medium", "Medium Well", "Well"],
   },
   {
     title: "Cheesecake",
@@ -18,22 +20,13 @@ export const menuItems = [
   },
 
   {
-    title: "Fried Shrimp & Fries",
-    price: "7.99",
-    desc: `Beer battered fried shrimp with seasoned fries`,
-    type: "combo",
-    img: "fried_shrimp_&_fries.jpg",
-    location: "Peachtree Corners",
-    sides: 0,
-  },
-  {
     title: "Grilled Shrimp & 2 Sides",
     price: "7.99",
     desc: `Grilled Garlic Shrimp served with fresh parsley and olive oil`,
     type: "combo",
 
     img: "grilled_shrimp.jpg",
-    location: "Peachtree Corners",
+    location: "Snellville",
     sides: 2,
   },
   {
@@ -42,26 +35,16 @@ export const menuItems = [
     desc: `Freshly baked warm peach cobbler`,
     type: "dessert",
     img: "cobblor.jpg",
-    location: "Peachtree Corners",
+    location: "Snellville",
   },
-  {
-    title: "Steak & 2 Sides",
-    price: "9.99",
-    desc: `New York Style Steak`,
-    type: "combo",
 
-    img: "steak.jpg",
-    location: "Lawrenceville",
-    sides: 2,
-    variants: ["Rare", "Medium Rare", "Medium", "Medium Well", "Well"],
-  },
   {
     title: "Mashed Potatoes",
     price: "5.99",
     desc: `Garlic mashed potatoes`,
     type: "side",
     img: "mashed_potatoes.jpg",
-    location: "Lawrenceville",
+    location: "Snellville",
   },
   {
     title: "Pie",
@@ -69,7 +52,7 @@ export const menuItems = [
     desc: `In house Apple, Peach, Cherry (made with fresh fruit) and Pecan pies.`,
     type: "dessert",
     img: "pie.jpg",
-    location: "Lawrenceville",
+    location: "Snellville",
   },
   {
     title: "Chicken & 2 Sides",
@@ -97,6 +80,24 @@ export const menuItems = [
     img: "burger.jpg",
     location: "all",
     sides: 1,
+  },
+  {
+    title: "Hot Dog & Chips",
+    price: "6.99",
+    desc: `Assorted(beef,sausage,and vegetarian) gourmet hotdogs`,
+    type: "combo",
+    img: "hot_dog_&_chips.jpg",
+    location: "Snellville",
+    sides: 0,
+  },
+  {
+    title: "Fried Shrimp & Fries",
+    price: "7.99",
+    desc: `Beer battered fried shrimp with seasoned fries`,
+    type: "combo",
+    img: "fried_shrimp_&_fries.jpg",
+    location: "Snellville",
+    sides: 0,
   },
   {
     title: "Ice Cream",

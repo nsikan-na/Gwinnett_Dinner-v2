@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
-  const [location, setLocation] = useState("");
-  // const [location, setLocation] = useState("Lawrenceville");
+  // const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("Snellville");
 
   const [cart, setCart] = useState([]);
   const [runningTotal, setRunningTotal] = useState(0);
@@ -19,12 +19,6 @@ function MyApp({ Component, pageProps }) {
   const [subtotal, setSubtotal] = useState(0);
   const [preTax, setPreTax] = useState(0);
   const [tip, setTip] = useState(0);
-  useEffect(() => {
-    if (location) return;
-    setTimeout(() => {
-      router.push("/location");
-    }, 750);
-  }, [location]);
 
   useEffect(() => {
     if (cart.length === 0) return setRunningTotal(0);

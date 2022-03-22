@@ -31,17 +31,8 @@ export default function NavBar() {
             router.push("/nav");
           }}
         />
+
         <Image
-          src="/images/logo2.png"
-          width="50%"
-          height="40%"
-          alt="logo"
-          className="py-2"
-          onClick={() => {
-            router.push("/");
-          }}
-        />
-        {/* <Image
           src="/images/logo.jpg"
           width="50%"
           height="60%"
@@ -50,7 +41,7 @@ export default function NavBar() {
           onClick={() => {
             router.push("/");
           }}
-        /> */}
+        />
         <div className="my-3">
           <ShoppingCartIcon
             className="text-red-600 cursor-pointer link"
@@ -68,7 +59,7 @@ export default function NavBar() {
         <Container className="bg-gray-50 hidden lg:block py-3">
           <Container className="flex items-center justify-between">
             <div className="flex">
-              {/* <Image
+              <Image
                 src="/images/logo.jpg"
                 width="50%"
                 height="50%"
@@ -77,17 +68,8 @@ export default function NavBar() {
                 onClick={() => {
                   router.push("/");
                 }}
-              /> */}
-              <Image
-                src="/images/logo2.png"
-                width="60%"
-                height="50%"
-                alt="logo"
-                className=""
-                onClick={() => {
-                  router.push("/");
-                }}
               />
+              
               <h1
                 className="text-red-600 cursor-pointer ml-2"
                 onClick={() => {
@@ -149,17 +131,6 @@ export default function NavBar() {
                   </a>
                 </>
               )}
-              <a
-                style={{ color: "red" }}
-                href="#"
-                onClick={() => {
-                  router.push("/location");
-                  setCart([]);
-                }}
-                className="text-xl link no-underline"
-              >
-                Change Location
-              </a>
               <ShoppingCartIcon
                 className="text-red-600 cursor-pointer link "
                 onClick={() => {

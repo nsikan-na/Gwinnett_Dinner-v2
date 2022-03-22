@@ -24,14 +24,8 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
             setViewDesc(false);
           }}
         >
-          {viewDesc ? (
-            <div className="hidden lg:flex pl-8 items-center absolute bg-gray-100 bg-opacity-50 w-full h-full text-xl ">
-              {desc}
-            </div>
-          ) : (
-            ""
-          )}
-          <Card.Img
+        
+          <Image
             alt={title}
             width="300%"
             height="300%"
@@ -44,7 +38,7 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
             <Card.Title className="text-red-600">{title}</Card.Title>
           </div>
           <Card.Text>${price}</Card.Text>
-          <p className="lg:hidden">{desc}</p>
+          <p >{desc}</p>
 
           <Link type="submit" className="" href={`/menu/${title}`} passHref>
             {cardSpinner ? (

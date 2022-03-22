@@ -23,10 +23,13 @@ export default function MenuItems({ menuItems }) {
   const [doneError, setDoneError] = useState(false);
   const form = useRef();
   const [error, setError] = useState(false);
-  const locationSideItems =
-    location == "Lawrenceville"
-      ? [" Fries", " Broccoli", " Pasta & Bread", " Mashed Potatoes"]
-      : [" Fries", " Broccoli", " Pasta & Bread"];
+  const locationSideItems = [
+    " Fries",
+    " Broccoli",
+    " Pasta & Bread",
+    " Mashed Potatoes",
+  ];
+
   useEffect(() => {
     setCardSpinner(false);
   }, []);

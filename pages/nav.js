@@ -26,7 +26,7 @@ export default function MobileNav() {
                   onClick={() => router.push("/")}
                 />
               </div>
-              {/* <Image
+              <Image
                 src="/images/logo.jpg"
                 width="50%"
                 height="60%"
@@ -35,41 +35,14 @@ export default function MobileNav() {
                 onClick={() => {
                   router.push("/");
                 }}
-              /> */}
-              <Image
-                src="/images/logo2.png"
-                width="50%"
-                height="50%"
-                alt="logo"
-                className=""
-                onClick={() => {
-                  router.push("/");
-                }}
               />
+
               <div></div>
             </div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="pl-4">
-          <div className=" flex flex-col pt-4 space-y-14 pb-10">
-            <Link
-              passHref
-              href="/location"
-              onClick={() => {
-                router.push("/location");
-                setCart([]);
-              }}
-            >
-              <div className="text-red-600 text-2xl font-semibold cursor-pointer link">
-                {" "}
-                Change Location
-              </div>
-            </Link>
-          </div>
-          <div
-            className=" bg-gray-200 mb-4"
-            style={{ paddingTop: "1px" }}
-          ></div>
+
           <div style={{ border: "0px" }} className={`${"flex space-x-14"}`}>
             {!username ? (
               <>
