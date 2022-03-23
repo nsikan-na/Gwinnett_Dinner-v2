@@ -27,7 +27,7 @@ export default function MobileNav() {
                 />
               </div>
               <Image
-                src="/images/logo.jpg"
+                src="/images/logo.png"
                 width="50%"
                 height="60%"
                 alt="logo"

@@ -33,7 +33,7 @@ export default function NavBar() {
         />
 
         <Image
-          src="/images/logo.jpg"
+          src="/images/logo.png"
           width="50%"
           height="60%"
           alt="logo"
@@ -60,7 +60,7 @@ export default function NavBar() {
           <Container className="flex items-center justify-between">
             <div className="flex">
               <Image
-                src="/images/logo.jpg"
+                src="/images/logo.png"
                 width="50%"
                 height="50%"
                 alt="logo"
