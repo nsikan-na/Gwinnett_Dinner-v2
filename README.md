@@ -5,7 +5,8 @@
 This is a capstone project completed for my web design & development degree at [Gwinnett Technical College] (https://gwinnetttech.edu/). I work with 7 other student to complete the assignment before our given deadline. We were divider into 3 groups,designers,developers,and testers, based off our strengths. I was a developer. I've alter the orgininal project slightly but the orginal can be found at [here](https://gwinnett-diner.vercel.app/).
 
 ## Assignment
-[CIST_2950_-_Course_project (7).pdf](https://github.com/nsikan-na/Gwinnett_Dinner-v2/files/8337593/CIST_2950_-_Course_project.7.pdf)
+[Gwinnet_Diner_Requirements.pdf](https://github.com/nsikan-na/Gwinnett_Dinner-v2/files/8337603/Gwinnet_Diner_Requirements.pdf)
+
 
 ## Project Focus
 
@@ -26,6 +27,5 @@ This is a capstone project completed for my web design & development degree at [
 - Scrum Development
 - Agile Development
 
-## 
 
 
