@@ -14,8 +14,8 @@ This is a capstone project completed for my web design & development degree at [
 - Turn a psd into a website
 - Manage state using React's context api
 - Validate user input
-- Work on a team complete website before deadline (I was a developer)
 - Store user data in database using nosql
+- Work on a team complete website before deadline (I was a developer)
 
 ## This was build using
 
