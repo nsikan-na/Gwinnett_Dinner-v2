@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
     const discount = username ? (0.97 * sub).toFixed(2) : (1 * sub).toFixed(2);
     const deliveryFee =
       payment.method === "Delivery" ? 6 + +discount : 0 + +discount;
-    setPreTax(deliveryFee);
+    setPreTax(deliveryFee.toFixed(2));
     const tax = (deliveryFee * 1.06 + Number(tip)).toFixed(2);
     setRunningTotal(tax);
   }, [cart, setRunningTotal, payment, username, tip]);
