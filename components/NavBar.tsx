@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
-import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Context } from "../context";
 import AlertSuccess from "./AlertSuccess";
@@ -11,14 +9,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Image from "next/image";
 export default function NavBar() {
   const router = useRouter();
-  const {
-    setCart,
-    setLocation,
-    username,
-    setAlertText,
-    alertText,
-    setUsername,
-  } = useContext(Context);
+  const { username, setAlertText, alertText, setUsername }: any =
+    useContext(Context);
   return (
     <>
       <Container
@@ -69,7 +61,7 @@ export default function NavBar() {
                   router.push("/");
                 }}
               />
-              
+
               <h1
                 className="text-red-600 cursor-pointer ml-2"
                 onClick={() => {

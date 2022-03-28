@@ -5,14 +5,14 @@ import Button from "react-bootstrap/Button";
 import { Context } from "../context";
 import Spinner from "react-bootstrap/Spinner";
 
-export default function SignInForm({ from }) {
+const SignInForm: React.FC<{ from: string }> = ({ from }) => {
   const router = useRouter();
-  const { setAlertText, setUsername } = useContext(Context);
+  const { setAlertText, setUsername }: any = useContext(Context);
   const [error, setError] = useState("");
   const [failedLogin, setFailedLogin] = useState(false);
   const [spinner, setSpinner] = useState(false);
 
-  async function getUserData(e) {
+  async function getUserData(e: any) {
     setSpinner(true);
     const response = await fetch("api/sign-in", {
       method: "POST",
@@ -138,4 +138,5 @@ export default function SignInForm({ from }) {
       )}
     </Form>
   );
-}
+};
+export default SignInForm;

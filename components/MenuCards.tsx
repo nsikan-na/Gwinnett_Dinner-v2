@@ -1,14 +1,17 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useContext, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
 import { Context } from "../context";
 import Spinner from "react-bootstrap/Spinner";
 import Image from "next/image";
-export default function MenuCards({ title, price, desc, img, type, local }) {
-  const router = useRouter();
-  const { cardSpinner, setCardSpinner } = useContext(Context);
+const MenuCards: React.FC<{
+  title: string;
+  price: number;
+  desc: string;
+  img: string;
+}> = ({ title, price, desc, img }) => {
+  const { cardSpinner, setCardSpinner }: any = useContext(Context);
   const [viewDesc, setViewDesc] = useState(false);
   return (
     <>
@@ -24,12 +27,10 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
             setViewDesc(false);
           }}
         >
-        
           <Image
             alt={title}
             width="300%"
             height="300%"
-            variant="top"
             src={`/images/${img}`}
           />
         </div>
@@ -38,9 +39,9 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
             <Card.Title className="text-red-600">{title}</Card.Title>
           </div>
           <Card.Text>${price}</Card.Text>
-          <p >{desc}</p>
+          <p>{desc}</p>
 
-          <Link type="submit" className="" href={`/menu/${title}`} passHref>
+          <Link href={`/menu/${title}`} passHref>
             {cardSpinner ? (
               <Button
                 variant="primary"
@@ -59,6 +60,7 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
             ) : (
               <Button
                 className="myButton"
+                type="submit"
                 style={{ backgroundColor: "red", border: "0" }}
                 onClick={() => {
                   setCardSpinner(true);
@@ -72,4 +74,5 @@ export default function MenuCards({ title, price, desc, img, type, local }) {
       </Card>
     </>
   );
-}
+};
+export default MenuCards;

@@ -2,7 +2,7 @@ export const menuItems = [
   // list of menuItems and their properties
   {
     title: "Steak & 2 Sides",
-    price: "9.99",
+    price: 9.99,
     desc: `New York Style Steak`,
     type: "combo",
     img: "steak.jpg",
@@ -12,7 +12,7 @@ export const menuItems = [
   },
   {
     title: "Cheesecake",
-    price: "3.95",
+    price: 3.95,
     desc: `In house Assorted Cheesecake`,
     type: "dessert",
     img: "cheesecake.jpg",
@@ -21,7 +21,7 @@ export const menuItems = [
 
   {
     title: "Grilled Shrimp & 2 Sides",
-    price: "7.99",
+    price: 7.99,
     desc: `Grilled Garlic Shrimp served with fresh parsley and olive oil`,
     type: "combo",
 
@@ -31,7 +31,7 @@ export const menuItems = [
   },
   {
     title: "Cobblor",
-    price: "4.99",
+    price: 4.99,
     desc: `Freshly baked warm peach cobbler`,
     type: "dessert",
     img: "cobblor.jpg",
@@ -40,7 +40,7 @@ export const menuItems = [
 
   {
     title: "Mashed Potatoes",
-    price: "5.99",
+    price: 5.99,
     desc: `Garlic mashed potatoes`,
     type: "side",
     img: "mashed_potatoes.jpg",
@@ -48,7 +48,7 @@ export const menuItems = [
   },
   {
     title: "Pie",
-    price: "3.99",
+    price: 3.99,
     desc: `In house Apple, Peach, Cherry (made with fresh fruit) and Pecan pies.`,
     type: "dessert",
     img: "pie.jpg",
@@ -56,7 +56,7 @@ export const menuItems = [
   },
   {
     title: "Chicken & 2 Sides",
-    price: "9.99",
+    price: 9.99,
     desc: `Parmesan Breaded Chicken severed with greens and lemon on the side`,
     type: "combo",
     img: "chicken.jpg",
@@ -65,7 +65,7 @@ export const menuItems = [
   },
   {
     title: "Fish & 2 Sides",
-    price: "8.99",
+    price: 8.99,
     desc: `Pan seared salmon severed with fresh greens and lightly sauted medley tomatoes`,
     type: "combo",
     img: "fish.jpg",
@@ -74,7 +74,7 @@ export const menuItems = [
   },
   {
     title: "Burger & 1 Side",
-    price: "8.99",
+    price: 8.99,
     desc: `100% Beef Whiskey Burger`,
     type: "combo",
     img: "burger.jpg",
@@ -83,7 +83,7 @@ export const menuItems = [
   },
   {
     title: "Hot Dog & Chips",
-    price: "6.99",
+    price: 6.99,
     desc: `Assorted(beef,sausage,and vegetarian) gourmet hotdogs`,
     type: "combo",
     img: "hot_dog_&_chips.jpg",
@@ -92,7 +92,7 @@ export const menuItems = [
   },
   {
     title: "Fried Shrimp & Fries",
-    price: "7.99",
+    price: 7.99,
     desc: `Beer battered fried shrimp with seasoned fries`,
     type: "combo",
     img: "fried_shrimp_&_fries.jpg",
@@ -101,7 +101,7 @@ export const menuItems = [
   },
   {
     title: "Ice Cream",
-    price: "2.50",
+    price: 2.50,
     desc: `In house gluten-free sorbet (Lime, Orange Pineapple and Rainbow) and ice cream (Chocolate, Strawberry, and Vanilla).`,
     type: "dessert",
     img: "ice_cream.jpg",
@@ -110,7 +110,7 @@ export const menuItems = [
 
   {
     title: "Fries",
-    price: "4.99",
+    price: 4.99,
     desc: `French fries with in house ketchup`,
     type: "side",
     img: "fries.jpg",
@@ -118,7 +118,7 @@ export const menuItems = [
   },
   {
     title: "Broccoli",
-    price: "3.99",
+    price: 3.99,
     desc: `Fresh steamed broccoli`,
     type: "side",
     img: "broccoli.jpg",
@@ -126,7 +126,7 @@ export const menuItems = [
   },
   {
     title: "Garlic Pasta & Bread",
-    price: "6.99",
+    price: 6.99,
     desc: `Fresh breadstick with served with in-house marinated sauce and in house garlic pasta`,
     type: "side",
     img: "garlic_pasta_&_bread.jpg",
