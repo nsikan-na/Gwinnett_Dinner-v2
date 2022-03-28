@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import MenuCards from "./MenuCards";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Context } from "../context";
-import Image from "next/image";
 import { menuItems } from "../data/menuItems";
 const menuCards = (filteredItems) => {
   return filteredItems.map((item) => (
@@ -33,7 +32,7 @@ const loadMenu = (location, type) => {
 };
 
 export default function Menu() {
-  const { location } = useContext(Context);
+  const { location }: any = useContext(Context);
 
   return (
     <Container className="pb-5">

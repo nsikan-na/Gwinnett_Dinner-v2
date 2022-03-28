@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import NavBar from "./NavBar";
 import Menu from "./Menu";
 import Footer from "./Footer";
@@ -7,11 +7,9 @@ import Container from "react-bootstrap/Container";
 
 export default function Home() {
   return (
-    <Container className="">
+    <Container>
       <NavBar />
-      <div className="">
-        <Menu />
-      </div>
+      <Menu />
       <Footer />
     </Container>
   );

@@ -1,10 +1,10 @@
 export const menuItems = [
+  // list of menuItems and their properties
   {
     title: "Steak & 2 Sides",
     price: "9.99",
     desc: `New York Style Steak`,
     type: "combo",
-
     img: "steak.jpg",
     location: "Snellville",
     sides: 2,

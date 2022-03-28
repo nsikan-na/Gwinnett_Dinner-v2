@@ -5,8 +5,8 @@
 This is a capstone project completed for my web design & development degree at [Gwinnett Technical College](https://gwinnetttech.edu/websitedesignanddevelopment/). I work with 7 other student to complete the assignment before our given deadline. We were divider into 3 groups,designers,developers,and testers, based off our strengths. I was a developer. I've alter the orgininal project slightly but the orginal can be found at [here](https://gwinnett-diner.vercel.app/).
 
 ## Assignment
-[Gwinnet_Diner_Requirements.pdf](https://github.com/nsikan-na/Gwinnett_Dinner-v2/files/8337603/Gwinnet_Diner_Requirements.pdf)
 
+[Gwinnet_Diner_Requirements.pdf](https://github.com/nsikan-na/Gwinnett_Dinner-v2/files/8337603/Gwinnet_Diner_Requirements.pdf)
 
 ## Project Focus
 
@@ -20,12 +20,10 @@ This is a capstone project completed for my web design & development degree at [
 ## This was build using
 
 - Next.js (React.js framework)
+- Typescript
 - Tailwind.css
 - React Bootstrap
 - NoSql
 - MongoDB
 - Scrum Development
 - Agile Development
-
-
-
