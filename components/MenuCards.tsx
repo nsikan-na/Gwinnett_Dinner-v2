@@ -10,9 +10,11 @@ const MenuCards: React.FC<{
   price: number;
   desc: string;
   img: string;
+  variants: string[];
+  sides: number;
 }> = ({ title, price, desc, img }) => {
   const { cardSpinner, setCardSpinner }: any = useContext(Context);
-  const [viewDesc, setViewDesc] = useState(false);
+  const [viewDesc, setViewDesc] = useState<boolean>(false);
   return (
     <>
       <Card className="w-72 my-2" id={title}>

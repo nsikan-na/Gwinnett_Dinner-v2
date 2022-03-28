@@ -1,7 +1,12 @@
-export default async function handler(req, res) {
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method === "POST") {
     try {
-      const { cardName } = req.body;
+      const { cardName }: { cardName: string } = req.body;
       if (!cardName) {
         return res.json({
           success: false,
@@ -9,7 +14,7 @@ export default async function handler(req, res) {
         });
       }
       return res.json({ success: true });
-    } catch (error) {
+    } catch (error: any) {
       console.log(error.message);
     }
   }

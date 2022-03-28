@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -24,16 +24,13 @@ export default function ReviewOrder() {
     subtotal,
     preTax,
     tip,
-  } = useContext(Context);
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    setShow(true);
-  }, []);
+  }: any = useContext(Context);
+
   return (
     <>
       <Modal
-        show={show}
-        onHide={() => setShow(false)}
+        show={true}
+        onHide={() => router.push("/")}
         centered
         backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
@@ -48,7 +45,7 @@ export default function ReviewOrder() {
         <Modal.Body>
           <h6>Estimated Wait Time: 7 minutes</h6>
           <h6 className="">
-            {payment.method == "Pick-Up" ? "Pick-Up at" : "Delivery from"}{" "}
+            {payment.method === "Pick-Up" ? "Pick-Up at" : "Delivery from"}{" "}
             {location}
           </h6>
           <h6 className="">{`${
@@ -58,37 +55,47 @@ export default function ReviewOrder() {
           }`}</h6>
 
           <Container className="mt-3">
-            {cart.map((item, index) => {
-              return (
-                <Row
-                  key={index}
-                  className="cartRow flex justify-center items-center"
-                >
-                  <Col className="md:flex justify-center">
-                    <Image
-                      alt={item.title}
-                      src={`/images/${item.img}`}
-                      width="100%"
-                      height="100%"
-                    />
-                  </Col>
-                  <Col>
-                    <div className="text-center">
-                      {item.sideItems ? (
-                        <p key={index}>
-                          {item.title.split("&")[0] +
-                            "w/ " +
-                            item.sideItems.toString().replace(",", " & ")}
-                        </p>
-                      ) : (
-                        <p>{item.title}</p>
-                      )}
-                    </div>
-                  </Col>
-                  <Col className="flex justify-around ">{item.quantity}</Col>
-                </Row>
-              );
-            })}
+            {cart.map(
+              (
+                item: {
+                  title: string;
+                  img: string;
+                  sideItems: number;
+                  quantity: number;
+                },
+                index: number
+              ) => {
+                return (
+                  <Row
+                    key={index}
+                    className="cartRow flex justify-center items-center"
+                  >
+                    <Col className="md:flex justify-center">
+                      <Image
+                        alt={item.title}
+                        src={`/images/${item.img}`}
+                        width="100%"
+                        height="100%"
+                      />
+                    </Col>
+                    <Col>
+                      <div className="text-center">
+                        {item.sideItems ? (
+                          <p key={index}>
+                            {item.title.split("&")[0] +
+                              "w/ " +
+                              item.sideItems.toString().replace(",", " & ")}
+                          </p>
+                        ) : (
+                          <p>{item.title}</p>
+                        )}
+                      </div>
+                    </Col>
+                    <Col className="flex justify-around ">{item.quantity}</Col>
+                  </Row>
+                );
+              }
+            )}
           </Container>
           <Container className="mt-3">
             <Row className="totalRow">
@@ -112,7 +119,7 @@ export default function ReviewOrder() {
             ) : (
               ""
             )}
-            {payment.method == "Pick-Up" ? (
+            {payment.method === "Pick-Up" ? (
               ""
             ) : (
               <Row className="totalRow">

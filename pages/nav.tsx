@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Image from "next/image";
 export default function MobileNav() {
   const router = useRouter();
-  const { username, setUsername, setAlertText } = useContext(Context);
+  const { username, setUsername, setAlertText }: any = useContext(Context);
   return (
     <Container>
       <Modal
@@ -42,7 +42,6 @@ export default function MobileNav() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="pl-4">
-
           <div style={{ border: "0px" }} className={`${"flex space-x-14"}`}>
             {!username ? (
               <>
@@ -61,7 +60,6 @@ export default function MobileNav() {
               <>
                 <div
                   className="text-red-600 text-2xl font-semibold cursor-pointer link"
-                  href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     router.push("/");

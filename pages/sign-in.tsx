@@ -1,29 +1,21 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/router";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import { Context } from "../context";
 import SignInForm from "../components/SignInForm";
 import LandingPage from "../components/LandingPage";
 
 export default function SignIn() {
   const router = useRouter();
-  const {} = useContext(Context);
-  const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    setShow(true);
-  }, []);
   return (
     <Container>
       <Modal
-        onExit={(e) => {
+        onExit={() => {
           router.push("/");
         }}
-        show={show}
-        onHide={() => setShow(false)}
+        show={true}
+        onHide={() => router.push("/")}
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         centered
       >

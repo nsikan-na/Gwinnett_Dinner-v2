@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -11,184 +11,192 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import LandingPage from "../components/LandingPage";
-import Link from "next/link";
 import DeleteIcon from "@mui/icons-material/Delete";
 export default function Cart() {
   const router = useRouter();
-  const { cart, runningTotal, setCart, username,subtotal } = useContext(Context);
-  const [show, setShow] = useState(true);
+  const { cart, setCart, username, subtotal }: any = useContext(Context);
+
   return (
     <Container>
       <Modal
         onExit={() => {
           router.push("/");
         }}
-        show={show}
-        onHide={() => setShow(false)}
+        show={true}
+        onHide={() => router.push("/")}
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         centered
         size="xl"
       >
         <Modal.Header className="" closeButton>
-          <Modal.Title>
-            Shopping Cart
-          </Modal.Title>
+          <Modal.Title>Shopping Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {cart.length === 0 ? (
             <h5>Your cart is empty!</h5>
           ) : (
             <Container>
-            
               <Container className="cart">
-                {cart.map((item, index) => {
-                  return (
-                    <Row
-                      key={index}
-                      className="cartRow flex justify-center items-center"
-                    >
-                      <Col className="hidden md:flex justify-center">
-                        <Image
-                          alt={item.title}
-                          src={`/images/${item.img}`}
-                          width="100%"
-                          height="100%"
-                          className=""
-                        />
-                      </Col>
-                      <Col>
-                        <div className="text-center">
-                          {item.sideItems ? (
-                            <p key={index}>
-                              {`${item.variant ? item.variant : ""} ${
-                                item.title.split("&")[0]
-                              }  w/ ${item.sideItems
-                                .toString()
-                                .replace(",", " & ")}`}
-                            </p>
-                          ) : (
-                            <p>{item.title}</p>
-                          )}
-                        </div>
-                      </Col>
-                      <Col className="flex justify-around ">
-                        <form
-                          action="#"
-                          method="POST"
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            if (cart[e.target.index.value].quantity == 1) {
+                {cart.map(
+                  (
+                    item: {
+                      title: string;
+                      img: string;
+                      sideItems: number;
+                      variant: string[];
+                      quantity: number;
+                      price: number;
+                    },
+                    index: number
+                  ) => {
+                    return (
+                      <Row
+                        key={index}
+                        className="cartRow flex justify-center items-center"
+                      >
+                        <Col className="hidden md:flex justify-center">
+                          <Image
+                            alt={item.title}
+                            src={`/images/${item.img}`}
+                            width="100%"
+                            height="100%"
+                            className=""
+                          />
+                        </Col>
+                        <Col>
+                          <div className="text-center">
+                            {item.sideItems ? (
+                              <p key={index}>
+                                {`${item.variant ? item.variant : ""} ${
+                                  item.title.split("&")[0]
+                                }  w/ ${item.sideItems
+                                  .toString()
+                                  .replace(",", " & ")}`}
+                              </p>
+                            ) : (
+                              <p>{item.title}</p>
+                            )}
+                          </div>
+                        </Col>
+                        <Col className="flex justify-around ">
+                          <form
+                            action="#"
+                            method="POST"
+                            onSubmit={(e: any) => {
+                              e.preventDefault();
+                              if (cart[e.target.index.value].quantity === 1) {
+                                setCart(
+                                  cart.filter((item: {}) => {
+                                    return item !== cart[e.target.index.value];
+                                  })
+                                );
+                                return;
+                              }
                               setCart(
-                                cart.filter((item) => {
+                                cart.filter((item: {}) => {
+                                  return item === cart[e.target.index.value]
+                                    ? cart[e.target.index.value].quantity--
+                                    : item;
+                                })
+                              );
+                            }}
+                          >
+                            <input
+                              type="hidden"
+                              name="index"
+                              value={index}
+                              readOnly
+                            />
+                            <button>
+                              {item.quantity === 1 ? (
+                                <DeleteIcon
+                                  className="cursor-pointer"
+                                  onClick={() => {}}
+                                  type="submit"
+                                />
+                              ) : (
+                                <RemoveIcon
+                                  className="cursor-pointer"
+                                  onClick={() => {}}
+                                  type="submit"
+                                />
+                              )}
+                            </button>
+                          </form>
+
+                          {item.quantity}
+                          <form
+                            action="#"
+                            method="POST"
+                            onSubmit={(e: any) => {
+                              e.preventDefault();
+                              setCart(
+                                cart.filter((item: {}) => {
+                                  return item === cart[e.target.index.value]
+                                    ? cart[e.target.index.value].quantity++
+                                    : item;
+                                })
+                              );
+                            }}
+                          >
+                            <input
+                              type="hidden"
+                              name="index"
+                              value={index}
+                              readOnly
+                            />
+                            <button>
+                              <AddIcon
+                                className="cursor-pointer"
+                                onClick={() => {}}
+                                type="submit"
+                              />
+                            </button>
+                          </form>
+                        </Col>
+                        <Col className="text-center hidden md:block">
+                          ${(item.price * item.quantity).toFixed(2)}
+                        </Col>
+                        <Col className="text-center hidden md:block">
+                          <form
+                            action="#"
+                            method="POST"
+                            onSubmit={(e: any) => {
+                              e.preventDefault();
+                              setCart(
+                                cart.filter((item: {}) => {
                                   return item !== cart[e.target.index.value];
                                 })
                               );
-                              return;
-                            }
-                            setCart(
-                              cart.filter((item) => {
-                                return item === cart[e.target.index.value]
-                                  ? cart[e.target.index.value].quantity--
-                                  : item;
-                              })
-                            );
-                          }}
-                        >
-                          <input
-                            type="hidden"
-                            name="index"
-                            value={index}
-                            readOnly
-                          />
-                          <button>
-                            {item.quantity == 1 ? (
-                              <DeleteIcon
-                                className="cursor-pointer"
-                                onClick={() => {}}
-                                type="submit"
-                              />
-                            ) : (
-                              <RemoveIcon
-                                className="cursor-pointer"
-                                onClick={() => {}}
-                                type="submit"
-                              />
-                            )}
-                          </button>
-                        </form>
-
-                        {item.quantity}
-                        <form
-                          action="#"
-                          method="POST"
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            setCart(
-                              cart.filter((item) => {
-                                return item === cart[e.target.index.value]
-                                  ? cart[e.target.index.value].quantity++
-                                  : item;
-                              })
-                            );
-                          }}
-                        >
-                          <input
-                            type="hidden"
-                            name="index"
-                            value={index}
-                            readOnly
-                          />
-                          <button>
-                            <AddIcon
-                              className="cursor-pointer"
-                              onClick={() => {}}
-                              type="submit"
+                            }}
+                          >
+                            <input
+                              type="hidden"
+                              name="index"
+                              value={index}
+                              readOnly
                             />
-                          </button>
-                        </form>
-                      </Col>
-                      <Col className="text-center hidden md:block">
-                        ${(item.price * item.quantity).toFixed(2)}
-                      </Col>
-                      <Col className="text-center hidden md:block">
-                        <form
-                          action="#"
-                          method="POST"
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            setCart(
-                              cart.filter((item) => {
-                                return item !== cart[e.target.index.value];
-                              })
-                            );
-                          }}
-                        >
-                          <input
-                            type="hidden"
-                            name="index"
-                            value={index}
-                            readOnly
-                          />
-                          <button>
-                            <CloseIcon
-                              type="submit"
-                              className="cursor-pointer"
-                            />
-                          </button>
-                        </form>
-                      </Col>
-                    </Row>
-                  );
-                })}
+                            <button>
+                              <CloseIcon
+                                type="submit"
+                                className="cursor-pointer"
+                              />
+                            </button>
+                          </form>
+                        </Col>
+                      </Row>
+                    );
+                  }
+                )}
               </Container>
-              <Row className='mt-3 '>
-              <Col className='flex justify-center'>
-                <h5>Subtotal</h5>
-              </Col>
-              <Col>
-                <h5 className='flex justify-center'>${subtotal}</h5>
-              </Col>
-            </Row>
+              <Row className="mt-3 ">
+                <Col className="flex justify-center">
+                  <h5>Subtotal</h5>
+                </Col>
+                <Col>
+                  <h5 className="flex justify-center">${subtotal}</h5>
+                </Col>
+              </Row>
               <Container className="flex justify-around items-center ">
                 <a
                   href="#"

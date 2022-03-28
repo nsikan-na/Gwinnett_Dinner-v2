@@ -8,13 +8,17 @@ import Spinner from "react-bootstrap/Spinner";
 const SignInForm: React.FC<{ from: string }> = ({ from }) => {
   const router = useRouter();
   const { setAlertText, setUsername }: any = useContext(Context);
-  const [error, setError] = useState("");
-  const [failedLogin, setFailedLogin] = useState(false);
-  const [spinner, setSpinner] = useState(false);
+
+  //state for errors
+  const [error, setError] = useState<string>("");
+
+  //loading state
+  const [spinner, setSpinner] = useState<boolean>(false);
 
   async function getUserData(e: any) {
+    //handle sign in form
     setSpinner(true);
-    const response = await fetch("api/sign-in", {
+    const response = await fetch("api/sign-in.js", {
       method: "POST",
       body: JSON.stringify({
         username: e.target.username.value,
@@ -30,7 +34,6 @@ const SignInForm: React.FC<{ from: string }> = ({ from }) => {
     if (!data.success) {
       setError(data.message);
       if (data.showForget) {
-        setFailedLogin(true);
       }
       return;
     }
@@ -84,7 +87,7 @@ const SignInForm: React.FC<{ from: string }> = ({ from }) => {
       )}
       <div
         className={`${error ? "block" : "hidden"} text-red-600 ${
-          from == "GuestModule" ? "text-center" : ""
+          from === "GuestModule" ? "text-center" : ""
         }`}
       >
         {error}

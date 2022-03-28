@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/api/db.ts", "pages/api/sign-up.js", "pages/api/sign-in.js", "pages/api/sign-up.js", "pages/api/sign-up.js", "pages/api/sign-in.js"  ],
   "exclude": [
     "node_modules"
   ]

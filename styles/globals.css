@@ -10,6 +10,12 @@
 html {
   scroll-behavior: smooth;
 }
+/*rows of cart*/
+.cartRow {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
 
 .cartRow:nth-child(even) {
   background-color: rgb(228, 228, 228);
@@ -17,34 +23,28 @@ html {
 .cartRow:nth-child(odd) {
   background-color: rgb(240, 240, 240);
 }
+/*rows of review cart area*/
 .totalRow:nth-child(odd) {
   background-color: rgb(255, 255, 255);
 }
 .totalRow:nth-child(even) {
   background-color: rgb(247, 247, 247);
 }
-.cartRow {
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-}
-.alertLink {
-  color: white;
-}
-.alertLink:hover {
-  color: lightgray;
-}
 
+/*buttons hover*/
 .myButton:hover {
   background-color: rgba(255, 0, 0, 0.616) !important;
 }
 
+/*all links*/
 .link:hover {
   color: rgba(255, 0, 0, 0.616) !important;
 }
-.form-check-input:checked, .form-check-input:active{
+/* make checkbox and radios red*/
+.form-check-input:checked,
+.form-check-input:active {
   background-color: red !important;
-  border:0px solid red !important;
+  border: 0px solid red !important;
   outline: none !important;
-  color:red !important;
+  color: red !important;
 }

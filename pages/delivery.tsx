@@ -13,34 +13,39 @@ import { locationData } from "../data/locations";
 
 export default function Delivery() {
   const router = useRouter();
-  const {
-    setPayment,
-    runningTotal,
-    location,
-    payment,
-    username,
-    subtotal,
-    setTip,
-  } = useContext(Context);
-  const [show, setShow] = useState(false);
-  const [showForm, setShowForm] = useState(null);
-  const [paymentForm, setPaymentForm] = useState(null);
-  const [spinner, setSpinner] = useState(false);
-  const [error, setError] = useState(false);
-  const [showBack, setShowBack] = useState(true);
+  const { setPayment, location, payment, username, subtotal, setTip }: any =
+    useContext(Context);
+
+  // determines which of the  delivery/pickup form is shown
+  const [showForm, setShowForm] = useState<boolean | null>(null);
+
+  // determines which of the card/cash form
+  const [paymentForm, setPaymentForm] = useState<boolean | null>(null);
+
+  //show spinner
+  const [spinner, setSpinner] = useState<boolean>(false);
+
+  // handle errors
+  const [error, setError] = useState<string>("");
+
+  //handle back button state
+  const [showBack, setShowBack] = useState<boolean>(true);
   useEffect(() => {
-    setPayment([]);
+    //reset payment
+    setPayment({});
   }, []);
   useEffect(() => {
-    if (showForm == null) return setShowBack(true);
+    //handle whether back button is shown
+    if (showForm === null) return setShowBack(true);
     if (payment.method == "Pick-Up" && !payment.type) return setShowBack(true);
     if (payment.length != 0) return setShowBack(false);
   }, [payment]);
 
-  async function deliveryHandler(e) {
+  async function deliveryHandler(e: any) {
+    //handle delivery form
     setSpinner(true);
     const locationZipCodes = locationData.filter((loc) => {
-      return loc.title == location;
+      return loc.title === location;
     });
     const response = await fetch(`/api/delivery`, {
       method: "POST",
@@ -67,17 +72,14 @@ export default function Delivery() {
   }
 
   useEffect(() => {
-    setShow(true);
-  }, []);
-
-  useEffect(() => {
-    if (showForm == null) return;
+    //store the chosen payment/delivery method in the store
+    if (showForm === null) return;
     if (showForm) {
       return setPayment({ method: "Delivery" });
     } else {
       setPayment({ method: "Pick-Up" });
     }
-    if (paymentForm == null) return;
+    if (paymentForm === null) return;
     if (paymentForm) return setPayment({ method: "Pick-Up", type: "Card" });
     else return setPayment({ method: "Pick-Up", type: "Cash" });
   }, [showForm, paymentForm, setPayment]);
@@ -87,9 +89,9 @@ export default function Delivery() {
         onExit={() => {
           router.push("/");
         }}
-        show={show}
+        show={true}
         backdrop="static"
-        onHide={() => setShow(false)}
+        onHide={() => router.push("/")}
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         centered
       >
@@ -109,7 +111,7 @@ export default function Delivery() {
 
           <p
             className={`text-center text-red-600  ${
-              location == "Mountain Park" ? "block" : "hidden"
+              location === "Mountain Park" ? "block" : "hidden"
             }`}
           >
             Mountain Park delivery option coming soon!
@@ -117,7 +119,7 @@ export default function Delivery() {
 
           <Form
             className="justify-evenly flex"
-            onChange={(e) => {
+            onChange={(e: any) => {
               if (e.target.value === "Pickup") {
                 setShowForm(false);
               } else {
@@ -161,7 +163,7 @@ export default function Delivery() {
             onChange={() => {
               setError("");
             }}
-            onSubmit={(e) => {
+            onSubmit={(e: any) => {
               e.preventDefault();
               deliveryHandler(e);
             }}
@@ -208,10 +210,14 @@ export default function Delivery() {
                 <Form.Label className="w-full">
                   <div className="text-center text-red-600">
                     Tip your driver? (15% of ${(subtotal - 6).toFixed(2)} is $
-                    {((subtotal - 6).toFixed(2) * 0.15).toFixed(2)})
+                    {(+(subtotal - 6).toFixed(2) * 0.15).toFixed(2)})
                   </div>
                 </Form.Label>
-                <Form.Control name="tip" placeholder={`Optional`} className="" />
+                <Form.Control
+                  name="tip"
+                  placeholder={`Optional`}
+                  className=""
+                />
               </Form.Group>
             </Row>
             <br />
@@ -263,7 +269,7 @@ export default function Delivery() {
             className={`${
               !showForm && showForm != null ? "block" : "hidden"
             } text-center`}
-            onChange={(e) => {
+            onChange={(e: any) => {
               e.target.value === "Cash"
                 ? setPaymentForm(false)
                 : setPaymentForm(true);
@@ -297,7 +303,7 @@ export default function Delivery() {
             </Container>
             <div
               className={`${
-                paymentForm == null ? "hidden" : "block"
+                paymentForm === null ? "hidden" : "block"
               } flex justify-around`}
             >
               <a

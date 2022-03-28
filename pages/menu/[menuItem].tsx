@@ -10,20 +10,35 @@ import Form from "react-bootstrap/Form";
 import { Context } from "../../context";
 import LandingPage from "../../components/LandingPage";
 import { menuItems } from "../../data/menuItems";
-export default function MenuItems({ menuItems }) {
-  const { cart, setCart, setCardSpinner, location } = useContext(Context);
+import { GetServerSideProps } from "next";
+const MenuItems: React.FC<{ menuItems: {}[] }> = ({ menuItems }) => {
+  const { cart, setCart, setCardSpinner }: any = useContext(Context);
   const router = useRouter();
-  const index = menuItems.findIndex((item) => {
-    return item.title == router.query.menuItem;
-  });
-  const menuItem = menuItems[index];
-  const { title, price, desc, type, img, sides, variants } = menuItem;
-  const [show, setShow] = useState(true);
-  const [quantity, setQuantity] = useState(1);
-  const [doneError, setDoneError] = useState(false);
-  const form = useRef();
-  const [error, setError] = useState(false);
-  const locationSideItems = [
+
+  //get current item
+  const menuItem =
+    menuItems[
+      menuItems.findIndex((item: any) => {
+        return item.title === router.query.menuItem;
+      })
+    ];
+
+  //destructure menuItem
+  const { title, price, desc, type, img, sides, variants }: any = menuItem;
+
+  //manage state of the quantity
+  let [quantity, setQuantity] = useState<number>(1);
+
+  // handler error for the select degree in steak
+  const [doneError, setDoneError] = useState<boolean>(false);
+
+  const form: any = useRef();
+
+  //handle error for side items
+  const [error, setError] = useState<boolean>(false);
+
+  //store side items
+  const locationSideItems: string[] = [
     " Fries",
     " Broccoli",
     " Pasta & Bread",
@@ -39,8 +54,8 @@ export default function MenuItems({ menuItems }) {
         onExit={() => {
           router.push(`/#${title}`);
         }}
-        show={show}
-        onHide={() => setShow(false)}
+        show={true}
+        onHide={() => router.push(`/#${title}`)}
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         centered
       >
@@ -85,26 +100,26 @@ export default function MenuItems({ menuItems }) {
             </Button>
           </Container>
 
-          {type == "combo" ? (
+          {type === "combo" ? (
             sides != 0 ? (
               <Form
                 method="post"
                 ref={form}
-                onChange={(e) => {
-                  if (e.target.name == "variants") {
+                onChange={(e: any) => {
+                  if (e.target.name === "variants") {
                     setDoneError(false);
                   }
                   const checkboxes = [];
-                  form.current.side.forEach((item) => {
+                  form.current.side.forEach((item: any) => {
                     if (item.checked) checkboxes.push(item.checked);
                   });
                   if (checkboxes.length > sides) e.target.checked = false;
                 }}
-                onSubmit={(e) => {
+                onSubmit={(e: any) => {
                   e.preventDefault();
-                  let variant;
+                  let variant: string;
                   const checkboxes = [];
-                  form.current.side.forEach((item) => {
+                  form.current.side.forEach((item: any) => {
                     if (item.checked) checkboxes.push(item.checked);
                   });
                   if (e.target.variants && !e.target.variants.value) {
@@ -114,15 +129,15 @@ export default function MenuItems({ menuItems }) {
                   }
 
                   if (checkboxes.length != sides) return setError(true);
-                  let sideItems = [];
-                  e.target.side.forEach((item) => {
+                  let sideItems: string[] = [];
+                  e.target.side.forEach((item: any | never) => {
                     if (item.checked) {
                       sideItems.push(item.id);
                     }
                   });
                   //
                   if (cart.length === 0) {
-                    setCart((prevCart) => [
+                    setCart((prevCart: {}[]) => [
                       ...prevCart,
                       {
                         title,
@@ -139,27 +154,39 @@ export default function MenuItems({ menuItems }) {
                     if (cart.length != 0) {
                       if (title && sideItems && variant) {
                         if (
-                          cart.some((item) => {
-                            return (
-                              item.title == title &&
-                              item.sideItems.toString() ==
-                                sideItems.toString() &&
-                              item.variant == variant
-                            );
-                          })
+                          cart.some(
+                            (item: {
+                              title: string;
+                              sideItems: number;
+                              variant: string;
+                            }) => {
+                              return (
+                                item.title === title &&
+                                item.sideItems.toString() ===
+                                  sideItems.toString() &&
+                                item.variant === variant
+                              );
+                            }
+                          )
                         ) {
-                          const index = cart.findIndex((item) => {
-                            return (
-                              item.title == title &&
-                              item.sideItems.toString() ==
-                                sideItems.toString() &&
-                              item.variant == variant
-                            );
-                          });
+                          const index = cart.findIndex(
+                            (item: {
+                              title: string;
+                              sideItems: number;
+                              variant: string;
+                            }) => {
+                              return (
+                                item.title === title &&
+                                item.sideItems.toString() ===
+                                  sideItems.toString() &&
+                                item.variant === variant
+                              );
+                            }
+                          );
                           cart[index].quantity += quantity;
-                          setCart((prevCart) => [...prevCart]);
+                          setCart((prevCart: {}[]) => [...prevCart]);
                         } else {
-                          setCart((prevCart) => [
+                          setCart((prevCart: {}[]) => [
                             ...prevCart,
                             {
                               title,
@@ -176,23 +203,29 @@ export default function MenuItems({ menuItems }) {
                       }
                       if (title && sideItems && !variant) {
                         if (
-                          cart.some((item) => {
-                            return (
-                              item.title == title &&
-                              item.sideItems.toString() == sideItems.toString()
-                            );
-                          })
+                          cart.some(
+                            (item: { title: string; sideItems: number }) => {
+                              return (
+                                item.title === title &&
+                                item.sideItems.toString() ===
+                                  sideItems.toString()
+                              );
+                            }
+                          )
                         ) {
-                          const index = cart.findIndex((item) => {
-                            return (
-                              item.title == title &&
-                              item.sideItems.toString() == sideItems.toString()
-                            );
-                          });
+                          const index = cart.findIndex(
+                            (item: { title: string; sideItems: number }) => {
+                              return (
+                                item.title === title &&
+                                item.sideItems.toString() ===
+                                  sideItems.toString()
+                              );
+                            }
+                          );
                           cart[index].quantity += quantity;
-                          setCart((prevCart) => [...prevCart]);
+                          setCart((prevCart: {}[]) => [...prevCart]);
                         } else {
-                          setCart((prevCart) => [
+                          setCart((prevCart: {}[]) => [
                             ...prevCart,
                             {
                               title,
@@ -219,7 +252,7 @@ export default function MenuItems({ menuItems }) {
                       <thead></thead>
                       <tbody className="text-left">
                         {variants
-                          ? variants.map((variant) => {
+                          ? variants.map((variant: string) => {
                               return (
                                 <tr key={variant}>
                                   <td>
@@ -304,7 +337,7 @@ export default function MenuItems({ menuItems }) {
                 type="submit"
                 onClick={() => {
                   if (cart.length === 0) {
-                    setCart((prevCart) => [
+                    setCart((prevCart: {}[]) => [
                       ...prevCart,
                       {
                         title,
@@ -319,17 +352,19 @@ export default function MenuItems({ menuItems }) {
                   }
                   if (cart.length != 0) {
                     if (
-                      cart.some((item) => {
-                        return item.title == title;
+                      cart.some((item: { title: string }) => {
+                        return item.title === title;
                       })
                     ) {
-                      const index = cart.findIndex((item) => {
-                        return item.title == title;
-                      });
+                      const index = cart.findIndex(
+                        (item: { title: string }) => {
+                          return item.title === title;
+                        }
+                      );
                       cart[index].quantity += quantity;
-                      setCart((prevCart) => [...prevCart]);
+                      setCart((prevCart: {}[]) => [...prevCart]);
                     } else {
-                      setCart((prevCart) => [
+                      setCart((prevCart: {}[]) => [
                         ...prevCart,
                         {
                           title,
@@ -355,7 +390,7 @@ export default function MenuItems({ menuItems }) {
               style={{ backgroundColor: "red", border: "0px" }}
               onClick={() => {
                 if (cart.length === 0) {
-                  setCart((prevCart) => [
+                  setCart((prevCart: {}[]) => [
                     ...prevCart,
                     {
                       title,
@@ -369,17 +404,17 @@ export default function MenuItems({ menuItems }) {
                 }
                 if (cart.length != 0) {
                   if (
-                    cart.some((item) => {
-                      return item.title == title;
+                    cart.some((item: { title: string }) => {
+                      return item.title === title;
                     })
                   ) {
-                    const index = cart.findIndex((item) => {
-                      return item.title == title;
+                    const index = cart.findIndex((item: { title: string }) => {
+                      return item.title === title;
                     });
                     cart[index].quantity += quantity;
-                    setCart((prevCart) => [...prevCart]);
+                    setCart((prevCart: {}[]) => [...prevCart]);
                   } else {
-                    setCart((prevCart) => [
+                    setCart((prevCart: {}[]) => [
                       ...prevCart,
                       {
                         title,
@@ -403,11 +438,12 @@ export default function MenuItems({ menuItems }) {
       <LandingPage />
     </Container>
   );
-}
-export async function getServerSideProps() {
+};
+export default MenuItems;
+export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       menuItems,
     },
   };
-}
+};

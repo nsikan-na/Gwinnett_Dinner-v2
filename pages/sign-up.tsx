@@ -10,12 +10,16 @@ import Spinner from "react-bootstrap/Spinner";
 
 export default function SignUp() {
   const router = useRouter();
-  const { setAlertText, setUsername } = useContext(Context);
-  const [show, setShow] = useState(true);
-  const [error, setError] = useState("");
-  const [spinner, setSpinner] = useState(false);
+  const { setAlertText, setUsername }: any = useContext(Context);
 
-  async function signUpHandler(e) {
+  //handle errors
+  const [error, setError] = useState<string>("");
+
+  //show loading spinner
+  const [spinner, setSpinner] = useState<boolean>(false);
+
+  async function signUpHandler(e: any) {
+    //handle sign up handler
     setSpinner(true);
 
     const response = await fetch(`/api/sign-up`, {
@@ -42,8 +46,8 @@ export default function SignUp() {
         onExit={() => {
           router.push("/");
         }}
-        show={show}
-        onHide={() => setShow(false)}
+        show={true}
+        onHide={() => router.push("/")}
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         centered
       >

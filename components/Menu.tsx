@@ -5,16 +5,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Context } from "../context";
 import { menuItems } from "../data/menuItems";
+
 const menuCards = (filteredItems: {}[]): JSX.Element[] =>
- filteredItems.map(
-    (item: {
-      variants: string[] | undefined;
-      title: string;
-      price: number;
-      desc: string;
-      img: string;
-      sides: number;
-    }): JSX.Element => (
+  //build each menu card for each item
+  filteredItems.map(
+    (item: any): JSX.Element => (
       <Col key={item.title} className="flex justify-center items-center ">
         <MenuCards
           variants={item.variants ? item.variants : undefined}
@@ -28,6 +23,7 @@ const menuCards = (filteredItems: {}[]): JSX.Element[] =>
     )
   );
 const loadMenu = (location: string, type: string) => {
+  //filter the menu by type aka combo, sides, dessert
   const items: {}[] = menuItems.filter(
     (item: { type: string; location: string }): boolean => {
       return (

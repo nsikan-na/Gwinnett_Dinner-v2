@@ -8,15 +8,16 @@ import LandingPage from "../components/LandingPage";
 import Spinner from "react-bootstrap/Spinner";
 export default function CardPayment() {
   const router = useRouter();
-  const { runningTotal } = useContext(Context);
-  const [show, setShow] = useState(false);
-  const [spinner, setSpinner] = useState(false);
-  const [error, setError] = useState(false);
-  useEffect(() => {
-    setShow(true);
-  }, []);
+  const { runningTotal }: any = useContext(Context);
 
-  async function cardPaymentHandler(e) {
+  //manage loading state
+  const [spinner, setSpinner] = useState<boolean>(false);
+
+  //manage error state
+  const [error, setError] = useState<string>("");
+
+  async function cardPaymentHandler(e: any) {
+    //handle card form
     setSpinner(true);
     const response = await fetch(`/api/card-payment`, {
       method: "POST",
@@ -35,7 +36,7 @@ export default function CardPayment() {
   return (
     <>
       <Modal
-        show={show}
+        show={true}
         centered
         backdrop="static"
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -10,9 +10,10 @@ import LandingPage from "../components/LandingPage";
 
 export default function Guest() {
   const router = useRouter();
-  const { runningTotal } = useContext(Context);
-  const [showForm, setShowForm] = useState(null);
-  const [show, setShow] = useState(true);
+  const {}: any = useContext(Context);
+
+  // determine which of the guest/sign-in from is shown
+  const [showForm, setShowForm] = useState<boolean | null>(null);
 
   return (
     <Container>
@@ -20,9 +21,9 @@ export default function Guest() {
         onExit={() => {
           router.push("/");
         }}
-        show={show}
+        show={true}
         backdrop="static"
-        onHide={() => setShow(false)}
+        onHide={() => router.push("/")}
         style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
         centered
       >
@@ -33,7 +34,7 @@ export default function Guest() {
           <p className="text-center">(3% discount if you Sign In!)</p>
           <Form
             className="justify-evenly flex"
-            onChange={(e) => {
+            onChange={(e: any) => {
               if (e.target.value === "Sign In") {
                 setShowForm(true);
               } else {
@@ -68,7 +69,7 @@ export default function Guest() {
               />
             </span>
           </Form>
-          {showForm == null ? (
+          {showForm === null ? (
             <div className="flex items-center justify-around">
               <a
                 href="#"
