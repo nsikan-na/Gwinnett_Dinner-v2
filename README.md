@@ -20,8 +20,9 @@ This is a capstone project completed for my web design & development degree at [
 ## This was build using
 
 - Next.js (React.js framework)
+- Typescript
 - Tailwind.css
-- React Bootstrap
+- Bootstrap
 - NoSql
 - MongoDB
 - Scrum Development
