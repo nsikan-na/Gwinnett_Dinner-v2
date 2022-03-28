@@ -1,10 +1,16 @@
-const getDb = require("./db").getDb;
+import connectDB from "./db";
 const bcrypt = require("bcrypt");
-export default async function handler(req, res) {
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method === "POST") {
     try {
       const data = req.body;
-      const { username, password } = JSON.parse(JSON.stringify(data));
+      const { username, password }: { username: string; password: string } =
+        data;
       if (!username || !password) {
         return res.json({
           success: false,
@@ -12,9 +18,11 @@ export default async function handler(req, res) {
         });
       }
 
-      const db = await getDb();
-      const userDataCollection = db.collection(`${process.env.DB_COLLECTION}`);
-      const result = await userDataCollection.find({ username }).toArray();
+      const db: any = await connectDB();
+      const userDataCollection: any = db.collection(
+        `${process.env.DB_COLLECTION}`
+      );
+      const result: any = await userDataCollection.find({ username }).toArray();
       if (result.length == 0) {
         res.json({
           success: false,
@@ -22,7 +30,10 @@ export default async function handler(req, res) {
           showForget: true,
         });
       }
-      const validateUser = await bcrypt.compare(password, result[0].password);
+      const validateUser: any = await bcrypt.compare(
+        password,
+        result[0].password
+      );
 
       if (!validateUser) {
         return res.json({
@@ -32,7 +43,7 @@ export default async function handler(req, res) {
         });
       }
       return res.json({ success: true });
-    } catch (error) {
+    } catch (error: any) {
       console.log(error.message);
     }
   }

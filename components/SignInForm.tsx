@@ -18,7 +18,7 @@ const SignInForm: React.FC<{ from: string }> = ({ from }) => {
   async function getUserData(e: any) {
     //handle sign in form
     setSpinner(true);
-    const response = await fetch("api/sign-in.js", {
+    const response = await fetch("api/sign-in", {
       method: "POST",
       body: JSON.stringify({
         username: e.target.username.value,
