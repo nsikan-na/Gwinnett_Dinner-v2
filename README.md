@@ -14,7 +14,7 @@ This is a capstone project completed for my web design & development degree at [
 - Turn a psd into a website
 - Manage state using React's context api
 - Validate user input
-- Store user data in nosql database
+- Store user data in NoSql database
 - Work on a team complete website before deadline (I was a developer)
 
 ## This was build using
@@ -22,7 +22,7 @@ This is a capstone project completed for my web design & development degree at [
 - Next.js (React.js framework)
 - Typescript
 - Tailwind.css
-- React Bootstrap
+- Bootstrap
 - NoSql
 - MongoDB
 - Scrum Development
