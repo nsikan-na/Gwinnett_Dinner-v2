@@ -1,4 +1,4 @@
-import connectDB from "./db";
+import { connectToDatabase } from "../../util/db";
 const bcrypt = require("bcrypt");
 
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -27,11 +27,11 @@ export default async function handler(
           message: "Passwords do not match!",
         });
       }
-      const db: any = await connectDB();
-      const userDataCollection: any = db.collection(
-        `${process.env.DB_COLLECTION}`
-      );
-      const result: any = await userDataCollection.find({ username }).toArray();
+      const { db } = await connectToDatabase();
+      const result: any = await db
+        .collection(`userData`)
+        .find({ username })
+        .toArray();
       if (result.length > 0) {
         return res.json({
           success: false,
@@ -39,7 +39,7 @@ export default async function handler(
         });
       }
       const hashedPassword: any = await bcrypt.hash(password, 10);
-      await userDataCollection.insertOne({
+      await db.collection(`userData`).insertOne({
         username,
         password: hashedPassword,
       });
