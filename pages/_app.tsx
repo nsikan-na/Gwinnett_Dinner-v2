@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Context } from "../context";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
@@ -27,7 +28,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   // stores the text in an alert
   const [alertText, setAlertText] = useState<string>("");
-
 
   // stores whether to show a spinner for the add to cart button
   const [cardSpinner, setCardSpinner] = useState<boolean>(false);
@@ -76,31 +76,51 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {}, [runningTotal]);
   return (
-    <Context.Provider
-      value={{
-        location,
-        setLocation,
-        runningTotal,
-        setRunningTotal,
-        cart,
-        setCart,
-        payment,
-        setPayment,
-        alertText,
-        setAlertText,
-        username,
-        setUsername,
-        cardSpinner,
-        setCardSpinner,
-        subtotal,
-        setSubtotal,
-        preTax,
-        setPreTax,
-        tip,
-        setTip,
-      }}
-    >
-      <Component {...pageProps} />
-    </Context.Provider>
+    <>
+      <Head>
+        <title>Gwinnett Diner</title>
+        <meta
+          name="description"
+          content="Gwinnett Diner Nsikan Akpan"
+          key="desc"
+        />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:title" content="Gwinnett Diner Nsikan Akpan" />
+        <meta property="og:description" content="Gwinnett Diner Nsikan Akpan" />
+        <meta name="robots" content="all" />
+        <meta name="googlebot" content="noindex,nofollow" />
+        <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+        <meta name="google" content="notranslate" key="notranslate" />
+        <meta name="author" content="Nsikan Akpan" />
+        <link rel="icon" href="/images/logo.png" />
+        <meta property="og:image" content="/images/logo.png" />
+      </Head>
+      <Context.Provider
+        value={{
+          location,
+          setLocation,
+          runningTotal,
+          setRunningTotal,
+          cart,
+          setCart,
+          payment,
+          setPayment,
+          alertText,
+          setAlertText,
+          username,
+          setUsername,
+          cardSpinner,
+          setCardSpinner,
+          subtotal,
+          setSubtotal,
+          preTax,
+          setPreTax,
+          tip,
+          setTip,
+        }}
+      >
+        <Component {...pageProps} />
+      </Context.Provider>
+    </>
   );
 }
