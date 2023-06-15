@@ -4,9 +4,6 @@
 
 This is a capstone project completed for my web design & development degree at [Gwinnett Technical College](https://gwinnetttech.edu/websitedesignanddevelopment/). I work with 7 other student to complete the assignment before our given deadline. We were divider into 3 groups,designers,developers,and testers, based off our strengths. I was a developer. 
 
-## Assignment
-
-[Gwinnet_Diner_Requirements.pdf](https://github.com/nsikan-na/Gwinnett_Dinner-v2/files/8337603/Gwinnet_Diner_Requirements.pdf)
 
 ## This was build using
 
