@@ -14,5 +14,3 @@ This is a capstone project completed for my web design & development degree at [
 - NoSql
 - Bcrypt
 - MongoDB
-- Scrum Development
-- Agile Development
